@@ -9,7 +9,7 @@
 
 **Enterprise Google Maps reputation intelligence & Local Guide auditing suite on Apify. Track deleted/removed Google Maps reviews, scrape reviewer contribution histories, and extract high-res venue photos.**
 
-[**🚀 Try Live on Apify**](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) • [**⚡ Official n8n Creator Hub**](https://n8n.io/creators/unitbytes/) • [**🔧 22 Free n8n Templates**](https://unitbytes.com/n8n/) • [**📖 Documentation & Schemas**](https://unitbytes.com/actors/) • [**📚 Engineering Playbooks**](https://unitbytes.com/blog/)
+[**🚀 Try Live on Apify**](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) • [**⚡ Official n8n Creator Hub**](https://n8n.io/creators/unitbytes/) • [**🔧 23 Free n8n Templates**](https://unitbytes.com/n8n/) • [**📖 Documentation & Schemas**](https://unitbytes.com/actors/) • [**📚 Engineering Playbooks**](https://unitbytes.com/blog/)
 
 </div>
 
@@ -43,7 +43,7 @@ This repository contains ready-to-run **Python SDK scripts**, **1-click n8n auto
 | **Google Maps Contributor & Local Guide Photos Scraper**<br><sub>[`unitbytes/google-maps-photos-scraper`](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-photos-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_google_maps_photos_scraper.py`](examples/run_google_maps_photos_scraper.py) | [`n8n/google-maps-photos-scraper-n8n-workflow.json`](n8n/google-maps-photos-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-photos-scraper-sample.json) · [`CSV`](samples/google-maps-photos-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 
 - 🤖 **Cursor, Windsurf & Claude Code MCP Ready:** Includes [`.cursor/mcp.json`](.cursor/mcp.json) pre-configured with `https://mcp.apify.com` so AI coding agents can invoke these UnitBytes scrapers natively.
-- 💡 **Using n8n?** Explore our official creator profile at **[n8n.io/creators/unitbytes](https://n8n.io/creators/unitbytes/)** or copy all 22 pre-built scraping workflows (`Ctrl+V`) at **[unitbytes.com/n8n](https://unitbytes.com/n8n/)**.
+- 💡 **Using n8n?** Explore our official creator profile at **[n8n.io/creators/unitbytes](https://n8n.io/creators/unitbytes/)** or copy all 23 pre-built scraping workflows (`Ctrl+V`) at **[unitbytes.com/n8n](https://unitbytes.com/n8n/)**.
 - 📚 **Engineering Playbook:** Read **[How to Scrape Google Maps Reviews, Photos & Local Guides (Beyond the 5-Review API Cap)](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)** or browse all scraping & automation guides at **[unitbytes.com/blog](https://unitbytes.com/blog/)**.
 <!-- UNITBYTES_REPO_KIT_END -->
 
@@ -79,7 +79,7 @@ Launch pre-configured extraction templates directly in the Apify Cloud Console w
 
 ### 🚀 Google Maps Reviews Tracker: Check Removed & Edited Reviews (`unitbytes/google-maps-reviews-tracker`)
 
-Did Google delete your client's 5-star review, or did a reported fake review finally disappear? The dedicated data engine for Google Maps review lifecycle auditing, removal detection, and change monitoring.
+Ultra Fast Track & Monitor the status of specific Google Maps review URLs: verify deleted reviews, confirm removal of reported fake reviews, detect star rating drops, and track owner replies. Cheap and Fast
 
 - **Pricing:** `$0.0015 / item` (Pay-Per-Event — $0.0015 result (volume tiers from $0.0012))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps)
@@ -185,7 +185,7 @@ Yes. By comparing output datasets between runs, you can immediately detect when 
 
 ### 🚀 Google Maps Reviewer Profile & Local Guide History Scraper (`unitbytes/google-maps-contributor-scraper`)
 
-Ultra Fast & Cheapest Google Maps reviewer profiles Scraper Extract complete profiles data, Local Guide levels, full review history, ratings, photos, and places visited. Audit 1-star reviewers, detect fake review attacks, and export instantly to Excel, CSV, or JSON.
+Ultra Fast & Cheapest Google Maps reviewer profiles Scraper Extract complete profiles data, Local Guide levels, full review history, ratings, photos, and places visited.
 
 - **Pricing:** `$0.002 / profile` (Pay-Per-Event — $0.002 contributor profile, $0.001 extracted review (volume tiers from $0.0008))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps)
@@ -336,7 +336,7 @@ Extraction runs asynchronously at sub-second rates per contributor profile via p
 
 ### 🚀 Google Maps Contributor & Local Guide Photos Scraper (`unitbytes/google-maps-photos-scraper`)
 
-Extract authentic high-resolution imagery uploaded by Google Maps Local Guides and venue visitors. Power travel apps, food delivery menus, architectural analysis, and visual AI training datasets.
+Extract full-resolution photos (=s0), total photo views, and Local Guide levels from Google Maps Contributor profiles. Ultra-fast, and export-ready for Excel, CSV, or JSON.
 
 - **Pricing:** `$0.005 / item` (Pay-Per-Event — $0.005 photo, $0.008 profile scraped (volume tiers from $0.0012))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps)
@@ -440,6 +440,6 @@ Don't want to manage API tokens or scripts? **UnitBytes Data Delivery** provides
 
 - 🌐 **Request a Sample Dataset:** [https://unitbytes.com/#enterprise-intake](https://unitbytes.com/#enterprise-intake)
 - 📧 **Direct Engineering Contact:** [contact@unitbytes.com](mailto:contact@unitbytes.com)
-- ⚡ **Explore All 22 Scrapers:** [https://unitbytes.com/actors/](https://unitbytes.com/actors/)
+- ⚡ **Explore All 23 Scrapers:** [https://unitbytes.com/actors/](https://unitbytes.com/actors/)
 - 📚 **Engineering Playbooks & Guides:** [https://unitbytes.com/blog/](https://unitbytes.com/blog/)
 - 🔗 **Official n8n Creator Profile:** [https://n8n.io/creators/unitbytes/](https://n8n.io/creators/unitbytes/)
