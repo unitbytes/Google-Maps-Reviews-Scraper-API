@@ -1,0 +1,253 @@
+{
+  "name": "Google Maps Reviews Tracker: Check Removed & Edited Reviews — Automated Extraction to CSV & Sheets (UnitBytes)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## ⚡ Google Maps Reviews Tracker: Check Removed & Edited Reviews — Automated n8n Pipeline\n**Powered by [UnitBytes on Apify](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=n8n_io)** ($0.0015 / item)\n\n### ⚙️ How It Works\nThis workflow runs on a schedule, calls the **[google-maps-reviews-tracker Apify Actor](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=n8n_io)** via its synchronous REST endpoint, normalizes the extracted fields (`input_url, resolved_url, status, is_active, is_removed`), and exports a clean CSV file.\n\n### 🚀 30-Second Setup Instructions\n1. **Get your free Apify API Token**: Open [google-maps-reviews-tracker on Apify Store](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=n8n_io) and copy your API token from **Settings → Integrations**.\n2. **Paste your token & search parameters**: Double-click the **\"1. Set Apify Token & Input\"** node and replace `YOUR_APIFY_API_TOKEN` with your token.\n3. **Click \"Test Workflow\"**: The HTTP Request node calls the synchronous UnitBytes Apify endpoint, normalizes the extracted records, and exports a clean CSV file ready for Google Sheets, Airtable, Slack, or OpenAI.\n\n📖 **Documentation & Schema Reference**: [https://unitbytes.com/actors/google-maps-reviews-tracker/](https://unitbytes.com/actors/google-maps-reviews-tracker/)",
+        "height": 380,
+        "width": 520,
+        "color": 4
+      },
+      "id": "77e63e08-ad5b-5ff6-809c-916c79d9738b",
+      "name": "Sticky Note — Setup Guide",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        180,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 📊 Connect Your Destination\nThe **\"3. Normalize Output Fields\"** node outputs flat records (`input_url, resolved_url, status, is_active, is_removed`).\n\n- **Google Sheets / Airtable**: Connect a Google Sheets (`Append or Update Row`) node after Step 3.\n- **Slack / Telegram / Email Alerts**: Connect a Filter node + Slack node to alert your team on new deals or reviews.\n- **AI Agent / OpenAI**: Connect an OpenAI / LLM Chain node to summarize or classify extracted items.",
+        "height": 220,
+        "width": 420,
+        "color": 5
+      },
+      "id": "5953be18-b371-5e29-8c25-3ba35ca4fb00",
+      "name": "Sticky Note — Destinations",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        880,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "790cbd58-bad3-58b9-9af2-9bf32f18fb7c",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ae10b17-ae1f-5a8e-97a2-45105ef3a56b",
+              "name": "apifyToken",
+              "value": "YOUR_APIFY_API_TOKEN",
+              "type": "string"
+            },
+            {
+              "id": "db94aa49-96e1-53e9-8ba7-47206cfca09b",
+              "name": "actorInput",
+              "value": "{\"reviewsToCheck\": [\"https://maps.app.goo.gl/wSLNNUnwRAwg1T4W9\", \"https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUNwLWNMM2J3EAE!2m1!1s0x0:0x57656ffbe42744ba!3m1!1s2@1:CAIQACodChtycF9oOlJORWFGdmxEN3VmeDI1VlFXRXotRXc%7C%7C?hl=en-US\"], \"proxyConfiguration\": {\"useApifyProxy\": true}}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a0c5d956-47fc-5111-84d5-bbc9dcb096d6",
+      "name": "1. Set Apify Token & Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/unitbytes~google-maps-reviews-tracker/run-sync-get-dataset-items?token={{ $json.apifyToken }}&format=json&clean=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.actorInput) }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "id": "7016c3ad-9235-5bd6-9d48-0271b201607d",
+      "name": "2. Run UnitBytes (google-maps-reviews-tracker)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "72c75dbd-3b30-587f-a109-9aea57017007",
+              "name": "input_url",
+              "value": "={{ $json.input_url }}",
+              "type": "string"
+            },
+            {
+              "id": "3317a816-004f-5aec-bf90-a950e61160c5",
+              "name": "resolved_url",
+              "value": "={{ $json.resolved_url }}",
+              "type": "string"
+            },
+            {
+              "id": "526d5d11-da0b-530c-9f58-c38eb2daffb4",
+              "name": "status",
+              "value": "={{ $json.status }}",
+              "type": "string"
+            },
+            {
+              "id": "e8c7f3bc-f1a6-5dff-a2a8-86e16d74b8c7",
+              "name": "is_active",
+              "value": "={{ $json.is_active }}",
+              "type": "string"
+            },
+            {
+              "id": "b8081c84-0022-5fc1-9f1c-3cae8e9f5aba",
+              "name": "is_removed",
+              "value": "={{ $json.is_removed }}",
+              "type": "string"
+            },
+            {
+              "id": "e744a0cf-a60d-596e-a401-ee46f94d8392",
+              "name": "review_id",
+              "value": "={{ $json.review_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "52a15fd0-6bf9-5cbe-b91f-4c97c334aa52",
+      "name": "3. Normalize Output Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        940,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "options": {
+          "fileName": "google-maps-reviews-tracker-dataset-export.csv"
+        }
+      },
+      "id": "767ccaff-5c75-5974-91fa-bda88a047210",
+      "name": "4. Export to CSV File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        480
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "1. Set Apify Token & Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Set Apify Token & Input": {
+      "main": [
+        [
+          {
+            "node": "2. Run UnitBytes (google-maps-reviews-tracker)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. Run UnitBytes (google-maps-reviews-tracker)": {
+      "main": [
+        [
+          {
+            "node": "3. Normalize Output Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Normalize Output Fields": {
+      "main": [
+        [
+          {
+            "node": "4. Export to CSV File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "030f9420-0ca8-5240-8fe8-208e287a8b19"
+  },
+  "tags": [
+    {
+      "name": "Web Scraping"
+    },
+    {
+      "name": "Apify"
+    },
+    {
+      "name": "UnitBytes"
+    },
+    {
+      "name": "Reputation Intelligence"
+    }
+  ]
+}

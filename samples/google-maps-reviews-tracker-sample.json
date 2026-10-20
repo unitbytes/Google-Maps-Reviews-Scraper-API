@@ -1,0 +1,51 @@
+[
+  {
+    "input_url": "https://maps.app.goo.gl/wSLNNUnwRAwg1T4W9",
+    "resolved_url": "https://www.google.com/maps/reviews/data=!4m8!14m7...",
+    "status": "ACTIVE",
+    "is_active": true,
+    "is_removed": false,
+    "review_id": "Ci9DQUlRQUNvZENodHljRjlvT2tWaWExOUlkRFIwWVhFemJFa3pTekZVTlVjeGNHYxAB",
+    "place_id": "0x0:0x84e51f23e8c0a75c",
+    "place_cid": "ChIJ2_VLfRdawokRXKfA6CMf5YQ",
+    "review_url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQ...",
+    "review_report_url": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQ...",
+    "is_edited": false,
+    "review_modified_timestamp": null,
+    "reviewer_name": "RoRo",
+    "reviewer_id": "107907612947498246994",
+    "reviewer_url": "https://www.google.com/maps/contrib/107907612947498246994",
+    "reviewer_avatar_url": "https://lh3.googleusercontent.com/a-/...",
+    "reviewer_number_of_reviews": 3,
+    "review_stars": 1,
+    "review_text": "I visited this location during my first trip to New York...",
+    "review_photos": [
+      "https://lh3.googleusercontent.com/grass-cs/ACvplmOY0OUAUEn8J7yYHd1cCpWZ..."
+    ],
+    "review_photos_count": 1,
+    "review_timestamp": "2024-03-29T16:56:56.125874+00:00",
+    "review_date": "6 months ago",
+    "review_language": "en",
+    "business_name": "McDonald's",
+    "business_address": "160 Broadway, New York, NY 10038, United States",
+    "business_categories": [
+      "Fast food restaurant",
+      "Coffee shop",
+      "Breakfast restaurant"
+    ],
+    "business_primary_category": "Fast food restaurant",
+    "business_city": "New York",
+    "business_country": "United States",
+    "business_country_code": "US",
+    "business_latitude": 40.7094789,
+    "business_longitude": -74.0100364,
+    "business_timezone": "America/New_York",
+    "business_cover_image_url": "https://lh3.googleusercontent.com/grass-cs/ACvplmMYk...",
+    "has_owner_reply": true,
+    "owner_reply": "Thank you for bringing this to our attention. We have addressed this with our local team.",
+    "owner_reply_date": "5 months ago",
+    "owner_reply_timestamp": "2024-04-02T14:22:10.000000+00:00",
+    "owner_reply_language": "en",
+    "check_timestamp": "2026-10-01T21:08:28.579696+00:00"
+  }
+]

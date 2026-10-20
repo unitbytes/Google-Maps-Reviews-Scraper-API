@@ -1,0 +1,253 @@
+{
+  "name": "Google Maps Contributor & Local Guide Photos Scraper — Automated Extraction to CSV & Sheets (UnitBytes)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## ⚡ Google Maps Contributor & Local Guide Photos Scraper — Automated n8n Pipeline\n**Powered by [UnitBytes on Apify](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.005 / item)\n\n### ⚙️ How It Works\nThis workflow runs on a schedule, calls the **[google-maps-photos-scraper Apify Actor](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=n8n_io)** via its synchronous REST endpoint, normalizes the extracted fields (`targetType, name, isLocalGuide, localGuideLevel, localGuidePoints`), and exports a clean CSV file.\n\n### 🚀 30-Second Setup Instructions\n1. **Get your free Apify API Token**: Open [google-maps-photos-scraper on Apify Store](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=n8n_io) and copy your API token from **Settings → Integrations**.\n2. **Paste your token & search parameters**: Double-click the **\"1. Set Apify Token & Input\"** node and replace `YOUR_APIFY_API_TOKEN` with your token.\n3. **Click \"Test Workflow\"**: The HTTP Request node calls the synchronous UnitBytes Apify endpoint, normalizes the extracted records, and exports a clean CSV file ready for Google Sheets, Airtable, Slack, or OpenAI.\n\n📖 **Documentation & Schema Reference**: [https://unitbytes.com/actors/google-maps-photos-scraper/](https://unitbytes.com/actors/google-maps-photos-scraper/)",
+        "height": 380,
+        "width": 520,
+        "color": 4
+      },
+      "id": "3971129b-374a-5af2-b445-87225eea4bf4",
+      "name": "Sticky Note — Setup Guide",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        180,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 📊 Connect Your Destination\nThe **\"3. Normalize Output Fields\"** node outputs flat records (`targetType, name, isLocalGuide, localGuideLevel, localGuidePoints`).\n\n- **Google Sheets / Airtable**: Connect a Google Sheets (`Append or Update Row`) node after Step 3.\n- **Slack / Telegram / Email Alerts**: Connect a Filter node + Slack node to alert your team on new deals or reviews.\n- **AI Agent / OpenAI**: Connect an OpenAI / LLM Chain node to summarize or classify extracted items.",
+        "height": 220,
+        "width": 420,
+        "color": 5
+      },
+      "id": "188e4a53-0203-5efd-b1eb-991489e71086",
+      "name": "Sticky Note — Destinations",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        880,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "5a6fb517-d6c7-5f8c-8055-f7381eb29f8e",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d671248-2723-5a51-a2a0-c50549a755a5",
+              "name": "apifyToken",
+              "value": "YOUR_APIFY_API_TOKEN",
+              "type": "string"
+            },
+            {
+              "id": "87a7ce46-860b-5e23-8003-885cadc8f9a3",
+              "name": "actorInput",
+              "value": "{\"contributors\": [\"https://www.google.com/maps/contrib/102520373756565203865\"], \"proxyConfiguration\": {\"useApifyProxy\": true, \"apifyProxyGroups\": [\"RESIDENTIAL\"]}}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e6e18fb1-bb16-56e9-95aa-9a7eb298b439",
+      "name": "1. Set Apify Token & Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/unitbytes~google-maps-photos-scraper/run-sync-get-dataset-items?token={{ $json.apifyToken }}&format=json&clean=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.actorInput) }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "id": "a2e7645f-8dec-588b-b9c2-87bd8f1822bb",
+      "name": "2. Run UnitBytes (google-maps-photos-scraper)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d2ef0b4-4355-5fb8-9d6f-e5c31e917d57",
+              "name": "targetType",
+              "value": "={{ $json.targetType }}",
+              "type": "string"
+            },
+            {
+              "id": "75d69f7c-3329-5f6d-8c64-9178086cdc0a",
+              "name": "name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "e34b7dbd-b6cb-5ffa-acce-862b238bc7a9",
+              "name": "isLocalGuide",
+              "value": "={{ $json.isLocalGuide }}",
+              "type": "string"
+            },
+            {
+              "id": "60f49c2c-9ee7-562d-b496-eee16a201d7b",
+              "name": "localGuideLevel",
+              "value": "={{ $json.localGuideLevel }}",
+              "type": "string"
+            },
+            {
+              "id": "001b5c22-9a1d-5510-b364-b74ce1113096",
+              "name": "localGuidePoints",
+              "value": "={{ $json.localGuidePoints }}",
+              "type": "string"
+            },
+            {
+              "id": "6f906d59-6183-55ca-ad47-1c7c1bef523b",
+              "name": "totalPhotosCount",
+              "value": "={{ $json.totalPhotosCount }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "32381648-0d8b-52f6-a9bb-86b7885c396c",
+      "name": "3. Normalize Output Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        940,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "options": {
+          "fileName": "google-maps-photos-scraper-dataset-export.csv"
+        }
+      },
+      "id": "3616eaba-0568-568c-abf5-8a0b268faed9",
+      "name": "4. Export to CSV File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        480
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "1. Set Apify Token & Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Set Apify Token & Input": {
+      "main": [
+        [
+          {
+            "node": "2. Run UnitBytes (google-maps-photos-scraper)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. Run UnitBytes (google-maps-photos-scraper)": {
+      "main": [
+        [
+          {
+            "node": "3. Normalize Output Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Normalize Output Fields": {
+      "main": [
+        [
+          {
+            "node": "4. Export to CSV File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "030f9420-0ca8-5240-8fe8-208e287a8b19"
+  },
+  "tags": [
+    {
+      "name": "Web Scraping"
+    },
+    {
+      "name": "Apify"
+    },
+    {
+      "name": "UnitBytes"
+    },
+    {
+      "name": "Reputation Intelligence"
+    }
+  ]
+}

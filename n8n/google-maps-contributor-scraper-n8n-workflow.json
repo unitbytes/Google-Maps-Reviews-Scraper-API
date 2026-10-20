@@ -1,0 +1,253 @@
+{
+  "name": "Google Maps Reviewer Profile & Local Guide History Scraper — Automated Extraction to CSV & Sheets (UnitBytes)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## ⚡ Google Maps Reviewer Profile & Local Guide History Scraper — Automated n8n Pipeline\n**Powered by [UnitBytes on Apify](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.002 / profile)\n\n### ⚙️ How It Works\nThis workflow runs on a schedule, calls the **[google-maps-contributor-scraper Apify Actor](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=n8n_io)** via its synchronous REST endpoint, normalizes the extracted fields (`contributor_name, contributor_id, contributor_url, avatar_url, is_local_guide`), and exports a clean CSV file.\n\n### 🚀 30-Second Setup Instructions\n1. **Get your free Apify API Token**: Open [google-maps-contributor-scraper on Apify Store](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=n8n_io) and copy your API token from **Settings → Integrations**.\n2. **Paste your token & search parameters**: Double-click the **\"1. Set Apify Token & Input\"** node and replace `YOUR_APIFY_API_TOKEN` with your token.\n3. **Click \"Test Workflow\"**: The HTTP Request node calls the synchronous UnitBytes Apify endpoint, normalizes the extracted records, and exports a clean CSV file ready for Google Sheets, Airtable, Slack, or OpenAI.\n\n📖 **Documentation & Schema Reference**: [https://unitbytes.com/actors/google-maps-contributor-scraper/](https://unitbytes.com/actors/google-maps-contributor-scraper/)",
+        "height": 380,
+        "width": 520,
+        "color": 4
+      },
+      "id": "e12bec5e-2da2-55dd-a3c5-5b84f299e478",
+      "name": "Sticky Note — Setup Guide",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        180,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "content": "### 📊 Connect Your Destination\nThe **\"3. Normalize Output Fields\"** node outputs flat records (`contributor_name, contributor_id, contributor_url, avatar_url, is_local_guide`).\n\n- **Google Sheets / Airtable**: Connect a Google Sheets (`Append or Update Row`) node after Step 3.\n- **Slack / Telegram / Email Alerts**: Connect a Filter node + Slack node to alert your team on new deals or reviews.\n- **AI Agent / OpenAI**: Connect an OpenAI / LLM Chain node to summarize or classify extracted items.",
+        "height": 220,
+        "width": 420,
+        "color": 5
+      },
+      "id": "611dd715-8518-56c3-b65d-b2b7a532ce16",
+      "name": "Sticky Note — Destinations",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        880,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "eaba6d56-d16d-587c-8c68-6f5111776184",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d8c2656d-7814-5da0-b02d-842465b657bd",
+              "name": "apifyToken",
+              "value": "YOUR_APIFY_API_TOKEN",
+              "type": "string"
+            },
+            {
+              "id": "4fa52fe6-b9e1-5bf4-b55d-548272217f31",
+              "name": "actorInput",
+              "value": "{\"contributors\": [\"https://www.google.com/maps/contrib/102520373756565203865\"], \"proxyConfiguration\": {\"useApifyProxy\": true, \"apifyProxyGroups\": [\"RESIDENTIAL\"]}}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e60e139a-c770-5e54-877e-9b76591af90e",
+      "name": "1. Set Apify Token & Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/unitbytes~google-maps-contributor-scraper/run-sync-get-dataset-items?token={{ $json.apifyToken }}&format=json&clean=true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.actorInput) }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "id": "9a6fdc68-2a72-5cdf-9b42-08688c3a4607",
+      "name": "2. Run UnitBytes (google-maps-contributor-scraper)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "722594ba-1aff-5984-9ec1-4b6740d75db5",
+              "name": "contributor_name",
+              "value": "={{ $json.contributor_name }}",
+              "type": "string"
+            },
+            {
+              "id": "940a894e-a35a-5c02-b738-6f1753047af0",
+              "name": "contributor_id",
+              "value": "={{ $json.contributor_id }}",
+              "type": "string"
+            },
+            {
+              "id": "cd248836-f413-5655-b5f5-e6dab2ba933b",
+              "name": "contributor_url",
+              "value": "={{ $json.contributor_url }}",
+              "type": "string"
+            },
+            {
+              "id": "6ad5dbcd-32ad-5582-9bfa-09424c8281b7",
+              "name": "avatar_url",
+              "value": "={{ $json.avatar_url }}",
+              "type": "string"
+            },
+            {
+              "id": "e2b62ffb-76d2-5ee3-baf6-88cbf5660b59",
+              "name": "is_local_guide",
+              "value": "={{ $json.is_local_guide }}",
+              "type": "string"
+            },
+            {
+              "id": "53d4bc80-8414-563c-a1a3-68370b81a5a5",
+              "name": "local_guide_level",
+              "value": "={{ $json.local_guide_level }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "f8be6102-7ac9-5521-bb91-c972f3427f0c",
+      "name": "3. Normalize Output Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        940,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "csv",
+        "options": {
+          "fileName": "google-maps-contributor-scraper-dataset-export.csv"
+        }
+      },
+      "id": "0d95e9aa-71b3-54f5-9ab5-9862dfa74ee6",
+      "name": "4. Export to CSV File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        480
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "1. Set Apify Token & Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. Set Apify Token & Input": {
+      "main": [
+        [
+          {
+            "node": "2. Run UnitBytes (google-maps-contributor-scraper)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. Run UnitBytes (google-maps-contributor-scraper)": {
+      "main": [
+        [
+          {
+            "node": "3. Normalize Output Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Normalize Output Fields": {
+      "main": [
+        [
+          {
+            "node": "4. Export to CSV File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "030f9420-0ca8-5240-8fe8-208e287a8b19"
+  },
+  "tags": [
+    {
+      "name": "Web Scraping"
+    },
+    {
+      "name": "Apify"
+    },
+    {
+      "name": "UnitBytes"
+    },
+    {
+      "name": "Reputation Intelligence"
+    }
+  ]
+}
