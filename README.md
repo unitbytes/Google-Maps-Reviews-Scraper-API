@@ -44,6 +44,7 @@ This repository contains ready-to-run **Python SDK scripts**, **9-node n8n autom
 | **Google Maps Contributor Reviews Scraper (Local Guides)**<br><sub>[`unitbytes/google-maps-contributor-scraper`](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-contributor-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/)</sub> | [`examples/run_google_maps_contributor_scraper.py`](examples/run_google_maps_contributor_scraper.py) | [`n8n/google-maps-contributor-scraper-n8n-workflow.json`](n8n/google-maps-contributor-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-contributor-scraper-sample.json) · [`CSV`](samples/google-maps-contributor-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Photos Scraper (Places, Menus & Local Guides)**<br><sub>[`unitbytes/google-maps-photos-scraper`](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-photos-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/)</sub> | [`examples/run_google_maps_photos_scraper.py`](examples/run_google_maps_photos_scraper.py) | [`n8n/google-maps-photos-scraper-n8n-workflow.json`](n8n/google-maps-photos-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-photos-scraper-sample.json) · [`CSV`](samples/google-maps-photos-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Naver Map & Place Scraper: Places, Menus & Reviews**<br><sub>[`unitbytes/naver-place-scraper`](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_naver_place_scraper.py`](examples/run_naver_place_scraper.py) | [`n8n/naver-place-scraper-n8n-workflow.json`](n8n/naver-place-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-scraper-sample.json) · [`CSV`](samples/naver-place-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
+| **Google Maps B2B Leads, Website Contacts, Tech Stack & Reviews Synchronous REST API (`<500ms` GET)**<br><sub>[RapidAPI Hub](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [Zyla API Hub](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [Full Schema](https://unitbytes.com/actors/google-maps-leads-scraper/)</sub> | [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py) | [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-leads-scraper-sample.json) · [`CSV`](samples/google-maps-leads-scraper-sample.csv) | [⚡ **RapidAPI**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) · [⚡ **Zyla**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) |
 
 - 🤖 **Cursor, Windsurf & Claude Code MCP Ready:** Includes [`.cursor/mcp.json`](.cursor/mcp.json) pre-configured with `https://mcp.apify.com` so AI coding agents can invoke these UnitBytes scrapers natively.
 - 💡 **Using n8n?** Explore our official creator profile at **[n8n.io/creators/unitbytes](https://n8n.io/creators/unitbytes/)** or copy all 39 pre-built 9-node scraping workflows (`Ctrl+V`) at **[unitbytes.com/n8n](https://unitbytes.com/n8n/)**.
@@ -132,6 +133,23 @@ Fast, low-cost Google Maps B2B Leads & Email Scraper (`$0.50–$1.50/1K`). Extra
 | `region` | `string` | `us` | 2-letter ISO country code (gl) used to bias search queries (e.g. us, gb, ca, au, de, fr, ae, in). |
 | `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Select the proxies to use. Apify Residential Proxies are automatically enabled by default for reliable Google Maps discovery. |
 | `maxConcurrency` | `integer` | `3` | How many search targets to process in parallel. (Default: 3, Max: 10) |
+
+#### ⚡ Real-Time Synchronous REST API (RapidAPI Hub & Zyla API Hub — `<500ms` GET)
+
+Need **instant synchronous `GET` JSON responses (`<500ms` live / `<150ms` cached)** for a live B2B CRM enrichment webhook, agency prospecting dashboard, or reputation triage widget without polling async batch jobs? Use our **6-Endpoint Google Maps B2B Leads, Website Contacts, Reviews, 4K Photos & Contributor REST API**:
+
+- 👉 **[Test Live on RapidAPI Hub (`$0` Free Tier)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)** (`x-rapidapi-host: google-maps-b2b-leads-email-tech-stack-reviews-data-api.p.rapidapi.com`)
+- 👉 **[Test Live on Zyla API Hub (7-Day Free Trial)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)** (Listing ID `14553`)
+- 🐍 **Runnable Python Script:** [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py)
+
+| Category | Endpoint | Method | Description |
+| :--- | :--- | :---: | :--- |
+| **1. B2B Lead Discovery** | `/v1/gmaps/search` | `GET` | Search Google Maps businesses by `query` (e.g. `dentists in Austin TX`) with optional real-time website contact crawling (`enrich_contacts=true`), review hooks (`include_review_hook=true`), CMS/ad pixel detection, and `0–100` agency `leadScore`. |
+| **2. Single Place Lead Profile** | `/v1/gmaps/place` | `GET` | Retrieve the complete 48-field B2B lead profile for a single business by `place_id` (`ChIJ...`), Google Maps `url`, or exact `query`, including verified emails, 6 social profiles, CMS tech stack, and `agencyOpportunityFlags`. |
+| **3. Customer Reviews & ORM** | `/v1/gmaps/reviews` | `GET` | Extract sorted customer reviews (`most_relevant`, `newest`, `highest_rating`, `lowest_rating`) with `cursor` pagination, star ratings, full review text, owner replies, owner response SLA turnaround hours, and reputation `triageFlags`. |
+| **4. Domain & Tech Stack Enrichment** | `/v1/gmaps/contacts` | `GET` | Standalone website crawler (`url` or `domain`) extracting verified emails, phones, WhatsApp links, online booking URLs (Calendly, Mindbody, Toast), 6 social platforms, CMS platform, and Meta/Google/TikTok ad pixels. |
+| **5. 4K Photos, Menus & Videos** | `/v1/gmaps/photos` | `GET` | Extract uncompressed original/4K (`=s0`) photos, restaurant menus, storefront media, and MP4 videos by `place_id`, `url`, or `user_id` with gallery category filtering (`all`, `menu`, `videos`, `by_owner`, `vibe`, `food_and_drink`, `latest`, `street_view_and_360`). |
+| **6. Contributor & Review Forensics** | `/v1/gmaps/contributor` | `GET` | Extract Local Guide contributor profile by 21-digit `user_id` or `/maps/contrib/...` `url`, returning Local Guide level, points, contribution breakdown, fake-review `forensicFlags`, and chronological reviews across all businesses. |
 
 #### Python SDK Quickstart (`examples/run_google_maps_leads_scraper.py`)
 ```python
@@ -287,6 +305,23 @@ Fast, low-cost Google Maps Reviews Scraper (`$0.25–$0.35/1K`). Extract up to 1
 | `region` | `string` | `us` | 2-letter ISO country code (gl) used to bias plain-text search queries and Google Maps regional results (e.g. us, gb, ca, au, de, fr, ae, in). |
 | `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Select the proxies to use. Google actively rate-limits datacenter IPs, so Apify Residential Proxies are automatically enabled by default for maximum reliability. |
 | `maxConcurrency` | `integer` | `3` | How many targets to process in parallel. Higher values run faster. (Default: 3, Max: 10) |
+
+#### ⚡ Real-Time Synchronous REST API (RapidAPI Hub & Zyla API Hub — `<500ms` GET)
+
+Need **instant synchronous `GET` JSON responses (`<500ms` live / `<150ms` cached)** for a live B2B CRM enrichment webhook, agency prospecting dashboard, or reputation triage widget without polling async batch jobs? Use our **6-Endpoint Google Maps B2B Leads, Website Contacts, Reviews, 4K Photos & Contributor REST API**:
+
+- 👉 **[Test Live on RapidAPI Hub (`$0` Free Tier)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)** (`x-rapidapi-host: google-maps-b2b-leads-email-tech-stack-reviews-data-api.p.rapidapi.com`)
+- 👉 **[Test Live on Zyla API Hub (7-Day Free Trial)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)** (Listing ID `14553`)
+- 🐍 **Runnable Python Script:** [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py)
+
+| Category | Endpoint | Method | Description |
+| :--- | :--- | :---: | :--- |
+| **1. B2B Lead Discovery** | `/v1/gmaps/search` | `GET` | Search Google Maps businesses by `query` (e.g. `dentists in Austin TX`) with optional real-time website contact crawling (`enrich_contacts=true`), review hooks (`include_review_hook=true`), CMS/ad pixel detection, and `0–100` agency `leadScore`. |
+| **2. Single Place Lead Profile** | `/v1/gmaps/place` | `GET` | Retrieve the complete 48-field B2B lead profile for a single business by `place_id` (`ChIJ...`), Google Maps `url`, or exact `query`, including verified emails, 6 social profiles, CMS tech stack, and `agencyOpportunityFlags`. |
+| **3. Customer Reviews & ORM** | `/v1/gmaps/reviews` | `GET` | Extract sorted customer reviews (`most_relevant`, `newest`, `highest_rating`, `lowest_rating`) with `cursor` pagination, star ratings, full review text, owner replies, owner response SLA turnaround hours, and reputation `triageFlags`. |
+| **4. Domain & Tech Stack Enrichment** | `/v1/gmaps/contacts` | `GET` | Standalone website crawler (`url` or `domain`) extracting verified emails, phones, WhatsApp links, online booking URLs (Calendly, Mindbody, Toast), 6 social platforms, CMS platform, and Meta/Google/TikTok ad pixels. |
+| **5. 4K Photos, Menus & Videos** | `/v1/gmaps/photos` | `GET` | Extract uncompressed original/4K (`=s0`) photos, restaurant menus, storefront media, and MP4 videos by `place_id`, `url`, or `user_id` with gallery category filtering (`all`, `menu`, `videos`, `by_owner`, `vibe`, `food_and_drink`, `latest`, `street_view_and_360`). |
+| **6. Contributor & Review Forensics** | `/v1/gmaps/contributor` | `GET` | Extract Local Guide contributor profile by 21-digit `user_id` or `/maps/contrib/...` `url`, returning Local Guide level, points, contribution breakdown, fake-review `forensicFlags`, and chronological reviews across all businesses. |
 
 #### Python SDK Quickstart (`examples/run_google_maps_reviews_scraper.py`)
 ```python
@@ -576,6 +611,23 @@ Scrape Google Maps contributor reviews, reviewer profiles, and Local Guide histo
 | `proxyConfiguration` | `object` | `{"useApifyProxy": true, "apifyProxyGroups": ["RE` | Proxies to use. Apify Residential Proxies are enabled by default to prevent Google rate limits and 429/403 blocks. |
 | `maxConcurrency` | `integer` | `3` | Number of profiles to scrape concurrently (1 to 10). |
 
+#### ⚡ Real-Time Synchronous REST API (RapidAPI Hub & Zyla API Hub — `<500ms` GET)
+
+Need **instant synchronous `GET` JSON responses (`<500ms` live / `<150ms` cached)** for a live B2B CRM enrichment webhook, agency prospecting dashboard, or reputation triage widget without polling async batch jobs? Use our **6-Endpoint Google Maps B2B Leads, Website Contacts, Reviews, 4K Photos & Contributor REST API**:
+
+- 👉 **[Test Live on RapidAPI Hub (`$0` Free Tier)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)** (`x-rapidapi-host: google-maps-b2b-leads-email-tech-stack-reviews-data-api.p.rapidapi.com`)
+- 👉 **[Test Live on Zyla API Hub (7-Day Free Trial)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)** (Listing ID `14553`)
+- 🐍 **Runnable Python Script:** [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py)
+
+| Category | Endpoint | Method | Description |
+| :--- | :--- | :---: | :--- |
+| **1. B2B Lead Discovery** | `/v1/gmaps/search` | `GET` | Search Google Maps businesses by `query` (e.g. `dentists in Austin TX`) with optional real-time website contact crawling (`enrich_contacts=true`), review hooks (`include_review_hook=true`), CMS/ad pixel detection, and `0–100` agency `leadScore`. |
+| **2. Single Place Lead Profile** | `/v1/gmaps/place` | `GET` | Retrieve the complete 48-field B2B lead profile for a single business by `place_id` (`ChIJ...`), Google Maps `url`, or exact `query`, including verified emails, 6 social profiles, CMS tech stack, and `agencyOpportunityFlags`. |
+| **3. Customer Reviews & ORM** | `/v1/gmaps/reviews` | `GET` | Extract sorted customer reviews (`most_relevant`, `newest`, `highest_rating`, `lowest_rating`) with `cursor` pagination, star ratings, full review text, owner replies, owner response SLA turnaround hours, and reputation `triageFlags`. |
+| **4. Domain & Tech Stack Enrichment** | `/v1/gmaps/contacts` | `GET` | Standalone website crawler (`url` or `domain`) extracting verified emails, phones, WhatsApp links, online booking URLs (Calendly, Mindbody, Toast), 6 social platforms, CMS platform, and Meta/Google/TikTok ad pixels. |
+| **5. 4K Photos, Menus & Videos** | `/v1/gmaps/photos` | `GET` | Extract uncompressed original/4K (`=s0`) photos, restaurant menus, storefront media, and MP4 videos by `place_id`, `url`, or `user_id` with gallery category filtering (`all`, `menu`, `videos`, `by_owner`, `vibe`, `food_and_drink`, `latest`, `street_view_and_360`). |
+| **6. Contributor & Review Forensics** | `/v1/gmaps/contributor` | `GET` | Extract Local Guide contributor profile by 21-digit `user_id` or `/maps/contrib/...` `url`, returning Local Guide level, points, contribution breakdown, fake-review `forensicFlags`, and chronological reviews across all businesses. |
+
 #### Python SDK Quickstart (`examples/run_google_maps_contributor_scraper.py`)
 ```python
 from apify_client import ApifyClient
@@ -751,6 +803,23 @@ Download full-resolution (=s0) Google Maps photos & MP4 videos from any business
 | `contributors` | `array` | — | Optional: Paste Google Maps contributor profile URLs or numeric User IDs to extract all photos uploaded by a specific Local Guide or reviewer, along with their total photo views and badge level. |
 | `proxyConfiguration` | `object` | `{"useApifyProxy": true, "apifyProxyGroups": ["RE` | Proxies to use. Apify Residential Proxies are recommended for reliable extraction. |
 | `maxConcurrency` | `integer` | `3` | Number of places or contributor profiles to scrape in parallel (1 to 10). |
+
+#### ⚡ Real-Time Synchronous REST API (RapidAPI Hub & Zyla API Hub — `<500ms` GET)
+
+Need **instant synchronous `GET` JSON responses (`<500ms` live / `<150ms` cached)** for a live B2B CRM enrichment webhook, agency prospecting dashboard, or reputation triage widget without polling async batch jobs? Use our **6-Endpoint Google Maps B2B Leads, Website Contacts, Reviews, 4K Photos & Contributor REST API**:
+
+- 👉 **[Test Live on RapidAPI Hub (`$0` Free Tier)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)** (`x-rapidapi-host: google-maps-b2b-leads-email-tech-stack-reviews-data-api.p.rapidapi.com`)
+- 👉 **[Test Live on Zyla API Hub (7-Day Free Trial)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)** (Listing ID `14553`)
+- 🐍 **Runnable Python Script:** [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py)
+
+| Category | Endpoint | Method | Description |
+| :--- | :--- | :---: | :--- |
+| **1. B2B Lead Discovery** | `/v1/gmaps/search` | `GET` | Search Google Maps businesses by `query` (e.g. `dentists in Austin TX`) with optional real-time website contact crawling (`enrich_contacts=true`), review hooks (`include_review_hook=true`), CMS/ad pixel detection, and `0–100` agency `leadScore`. |
+| **2. Single Place Lead Profile** | `/v1/gmaps/place` | `GET` | Retrieve the complete 48-field B2B lead profile for a single business by `place_id` (`ChIJ...`), Google Maps `url`, or exact `query`, including verified emails, 6 social profiles, CMS tech stack, and `agencyOpportunityFlags`. |
+| **3. Customer Reviews & ORM** | `/v1/gmaps/reviews` | `GET` | Extract sorted customer reviews (`most_relevant`, `newest`, `highest_rating`, `lowest_rating`) with `cursor` pagination, star ratings, full review text, owner replies, owner response SLA turnaround hours, and reputation `triageFlags`. |
+| **4. Domain & Tech Stack Enrichment** | `/v1/gmaps/contacts` | `GET` | Standalone website crawler (`url` or `domain`) extracting verified emails, phones, WhatsApp links, online booking URLs (Calendly, Mindbody, Toast), 6 social platforms, CMS platform, and Meta/Google/TikTok ad pixels. |
+| **5. 4K Photos, Menus & Videos** | `/v1/gmaps/photos` | `GET` | Extract uncompressed original/4K (`=s0`) photos, restaurant menus, storefront media, and MP4 videos by `place_id`, `url`, or `user_id` with gallery category filtering (`all`, `menu`, `videos`, `by_owner`, `vibe`, `food_and_drink`, `latest`, `street_view_and_360`). |
+| **6. Contributor & Review Forensics** | `/v1/gmaps/contributor` | `GET` | Extract Local Guide contributor profile by 21-digit `user_id` or `/maps/contrib/...` `url`, returning Local Guide level, points, contribution breakdown, fake-review `forensicFlags`, and chronological reviews across all businesses. |
 
 #### Python SDK Quickstart (`examples/run_google_maps_photos_scraper.py`)
 ```python
