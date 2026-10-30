@@ -12,7 +12,7 @@
 
 **Complete Google Maps & Local B2B lead generation, website email & ad pixel enrichment (`$0.50/1K`), 10,000-review bulk extraction (`$0.25/1K`), stateful review change & removal tracking (`NEW`/`REMOVED`/`EDITED`), Local Guide forensics, uncompressed (`=s0`) 4K photo/menu extraction, and Naver Place Korea POI suite on Apify.**
 
-[**🚀 Try Live on Apify**](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [**📓 Open in Google Colab**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) • [**⚡ RapidAPI Hub**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [**⚡ Zyla API Hub**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [**⚡ Official n8n Creator Hub**](https://n8n.io/creators/unitbytes/) • [**🔧 39 Free n8n Templates**](https://unitbytes.com/n8n/) • [**📖 Documentation & Schemas**](https://unitbytes.com/actors/) • [**📚 Engineering Playbooks**](https://unitbytes.com/blog/)
+[**🚀 Try Live on Apify**](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [**📓 Open in Google Colab**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) • [**⚡ RapidAPI Hub**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [**⚡ Zyla API Hub**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [**⚡ Official n8n Creator Hub**](https://n8n.io/creators/unitbytes/) • [**🔧 41 Free n8n Templates**](https://unitbytes.com/n8n/) • [**📖 Documentation & Schemas**](https://unitbytes.com/actors/) • [**📚 Engineering Playbooks**](https://unitbytes.com/blog/)
 
 </div>
 
@@ -46,12 +46,12 @@ This repository contains ready-to-run **Python SDK scripts**, an **interactive 1
 | **Google Maps Review Monitor & Change Tracker (Alerts & ORM)**<br><sub>[`unitbytes/google-maps-reviews-tracker`](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-reviews-tracker/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-review-takedown-removal-tracker-orm-guide/)</sub> | [`examples/run_google_maps_reviews_tracker.py`](examples/run_google_maps_reviews_tracker.py) | [`n8n/google-maps-reviews-tracker-n8n-workflow.json`](n8n/google-maps-reviews-tracker-n8n-workflow.json) | [`JSON`](samples/google-maps-reviews-tracker-sample.json) · [`CSV`](samples/google-maps-reviews-tracker-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Contributor Reviews Scraper (Local Guides)**<br><sub>[`unitbytes/google-maps-contributor-scraper`](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-contributor-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/)</sub> | [`examples/run_google_maps_contributor_scraper.py`](examples/run_google_maps_contributor_scraper.py) | [`n8n/google-maps-contributor-scraper-n8n-workflow.json`](n8n/google-maps-contributor-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-contributor-scraper-sample.json) · [`CSV`](samples/google-maps-contributor-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Photos Scraper (Places, Menus & Local Guides)**<br><sub>[`unitbytes/google-maps-photos-scraper`](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-photos-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/)</sub> | [`examples/run_google_maps_photos_scraper.py`](examples/run_google_maps_photos_scraper.py) | [`n8n/google-maps-photos-scraper-n8n-workflow.json`](n8n/google-maps-photos-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-photos-scraper-sample.json) · [`CSV`](samples/google-maps-photos-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
-| **Naver Map & Place Scraper: Places, Menus & Reviews**<br><sub>[`unitbytes/naver-place-scraper`](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_naver_place_scraper.py`](examples/run_naver_place_scraper.py) | [`n8n/naver-place-scraper-n8n-workflow.json`](n8n/naver-place-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-scraper-sample.json) · [`CSV`](samples/naver-place-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
+| **Naver Place & Map Scraper**<br><sub>[`unitbytes/naver-place-scraper`](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_naver_place_scraper.py`](examples/run_naver_place_scraper.py) | [`n8n/naver-place-scraper-n8n-workflow.json`](n8n/naver-place-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-scraper-sample.json) · [`CSV`](samples/naver-place-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps B2B Leads, Website Contacts, Tech Stack & Reviews Synchronous REST API (`<500ms` GET)**<br><sub>[RapidAPI Hub](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [Zyla API Hub](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [Full Schema](https://unitbytes.com/actors/google-maps-leads-scraper/)</sub> | [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py) | [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-leads-scraper-sample.json) · [`CSV`](samples/google-maps-leads-scraper-sample.csv) | [⚡ **RapidAPI**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) · [⚡ **Zyla**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) |
 
 - 📓 **1-Click Interactive Google Colab Notebook:** Open [`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb) directly in your browser via [**Google Colab ↗**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) to inspect sample DataFrames and test live API queries with zero local setup.
 - 🤖 **Cursor, Windsurf & Claude Code MCP Ready:** Includes [`.cursor/mcp.json`](.cursor/mcp.json) pre-configured with `https://mcp.apify.com` so AI coding agents can invoke these UnitBytes scrapers natively.
-- 💡 **Using n8n?** Explore our official creator profile at **[n8n.io/creators/unitbytes](https://n8n.io/creators/unitbytes/)** or copy all 39 pre-built 9-node scraping workflows (`Ctrl+V`) at **[unitbytes.com/n8n](https://unitbytes.com/n8n/)**.
+- 💡 **Using n8n?** Explore our official creator profile at **[n8n.io/creators/unitbytes](https://n8n.io/creators/unitbytes/)** or copy all 41 pre-built 9-node scraping workflows (`Ctrl+V`) at **[unitbytes.com/n8n](https://unitbytes.com/n8n/)**.
 - 📚 **Engineering Playbooks:** [**B2B Leads & Email Prospecting Playbook**](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/) • [**10K Reviews Extraction Playbook**](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/) • [**Review Monitor & Change Tracker Playbook**](https://unitbytes.com/blog/google-maps-review-takedown-removal-tracker-orm-guide/) • [**Fake Review Forensic Playbook**](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/) • [**Places Photo API Pricing Teardown**](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/) — or browse all guides at **[unitbytes.com/blog](https://unitbytes.com/blog/)**.
 <!-- UNITBYTES_REPO_KIT_END -->
 
@@ -110,9 +110,9 @@ Launch pre-configured extraction templates directly in the Apify Cloud Console w
   </a>
 </p>
 
-Fast, low-cost Google Maps B2B Leads & Email Scraper (`$0.50–$1.50/1K`). Extract verified business emails, phones, WhatsApp, LinkedIn/Instagram/Facebook profiles, unclaimed GMB status, tech stack, and cold-outreach review hooks into 48 flat fields.
+Fast, low-cost Google Maps B2B Leads & Email Scraper (`$1.00–$2.00/1K`). Extract verified business emails, phones, WhatsApp, LinkedIn/Instagram/Facebook profiles, unclaimed GMB status, tech stack (WordPress/Shopify/Pixels), and cold-outreach review hooks into 48.
 
-- **Pricing:** `$0.0015 / item` (Pay-Per-Event — `$0.0015` b2b lead & contact scraped (volume tiers from `$0.0005`))
+- **Pricing:** `$0.002 / item` (Pay-Per-Event — `$0.002` b2b lead & contact scraped (volume tiers from `$0.001`))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps)
 - **Full Documentation & Schema:** [https://unitbytes.com/actors/google-maps-leads-scraper/](https://unitbytes.com/actors/google-maps-leads-scraper/)
 - **n8n Workflow File:** [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json)
@@ -282,7 +282,7 @@ Runs cost `$0.50` per 1,000 leads (`$0.0005/lead`) with all 61 fields—website 
 
 ### 🚀 Google Maps Reviews Scraper (`unitbytes/google-maps-reviews-scraper`)
 
-Fast, low-cost Google Maps Reviews Scraper (`$0.25–$0.35/1K`). Extract up to 10,000 reviews per business from Place URLs, Search Queries, or Place IDs. Sort by Newest or Lowest Rating (1-star first), filter by keyword, and export 55 flat fields.
+Fast, low-cost Google Maps Reviews Scraper (`$0.25–$0.35/1K`). Extract up to 10,000 reviews per business from Place URLs (/maps/place/...), Search Queries, or Place IDs (ChIJ...).
 
 - **Pricing:** `$0.00035 / item` (Pay-Per-Event — `$0.00035` review scraped (volume tiers from `$0.00025`))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps)
@@ -436,7 +436,7 @@ Yes. Even after Google deletes the review text and author profile from public vi
   </a>
 </p>
 
-Monitor Google Maps businesses for NEW, REMOVED, EDITED, or UNANSWERED reviews. Diff Place URLs across runs, sort 1-star complaints first, filter by keyword, audit owner reply SLAs, flag burner accounts, and generate 1-click Google dispute links.
+Monitor Google Maps businesses for NEW, REMOVED, EDITED, or UNANSWERED reviews. Diff Place URLs across runs, sort 1-star complaints first, filter by keyword, audit owner reply SLAs (response_time_hours), flag burner accounts, and generate 1-click Google dispute.
 
 - **Pricing:** `$0.0015 / item` (Pay-Per-Event — `$0.0015` result (volume tiers from `$0.0012`))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps)
@@ -585,7 +585,7 @@ When trackChanges is enabled, the Actor compares current reviews against your sa
   </a>
 </p>
 
-Scrape Google Maps contributor reviews, reviewer profiles, and Local Guide histories in <2s. Paste any Google Maps business place URL, search query, review link, or contributor URL to extract all reviews, ratings, levels, photos, and owner replies.
+Scrape Google Maps contributor reviews, reviewer profiles, and Local Guide histories in <2s. Paste any Google Maps business place URL, search query, review link, or contributor URL to extract all reviews, reviewer ratings, levels, photos, owner replies & fake.
 
 - **Pricing:** `$0.002 / profile` (Pay-Per-Event — `$0.002` contributor profile, `$0.001` extracted review (volume tiers from `$0.0008`))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps)
@@ -780,7 +780,7 @@ By mapping every business a 1-star attacker has reviewed, ORM analysts uncover c
   </a>
 </p>
 
-Download full-resolution (=s0) Google Maps photos & MP4 videos from any business place, restaurant menu, food, vibe, street view, or Google Maps Contributor & Local Guide profile. Filter by gallery tab, captions, photo views, and Place IDs.
+Download full-resolution (=s0) Google Maps photos & MP4 videos from any business place, restaurant menu, food, vibe, street view, or Google Maps Contributor & Local Guide profile.
 
 - **Pricing:** `$0.0015 / item` (Pay-Per-Event — `$0.0015` photo, `$0.002` profile scraped (volume tiers from `$0.001`))
 - **Cloud Console:** [https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps)
@@ -907,17 +907,17 @@ Google's official Places Photo API charges `$7.00` per 1,000 photo requests and 
 
 ---
 
-### 🚀 Naver Map & Place Scraper: Places, Menus & Reviews (`unitbytes/naver-place-scraper`)
+### 🚀 Naver Place & Map Scraper (`unitbytes/naver-place-scraper`)
 
 <p align="center">
   <a href="https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
-    <img src="https://raw.githubusercontent.com/unitbytes/.github/main/assets/banners/unitbytes-naver-map-place-scraper-korea-business-leads-reviews-banner.jpg" alt="Naver Map & Place Scraper: Places, Menus & Reviews" width="100%" />
+    <img src="https://raw.githubusercontent.com/unitbytes/.github/main/assets/banners/unitbytes-naver-map-place-scraper-korea-business-leads-reviews-banner.jpg" alt="Naver Place & Map Scraper" width="100%" />
   </a>
 </p>
 
-Fastest Naver Map (네이버 지도) & Naver Place (네이버 플레이스) scraper (`$2.80/1K`). Extract South Korean local business leads, phone numbers, GPS coordinates, opening hours, full menus with KRW prices, visitor reviews, blog reviews & HD photos. MCP & AI ready.
+네이버 플레이스·지도 수집 (`$1.00/1K`): 상호명, 전화번호(0507), 도로명주소, 위경도(GPS), 영업시간, 메뉴·가격, 방문자·블로그 리뷰까지 초고속 추출. Fast Naver Place & Map Scraper for Korean local business leads, KRW menus, hours, coordinates & reviews. CSV/Excel & AI ready.
 
-- **Pricing:** `$0.0035 / item` (Pay-Per-Event — `$0.0035` place or review scraped (volume tiers from `$0.0028`))
+- **Pricing:** `$0.0014 / item` (Pay-Per-Event — `$0.0014` place or review scraped (volume tiers from `$0.001`))
 - **Cloud Console:** [https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps)
 - **Full Documentation & Schema:** [https://unitbytes.com/actors/naver-place-scraper/](https://unitbytes.com/actors/naver-place-scraper/)
 - **n8n Workflow File:** [`n8n/naver-place-scraper-n8n-workflow.json`](n8n/naver-place-scraper-n8n-workflow.json)
@@ -934,9 +934,9 @@ Fastest Naver Map (네이버 지도) & Naver Place (네이버 플레이스) scra
 | Parameter | Type | Default / Prefill | Description |
 | :--- | :---: | :--- | :--- |
 | `queries` | `array` | `["강남 맛집"]` | Keywords to search on Naver Map / Naver Place (e.g., 강남 맛집, 성수동 카페, 강남 피부과, 명동 호텔, 홍대 미용실). You can also paste direct Naver Map / Place URLs or numeric Place IDs here. |
-| `placeUrls` | `array` | — | Optional list of direct Naver Map URLs (https://map.naver.com/p/entry/place/2000000001), Mobile Place URLs (https://m.place.naver.com/restaurant/2000000001/home), naver.me shortlinks, search URLs (https://map.naver.com/p/search/강남%20맛집), or raw numeric Place IDs (2000000001). |
+| `placeUrls` | `array` | — | Optional list of direct Naver Map URLs (https://map.naver.com/p/entry/place/2025884279), Mobile Place URLs (https://m.place.naver.com/restaurant/2025884279/home), naver.me shortlinks, search URLs (https://map.naver.com/p/search/강남%20맛집), or raw numeric Place IDs (2025884279). |
 | `mode` | `string` | `places` | Select whether to output enriched Place records (places — includes menus, hours, contacts, sentiment stats, and embedded reviews) or dedicated individual review rows (reviews — outputs one row per visitor/blog review for deep sentiment analysis). |
-| `scrapeDetails` | `boolean` | `True` | When enabled (default), visits each place page to extract 7-day opening hours, full menu list with KRW prices & photos, walking directions, nearest subway stations, parking fees, website/Instagram links, sentiment keyword breakdown, and recent visitor/blog reviews. |
+| `scrapeDetails` | `boolean` | `True` | When enabled (default), extracts 7-day opening hours, full menu list with KRW prices & photos, walking directions, nearest subway stations, parking fees, website/Instagram links, sentiment keyword breakdown, and recent visitor/blog reviews. |
 | `maxItems` | `integer` | `20` | Maximum number of items (places in places mode, or reviews in reviews mode) to collect across the run. |
 | `maxReviewsPerPlace` | `integer` | `10` | Maximum number of visitor reviews (방문자 리뷰) to fetch per place when scrapeDetails is enabled or in reviews mode. |
 | `includeBlogReviews` | `boolean` | `True` | Include Naver Blog and Cafe review posts linked to each place (author name, post title, URL, snippet, date, and thumbnail). |
@@ -1105,6 +1105,6 @@ Don't want to manage API tokens or scripts? **UnitBytes Data Delivery** provides
 
 - 🌐 **Request a Sample Dataset:** [https://unitbytes.com/#enterprise-intake](https://unitbytes.com/#enterprise-intake)
 - 📧 **Direct Engineering Contact:** [contact@unitbytes.com](mailto:contact@unitbytes.com)
-- ⚡ **Explore All 39 Scrapers:** [https://unitbytes.com/actors/](https://unitbytes.com/actors/)
+- ⚡ **Explore All 41 Scrapers:** [https://unitbytes.com/actors/](https://unitbytes.com/actors/)
 - 📚 **Engineering Playbooks & Guides:** [https://unitbytes.com/blog/](https://unitbytes.com/blog/)
 - 🔗 **Official n8n Creator Profile:** [https://n8n.io/creators/unitbytes/](https://n8n.io/creators/unitbytes/)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Naver Map & Place Scraper: Places, Menus & Reviews — Official Python SDK Quickstart
+Naver Place & Map Scraper — Official Python SDK Quickstart
 Actor: https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_py
 Docs & Schema: https://unitbytes.com/actors/naver-place-scraper/
 n8n Template: https://unitbytes.com/n8n/workflows/naver-place-scraper-n8n-workflow.json

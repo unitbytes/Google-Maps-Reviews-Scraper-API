@@ -1,10 +1,10 @@
 {
-  "name": "Extract and score Google Maps Reviews Scraper data to Google Sheets, CSV, and Slack with Apify",
+  "name": "Audit Google Maps Reviews Scraper with OpenAI and route ORM replies to Gmail, Sheets, and Slack",
   "nodes": [
     {
       "parameters": {
-        "content": "## Google Maps Reviews Scraper — Automated Sheets, CSV & Slack Pipeline\n\nBuilt for market research, e-commerce, and growth teams. This workflow runs on a schedule to extract fresh data with the **[google-maps-reviews-scraper Apify Actor](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.00035 / item), skips previously seen records, scores each item, logs results to **Google Sheets** and **CSV**, and posts **Slack** alerts for top matches.\n\n### How it works\n1. **Every 6 Hours** triggers the run and loads search settings from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (google-maps-reviews-scraper)** executes the actor via Apify's synchronous endpoint.\n3. **3. Skip Seen Records** deduplicates items by `review_id` across runs.\n4. **4. Clean & Score Items** and **5. Map Export Fields** normalize fields (`place_name, reviewer_name, review_stars, review_text, published_at`) and compute a 0–100 `priorityScore`.\n5. **6a. Log to Google Sheets** and **6b. Export Backup CSV** store all rows, while **6c. Filter High-Priority Items** sends top matches to **7. Send Slack Alert**.\n\n### Setup\n1. Copy your API token from [google-maps-reviews-scraper on Apify Store](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io) into the **HTTP Header Auth** credential (`Authorization: Bearer <TOKEN>`) on node 2.\n2. Edit `actorInput`, `sheetTab`, and `alertStarThreshold` in **1. Configure Search & Rules**.\n3. Connect **Google Sheets** and **Slack** credentials (or test immediately via CSV export).\n\n### Customization\n- Tune `alertStarThreshold` or `priorityKeyword` in node 1 to adjust Slack alert sensitivity.\n- Full schema reference: [https://unitbytes.com/actors/google-maps-reviews-scraper/](https://unitbytes.com/actors/google-maps-reviews-scraper/)",
-        "height": 760,
+        "content": "## Google Maps Reviews Scraper — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[google-maps-reviews-scraper Apify Actor](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.00035 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (google-maps-reviews-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `review_id`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `place_name, reviewer_name, review_stars, review_text` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Review Triage & Response Drafter**.\n5. **8. Merge AI Review Audit & Reply** merges AI fields and triggers **9a. Send ORM Review Alert to Slack** and **9b. Draft ORM Incident Report in Gmail**.\n\n### Setup\n1. Add your token from [google-maps-reviews-scraper on Apify Store](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2.\n2. Edit `actorInput`, `sheetTab`, and `alertStarThreshold` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `alertStarThreshold` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/google-maps-reviews-scraper/](https://unitbytes.com/actors/google-maps-reviews-scraper/)",
+        "height": 780,
         "width": 560,
         "color": 1
       },
@@ -67,13 +67,13 @@
     },
     {
       "parameters": {
-        "content": "## 4. Sync to Sheets, CSV & Slack\nLogs all new records to Google Sheets and CSV, and routes high-priority matches to Slack.",
-        "height": 660,
-        "width": 540,
+        "content": "## 4. Sheets, CSV & AI Co-Pilot\nLogs all rows to Sheets and CSV, enriches high-priority items with OpenAI, and alerts teams.",
+        "height": 740,
+        "width": 980,
         "color": 7
       },
       "id": "bf4e7c43-bb67-51cf-864f-0d646b33af2b",
-      "name": "Section 4 — Sheets, CSV & Slack",
+      "name": "Section 4 — Sheets, CSV & AI Co-Pilot",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
@@ -494,6 +494,131 @@
     },
     {
       "parameters": {
+        "resource": "text",
+        "operation": "message",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are an Online Reputation Management (ORM) specialist. Analyze the scraped Google Maps review or contributor record and return a JSON object with exactly 4 keys: \"aiHeadline\" (place name + star rating + review status summary), \"aiVerdict\" (one of: CRITICAL_DISPUTE, REMOVAL_CONFIRMED, NEEDS_OWNER_REPLY, POSITIVE_HIGHLIGHT), \"aiAnalysis\" (1-sentence root-cause diagnosis and check for Google Content Policy spam/conflict violations), and \"aiDraftBody\" (an empathetic, brand-safe public owner response ready to post, or client status update if removed).",
+              "role": "system"
+            },
+            {
+              "content": "=Review Record ({{ $json.recordId }}):\nPlace / Reviewer: {{ $json.titleText }}\nStar Rating / Metric: {{ $json.numericValue }} (Priority: {{ $json.priorityScore }}/100)\nURL: {{ $json.itemUrl }}\nRaw Payload Summary: {{ JSON.stringify($json).slice(0, 1200) }}",
+              "role": "user"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "38607d58-01f6-572b-ab8d-7565c1d5beff",
+          "name": "OpenAI account"
+        }
+      },
+      "id": "90eff8c2-65bb-55f3-b6b0-7e9135b3728d",
+      "name": "7. AI Review Triage & Response Drafter",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1660,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0cf65e6e-b19c-5a16-8454-57d421965be0",
+              "name": "recordId",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.recordId }}",
+              "type": "string"
+            },
+            {
+              "id": "e470342f-3f3d-58bb-a3e2-99a67b0e894e",
+              "name": "titleText",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "type": "string"
+            },
+            {
+              "id": "ece21df4-8646-5805-8cf1-26269d7d7cc4",
+              "name": "itemUrl",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.itemUrl }}",
+              "type": "string"
+            },
+            {
+              "id": "493114e1-b900-5292-86ed-0a23ac4742b4",
+              "name": "numericValue",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.numericValue }}",
+              "type": "number"
+            },
+            {
+              "id": "6d010dca-7de9-5728-9cce-dab34c15a0c8",
+              "name": "priorityScore",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.priorityScore }}",
+              "type": "number"
+            },
+            {
+              "id": "67c16ba2-5d18-5a84-b7d5-004c7dd00e76",
+              "name": "recipientEmail",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.primary_email || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "c83b808c-b9cc-5ee2-80f0-6277d3014d23",
+              "name": "aiHeadline",
+              "value": "={{ $json.message?.content?.aiHeadline || $json.aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "type": "string"
+            },
+            {
+              "id": "83572245-34ef-53ee-b12f-cee76de7af66",
+              "name": "aiVerdict",
+              "value": "={{ $json.message?.content?.aiVerdict || $json.aiVerdict || 'HIGH_PRIORITY' }}",
+              "type": "string"
+            },
+            {
+              "id": "14b73d49-635f-56f1-9939-6d20e6f96757",
+              "name": "aiAnalysis",
+              "value": "={{ $json.message?.content?.aiAnalysis || $json.aiAnalysis || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "3553b922-d920-5e2a-a1b2-42918b513113",
+              "name": "aiDraftBody",
+              "value": "={{ $json.message?.content?.aiDraftBody || $json.aiDraftBody || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "6386ec5b-741d-59b8-91e3-4552c6a20c90",
+              "name": "scrapedAt",
+              "value": "={{ $('6c. Filter High-Priority Items').item.json.scrapedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a82bec36-d210-54bf-b41f-1b9d28cdb066",
+      "name": "8. Merge AI Review Audit & Reply",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1890,
+        360
+      ]
+    },
+    {
+      "parameters": {
         "resource": "message",
         "operation": "post",
         "select": "channel",
@@ -503,7 +628,7 @@
           "value": ""
         },
         "messageType": "text",
-        "text": "=:bell: *New High-Priority Match (Google Maps Reviews Scraper)*\n*<{{ $json.itemUrl }}|{{ $json.titleText }}>*\n• *Priority Score:* {{ $json.priorityScore }}/100 ({{ $json.numericValue }})\n• *Record ID:* `{{ $json.recordId }}`\n• *Scraped At:* {{ $json.scrapedAt }}",
+        "text": "=:robot_face: *AI Co-Pilot Match (Google Maps Reviews Scraper)*\n*<{{ $json.itemUrl }}|{{ $json.aiHeadline }}>*\n• *AI Verdict:* `{{ $json.aiVerdict }}` | *Priority Score:* {{ $json.priorityScore }}/100 (Metric: {{ $json.numericValue }})\n• *AI Analysis:* {{ $json.aiAnalysis }}\n• *Suggested Action / Draft:* {{ $json.aiDraftBody }}\n• *Record ID:* `{{ $json.recordId }}`",
         "otherOptions": {
           "includeLinkToWorkflow": false,
           "unfurl_links": false
@@ -516,12 +641,37 @@
         }
       },
       "id": "64a830dd-d2a4-5b98-ad91-ca15fc8de25a",
-      "name": "7. Send Slack Alert",
+      "name": "9a. Send ORM Review Alert to Slack",
       "type": "n8n-nodes-base.slack",
       "typeVersion": 2.3,
       "position": [
-        1680,
-        360
+        2120,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "create",
+        "subject": "=[AI Action] {{ $json.aiVerdict }}: {{ $json.aiHeadline }}",
+        "message": "={{ $json.aiDraftBody }}\n\n---\nAI Analysis: {{ $json.aiAnalysis }}\nSource Link: {{ $json.itemUrl }}\nPriority Score: {{ $json.priorityScore }}/100",
+        "options": {
+          "sendTo": "={{ $json.recipientEmail }}"
+        }
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3f9501e5-e668-5a63-9b3e-2969fb1a7175",
+          "name": "Gmail account"
+        }
+      },
+      "id": "285e9097-1bfc-5d40-85e5-fae5646f4d40",
+      "name": "9b. Draft ORM Incident Report in Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2120,
+        480
       ]
     }
   ],
@@ -606,7 +756,34 @@
       "main": [
         [
           {
-            "node": "7. Send Slack Alert",
+            "node": "7. AI Review Triage & Response Drafter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "7. AI Review Triage & Response Drafter": {
+      "main": [
+        [
+          {
+            "node": "8. Merge AI Review Audit & Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "8. Merge AI Review Audit & Reply": {
+      "main": [
+        [
+          {
+            "node": "9a. Send ORM Review Alert to Slack",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "9b. Draft ORM Incident Report in Gmail",
             "type": "main",
             "index": 0
           }
@@ -624,13 +801,16 @@
   },
   "tags": [
     {
+      "name": "AI"
+    },
+    {
+      "name": "OpenAI"
+    },
+    {
       "name": "Web Scraping"
     },
     {
       "name": "Apify"
-    },
-    {
-      "name": "UnitBytes"
     },
     {
       "name": "Reputation Intelligence"
