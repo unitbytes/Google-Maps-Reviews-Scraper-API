@@ -3,82 +3,113 @@
   "nodes": [
     {
       "parameters": {
-        "content": "## Naver Place & Map Scraper — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[naver-place-scraper Apify Actor](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.0014 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (naver-place-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `placeId`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `placeId, name, category, phone` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Korean Lead Translator & SDR Co-Pilot**.\n5. **8. Merge AI Korean Lead & Outreach Fields** merges AI fields and triggers **9a. Alert Sales Channel in Slack** and **9b. Create Bilingual Outreach Draft in Gmail**.\n\n### Setup\n1. Add your token from [naver-place-scraper on Apify Store](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2 (`Name`: `Authorization`, `Value`: `Bearer <YOUR_APIFY_TOKEN>`).\n2. Edit `actorInput`, `sheetTab`, and `minLeadScore` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `minLeadScore` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/naver-place-scraper/](https://unitbytes.com/actors/naver-place-scraper/)",
-        "height": 780,
-        "width": 560,
-        "color": 1
+        "content": "## Enrich Naver Place business leads with OpenAI and draft outreach in Gmail, Sheets, and Slack\n\n### How it works\n\nThis workflow runs every six hours to extract fresh records through the **[naver-place-scraper](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=n8n_io)** UnitBytes Apify actor ($0.0014 / item), remove previously seen items by `placeId`, and normalize and score the dataset (`placeId, name, category, phone`). It maps the cleaned fields for export, logs all rows to **Google Sheets**, creates a backup **CSV** file, and sends only high-priority records into **OpenAI (`gpt-4o-mini`)** for structured analysis and action drafting. The enriched fields are then merged and delivered to **Slack** and **Gmail**.\n\n### Setup steps\n\n- Configure the schedule interval in **When Every 6 Hours** if six hours is not ideal for your cadence.\n- Add your Apify API token from [naver-place-scraper on Apify Store](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=n8n_io) (`Authorization: Bearer <YOUR_APIFY_TOKEN>`) in **Post to Naver Place Scraper API** and confirm `actorInput` in **Set Search Parameters**.\n- Connect **Google Sheets** credentials in **Append Data to Sheets** and select your destination spreadsheet.\n- Configure **OpenAI** credentials in **AI Lead Translator and SDR** and review the `gpt-4o-mini` system prompt.\n- Connect **Slack** and **Gmail** credentials on the final delivery nodes.\n- Review `minLeadScore` and `priorityKeyword` in **Set Search Parameters** before activating.\n\n### Customization\n\nAdjust `actorInput`, `minLeadScore`, `priorityKeyword`, the OpenAI prompt, Slack message formatting, and Gmail template fields to match your workflow. Full schema and input docs: [https://unitbytes.com/actors/naver-place-scraper/](https://unitbytes.com/actors/naver-place-scraper/)",
+        "width": 480,
+        "height": 896
       },
-      "id": "2cac4245-97d4-531f-85f3-686edcbd2aef",
-      "name": "Overview",
+      "id": "8e12e6ff-58c8-4062-8678-9b051b48f296",
+      "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -640,
-        -80
+        -560,
+        -288
       ]
     },
     {
       "parameters": {
-        "content": "## 1. Schedule & Search Settings\nTriggers on schedule and sets target search parameters, Google Sheets tab, and alert thresholds.",
-        "height": 380,
-        "width": 440,
+        "content": "## Schedule search rules\n\nStarts the workflow on a six-hour schedule and defines the search input, destination sheet tab, scoring threshold, and priority keyword rules used downstream.",
+        "width": 416,
+        "height": 336,
         "color": 7
       },
-      "id": "8a2b467d-682d-5a52-bf14-596909bed600",
-      "name": "Section 1 — Schedule & Settings",
+      "id": "010c2af4-169f-4848-975c-b05cfea5950b",
+      "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
         0,
-        60
+        48
       ]
     },
     {
       "parameters": {
-        "content": "## 2. Extract & Deduplicate\nRuns the UnitBytes Apify Actor and skips records already processed in previous runs.",
-        "height": 380,
-        "width": 440,
+        "content": "## Scrape and deduplicate\n\nRuns the UnitBytes Apify actor through a synchronous HTTP request and removes records that have already been processed in previous executions.",
+        "width": 416,
+        "height": 320,
         "color": 7
       },
-      "id": "d3872895-898f-5f69-b5b3-d3891d8a471f",
-      "name": "Section 2 — Extract & Deduplicate",
+      "id": "4bfd8853-b452-44fc-b82a-bd92b7e28c65",
+      "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        460,
-        60
+        448,
+        64
       ]
     },
     {
       "parameters": {
-        "content": "## 3. Clean, Score & Flatten\nNormalizes fields, parses numeric metrics, and calculates a 0–100 priority score.",
-        "height": 380,
-        "width": 440,
+        "content": "## Clean and map items\n\nNormalizes raw scraper fields, parses numeric metrics, calculates 0–100 priority scores, and maps the cleaned data into export-ready fields.",
+        "width": 416,
+        "height": 336,
         "color": 7
       },
-      "id": "82224a8e-9c83-59b2-a2af-7032884d967f",
-      "name": "Section 3 — Clean, Score & Flatten",
+      "id": "d871238e-f08b-4521-ab8a-5ff0c1b888c9",
+      "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        920,
-        60
+        912,
+        48
       ]
     },
     {
       "parameters": {
-        "content": "## 4. Sheets, CSV & AI Co-Pilot\nLogs all rows to Sheets and CSV, enriches high-priority items with OpenAI, and alerts teams.",
-        "height": 740,
-        "width": 980,
+        "content": "## Export and prioritize\n\nBranches the mapped data into persistent outputs by logging to Google Sheets and creating a backup CSV, while filtering the stream down to high-priority items for AI enrichment.",
+        "width": 240,
+        "height": 816,
         "color": 7
       },
-      "id": "38c97e52-baf4-519a-a954-cd9e811624c5",
-      "name": "Section 4 — Sheets, CSV & AI Co-Pilot",
+      "id": "69badfce-3423-44ea-a1e1-88c19d1702b6",
+      "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1380,
-        -80
+        1392,
+        -288
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Enrich with OpenAI\n\nUses OpenAI (`gpt-4o-mini`) to analyze high-priority records and merges the AI-generated headline, verdict, analysis, and draft with the original item fields.",
+        "width": 416,
+        "height": 336,
+        "color": 7
+      },
+      "id": "97e14f6b-4c19-41ef-b28f-a44d6c9dc569",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1664,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Notify and route actions\n\nDelivers the enriched high-priority insights by posting formatted alerts to Slack and creating ready-to-send outreach drafts or instant alerts.",
+        "width": 240,
+        "height": 640,
+        "color": 7
+      },
+      "id": "29e22140-c283-4c33-af31-f52895384962",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2112,
+        0
       ]
     },
     {
@@ -93,7 +124,7 @@
         }
       },
       "id": "ea062dcc-6ab6-5a47-8861-e318f8981793",
-      "name": "Every 6 Hours",
+      "name": "When Every 6 Hours",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
@@ -134,7 +165,7 @@
         "options": {}
       },
       "id": "7baf6d29-5639-5b41-a10e-3ca3cb51b4ab",
-      "name": "1. Configure Search & Rules",
+      "name": "Set Search Parameters",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
@@ -171,7 +202,7 @@
         }
       },
       "id": "aec16df2-ac44-57ec-bc20-c474e0a9545f",
-      "name": "2. Run UnitBytes (naver-place-scraper)",
+      "name": "Post to Naver Place Scraper API",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
@@ -186,7 +217,7 @@
         "options": {}
       },
       "id": "a63efe4c-44dd-5dde-8641-d11cb47d2101",
-      "name": "3. Skip Seen Records",
+      "name": "Deduplicate All Fields",
       "type": "n8n-nodes-base.removeDuplicates",
       "typeVersion": 2,
       "position": [
@@ -196,10 +227,10 @@
     },
     {
       "parameters": {
-        "jsCode": "// Normalize fields, parse numeric metrics, and score items for AI enrichment\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.minLeadScore !== undefined ? config.minLeadScore : 70);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"placeId\", \"name\", \"category\", \"phone\", \"roadAddress\", \"rating\", \"visitorReviewCount\", \"homepageUrl\", \"url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.placeId || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.name || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.url || cleaned.homepageUrl || '');\n  const rawMetric = cleaned.visitorReviewCount || cleaned.rating || 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n\n  let naverScore = 40;\n  if (cleaned.phone) naverScore += 20;\n  if (cleaned.homepageUrl || cleaned.instagramUrl) naverScore += 15;\n  if (Number(cleaned.visitorReviewCount || 0) >= 30) naverScore += 15;\n  if (Number(cleaned.rating || 0) >= 4.3) naverScore += 10;\n  priorityScore = Math.min(100, naverScore);\n  if (priorityScore >= threshold) {\n    isHighPriority = true;\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: titleText + ' (Metric: ' + numericValue + ' | Score: ' + priorityScore + '/100)',\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
+        "jsCode": "// Normalize fields, parse numeric metrics, and score items for AI enrichment\nconst config = $('Set Search Parameters').first().json;\nconst threshold = Number(config.minLeadScore !== undefined ? config.minLeadScore : 70);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"placeId\", \"name\", \"category\", \"phone\", \"roadAddress\", \"rating\", \"visitorReviewCount\", \"homepageUrl\", \"url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.placeId || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.name || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.url || cleaned.homepageUrl || '');\n  const rawMetric = cleaned.visitorReviewCount || cleaned.rating || 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n\n  let naverScore = 40;\n  if (cleaned.phone) naverScore += 20;\n  if (cleaned.homepageUrl || cleaned.instagramUrl) naverScore += 15;\n  if (Number(cleaned.visitorReviewCount || 0) >= 30) naverScore += 15;\n  if (Number(cleaned.rating || 0) >= 4.3) naverScore += 10;\n  priorityScore = Math.min(100, naverScore);\n  if (priorityScore >= threshold) {\n    isHighPriority = true;\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: titleText + ' (Metric: ' + numericValue + ' | Score: ' + priorityScore + '/100)',\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
       },
       "id": "85709028-332f-5a86-90a6-46dfe1ed6592",
-      "name": "4. Clean & Score Items",
+      "name": "Normalize and Score Items",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
@@ -301,7 +332,7 @@
         "options": {}
       },
       "id": "c525fbfa-0bb8-5a38-b6d8-f410456dbf89",
-      "name": "5. Map Export Fields",
+      "name": "Prepare Export Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
@@ -321,7 +352,7 @@
         "sheetName": {
           "__rl": true,
           "mode": "name",
-          "value": "={{ $('1. Configure Search & Rules').first().json.sheetTab }}"
+          "value": "={{ $('Set Search Parameters').first().json.sheetTab }}"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -482,7 +513,7 @@
         }
       },
       "id": "7311a100-9e06-5825-93f9-172c9df0ebd1",
-      "name": "6a. Log to Google Sheets",
+      "name": "Append Data to Sheets",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
@@ -498,7 +529,7 @@
         }
       },
       "id": "1ce51836-7254-56e2-940f-a1507fdde08e",
-      "name": "6b. Export Backup CSV",
+      "name": "Export to CSV File",
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
@@ -532,7 +563,7 @@
         "options": {}
       },
       "id": "7997896a-e4bb-54dc-af43-a918afa18209",
-      "name": "6c. Filter High-Priority Items",
+      "name": "Filter High-Priority Leads",
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
@@ -574,12 +605,12 @@
         }
       },
       "id": "293cc581-d22e-54bb-87cb-9c8339472b55",
-      "name": "7. AI Korean Lead Translator & SDR Co-Pilot",
+      "name": "AI Lead Translator and SDR",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        1660,
-        360
+        1712,
+        368
       ]
     },
     {
@@ -589,43 +620,43 @@
             {
               "id": "7c4eeb61-e265-5c48-afed-f0ff2b91810c",
               "name": "recordId",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.recordId }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.recordId }}",
               "type": "string"
             },
             {
               "id": "d693ec37-3daa-5f52-b8b6-cf08bc70e633",
               "name": "titleText",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.titleText }}",
               "type": "string"
             },
             {
               "id": "ea9accdf-bc31-5090-aaf2-47c34c3d0179",
               "name": "itemUrl",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.itemUrl }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.itemUrl }}",
               "type": "string"
             },
             {
               "id": "7b0fdb53-36cc-54d2-8807-f5d9ec142147",
               "name": "numericValue",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.numericValue }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.numericValue }}",
               "type": "number"
             },
             {
               "id": "5cdbd295-6373-5913-8d9d-f18fafee834e",
               "name": "priorityScore",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.priorityScore }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.priorityScore }}",
               "type": "number"
             },
             {
               "id": "1374e992-41a1-5874-adce-282cf1ae4185",
               "name": "recipientEmail",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.primary_email || '' }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.primary_email || '' }}",
               "type": "string"
             },
             {
               "id": "1d5ce875-a2c0-561f-ae89-e2e60dbfb294",
               "name": "aiHeadline",
-              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiHeadline || $('Filter High-Priority Leads').item.json.titleText }}",
               "type": "string"
             },
             {
@@ -649,7 +680,7 @@
             {
               "id": "72226154-9a19-5dc6-a4d7-9a0d8dfc9dee",
               "name": "scrapedAt",
-              "value": "={{ $('6c. Filter High-Priority Items').item.json.scrapedAt }}",
+              "value": "={{ $('Filter High-Priority Leads').item.json.scrapedAt }}",
               "type": "string"
             }
           ]
@@ -657,12 +688,12 @@
         "options": {}
       },
       "id": "8a4f09db-072a-5b9c-99c1-3a8aa29f9284",
-      "name": "8. Merge AI Korean Lead & Outreach Fields",
+      "name": "Merge Final Outreach Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1890,
-        360
+        1936,
+        368
       ]
     },
     {
@@ -689,12 +720,12 @@
         }
       },
       "id": "07d1e782-1ac0-5a2c-9e2e-95ffa0f31d05",
-      "name": "9a. Alert Sales Channel in Slack",
+      "name": "Post Alert to Sales Channel",
       "type": "n8n-nodes-base.slack",
       "typeVersion": 2.3,
       "position": [
-        2120,
-        260
+        2160,
+        256
       ]
     },
     {
@@ -712,124 +743,124 @@
         }
       },
       "id": "8b55d501-3a46-537f-95a9-579b13a6387d",
-      "name": "9b. Create Bilingual Outreach Draft in Gmail",
+      "name": "Draft Bilingual Email in Gmail",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        2120,
+        2160,
         480
       ]
     }
   ],
   "connections": {
-    "Every 6 Hours": {
+    "When Every 6 Hours": {
       "main": [
         [
           {
-            "node": "1. Configure Search & Rules",
+            "node": "Set Search Parameters",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "1. Configure Search & Rules": {
+    "Set Search Parameters": {
       "main": [
         [
           {
-            "node": "2. Run UnitBytes (naver-place-scraper)",
+            "node": "Post to Naver Place Scraper API",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "2. Run UnitBytes (naver-place-scraper)": {
+    "Post to Naver Place Scraper API": {
       "main": [
         [
           {
-            "node": "3. Skip Seen Records",
+            "node": "Deduplicate All Fields",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "3. Skip Seen Records": {
+    "Deduplicate All Fields": {
       "main": [
         [
           {
-            "node": "4. Clean & Score Items",
+            "node": "Normalize and Score Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "4. Clean & Score Items": {
+    "Normalize and Score Items": {
       "main": [
         [
           {
-            "node": "5. Map Export Fields",
+            "node": "Prepare Export Fields",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "5. Map Export Fields": {
+    "Prepare Export Fields": {
       "main": [
         [
           {
-            "node": "6a. Log to Google Sheets",
+            "node": "Append Data to Sheets",
             "type": "main",
             "index": 0
           },
           {
-            "node": "6b. Export Backup CSV",
+            "node": "Export to CSV File",
             "type": "main",
             "index": 0
           },
           {
-            "node": "6c. Filter High-Priority Items",
+            "node": "Filter High-Priority Leads",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "6c. Filter High-Priority Items": {
+    "Filter High-Priority Leads": {
       "main": [
         [
           {
-            "node": "7. AI Korean Lead Translator & SDR Co-Pilot",
+            "node": "AI Lead Translator and SDR",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "7. AI Korean Lead Translator & SDR Co-Pilot": {
+    "AI Lead Translator and SDR": {
       "main": [
         [
           {
-            "node": "8. Merge AI Korean Lead & Outreach Fields",
+            "node": "Merge Final Outreach Fields",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "8. Merge AI Korean Lead & Outreach Fields": {
+    "Merge Final Outreach Fields": {
       "main": [
         [
           {
-            "node": "9a. Alert Sales Channel in Slack",
+            "node": "Post Alert to Sales Channel",
             "type": "main",
             "index": 0
           },
           {
-            "node": "9b. Create Bilingual Outreach Draft in Gmail",
+            "node": "Draft Bilingual Email in Gmail",
             "type": "main",
             "index": 0
           }

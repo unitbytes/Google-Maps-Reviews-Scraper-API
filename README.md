@@ -934,7 +934,7 @@ Google's official Places Photo API charges `$7.00` per 1,000 photo requests and 
 | Parameter | Type | Default / Prefill | Description |
 | :--- | :---: | :--- | :--- |
 | `queries` | `array` | `["강남 맛집"]` | Keywords to search on Naver Map / Naver Place (e.g., 강남 맛집, 성수동 카페, 강남 피부과, 명동 호텔, 홍대 미용실). You can also paste direct Naver Map / Place URLs or numeric Place IDs here. |
-| `placeUrls` | `array` | — | Optional list of direct Naver Map URLs (https://map.naver.com/p/entry/place/2025884279), Mobile Place URLs (https://m.place.naver.com/restaurant/2025884279/home), naver.me shortlinks, search URLs (https://map.naver.com/p/search/강남%20맛집), or raw numeric Place IDs (2025884279). |
+| `placeUrls` | `array` | — | Optional list of direct Naver Map URLs (https://map.naver.com/p/entry/place/2000000001), Mobile Place URLs (https://m.place.naver.com/restaurant/2000000001/home), naver.me shortlinks, search URLs (https://map.naver.com/p/search/강남%20맛집), or raw numeric Place IDs (2000000001). |
 | `mode` | `string` | `places` | Select whether to output enriched Place records (places — includes menus, hours, contacts, sentiment stats, and embedded reviews) or dedicated individual review rows (reviews — outputs one row per visitor/blog review for deep sentiment analysis). |
 | `scrapeDetails` | `boolean` | `True` | When enabled (default), extracts 7-day opening hours, full menu list with KRW prices & photos, walking directions, nearest subway stations, parking fees, website/Instagram links, sentiment keyword breakdown, and recent visitor/blog reviews. |
 | `maxItems` | `integer` | `20` | Maximum number of items (places in places mode, or reviews in reviews mode) to collect across the run. |
@@ -984,16 +984,16 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
   "categoryCode": "220053",
   "phone": "0507-0000-0000",
   "virtualPhone": "0507-0000-0000",
-  "roadAddress": "서울 강남구 언주로148길 14 1층 103~106호",
-  "address": "서울 강남구 논현동 98-12",
-  "commonAddress": "서울 강남구 논현동",
-  "fullAddress": "서울 강남구 언주로148길 14 1층 103~106호",
+  "roadAddress": "서울 강남구 테헤란로 100 1층",
+  "address": "서울 강남구 역삼동 100-1",
+  "commonAddress": "서울 강남구 역삼동",
+  "fullAddress": "서울 강남구 테헤란로 100 1층",
   "postalCode": "09680108",
   "latitude": 37.5206335,
   "longitude": 127.0361667,
   "distance": "2.6km",
-  "directions": "강남구청역 3-1번 출구로 나오셔서 보이는 올리브영 방향으로 쭉 직진하시다가 커피빈 골목에서 왼쪽으로 꺾어서 200m정도 오시면 왼쪽에 있습니다.",
-  "nearestSubway": "강남구청역 7호선",
+  "directions": "역삼역 3번 출구에서 테헤란로 방향으로 도보 3분 거리 (시그니처타워 1층)",
+  "nearestSubway": "역삼역 2호선",
   "parkingInfo": "2시간 4000원 (발렛파킹 가능)",
   "businessStatus": "영업 중",
   "businessHoursText": "02:00에 영업 종료",
@@ -1018,7 +1018,7 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
       "priceKrw": 56000,
       "description": "중 56000 / 대 78000",
       "isRecommended": true,
-      "imageUrl": "https://ldb-phinf.pstatic.net/20260830_85/1788068876946WkcM7_JPEG/menu.jpg"
+      "imageUrl": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg"
     }
   ],
   "topVotedKeywords": [
@@ -1048,7 +1048,7 @@ for item in client.dataset(run["defaultDatasetId"]).iterate_items():
     "https://map.naver.com/p/entry/place/2000000001"
   ],
   "microReview": "한 점 한 점 정성 가득한 숙성회",
-  "mainImage": "https://ldb-phinf.pstatic.net/20260831_172/17881344168901EW1Q_JPEG/cover.jpg",
+  "mainImage": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg",
   "imageCount": 57,
   "url": "https://map.naver.com/p/entry/place/2000000001",
   "mapUrl": "https://m.place.naver.com/restaurant/2000000001/home",

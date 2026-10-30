@@ -7,16 +7,16 @@
     "categoryCode": "220053",
     "phone": "0507-0000-0000",
     "virtualPhone": "0507-0000-0000",
-    "roadAddress": "서울 강남구 언주로148길 14 1층 103~106호",
-    "address": "서울 강남구 논현동 98-12",
-    "commonAddress": "서울 강남구 논현동",
-    "fullAddress": "서울 강남구 언주로148길 14 1층 103~106호",
+    "roadAddress": "서울 강남구 테헤란로 100 1층",
+    "address": "서울 강남구 역삼동 100-1",
+    "commonAddress": "서울 강남구 역삼동",
+    "fullAddress": "서울 강남구 테헤란로 100 1층",
     "postalCode": "09680108",
     "latitude": 37.5206335,
     "longitude": 127.0361667,
     "distance": "2.6km",
-    "directions": "강남구청역 3-1번 출구로 나오셔서 보이는 올리브영 방향으로 쭉 직진하시다가 커피빈 골목에서 왼쪽으로 꺾어서 200m정도 오시면 왼쪽에 있습니다.",
-    "nearestSubway": "강남구청역 7호선",
+    "directions": "역삼역 3번 출구에서 테헤란로 방향으로 도보 3분 거리 (시그니처타워 1층)",
+    "nearestSubway": "역삼역 2호선",
     "parkingInfo": "2시간 4000원 (발렛파킹 가능)",
     "businessStatus": "영업 중",
     "businessHoursText": "02:00에 영업 종료",
@@ -41,7 +41,7 @@
         "priceKrw": 56000,
         "description": "중 56000 / 대 78000",
         "isRecommended": true,
-        "imageUrl": "https://ldb-phinf.pstatic.net/20260830_85/1788068876946WkcM7_JPEG/menu.jpg"
+        "imageUrl": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg"
       }
     ],
     "topVotedKeywords": [
@@ -71,7 +71,7 @@
       "https://map.naver.com/p/entry/place/2000000001"
     ],
     "microReview": "한 점 한 점 정성 가득한 숙성회",
-    "mainImage": "https://ldb-phinf.pstatic.net/20260831_172/17881344168901EW1Q_JPEG/cover.jpg",
+    "mainImage": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg",
     "imageCount": 57,
     "url": "https://map.naver.com/p/entry/place/2000000001",
     "mapUrl": "https://m.place.naver.com/restaurant/2000000001/home",
