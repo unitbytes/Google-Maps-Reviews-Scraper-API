@@ -2,30 +2,30 @@
 
 <div align="center">
 
-[![Available on Apify](https://img.shields.io/badge/Available_on-Apify-28B52A?style=for-the-badge&logo=apify&logoColor=white)](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps)
+[![Available on Apify](https://img.shields.io/badge/Available_on-Apify-28B52A?style=for-the-badge&logo=apify&logoColor=white)](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps)
 [![Open in Colab](https://img.shields.io/badge/Open_in-Google_Colab-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb)
 [![RapidAPI Hub](https://img.shields.io/badge/RapidAPI_Hub-REST_API-0055DA?style=for-the-badge&logo=fastapi&logoColor=white)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)
 [![Zyla API Hub](https://img.shields.io/badge/Zyla_API_Hub-REST_API-7C3AED?style=for-the-badge)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)
 [![n8n Creator Hub](https://img.shields.io/badge/n8n_Creator_Hub-@unitbytes-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io/creators/unitbytes/)
 [![Release](https://img.shields.io/github/v/release/unitbytes/Google-Maps-Reviews-Scraper-API?style=for-the-badge&logo=github&color=10b981)](https://github.com/unitbytes/Google-Maps-Reviews-Scraper-API/releases)
-[![Pricing](https://img.shields.io/badge/Pricing-Pay_Per_Result-orange?style=for-the-badge)](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps)
+[![Pricing](https://img.shields.io/badge/Pricing-Pay_Per_Result-orange?style=for-the-badge)](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps)
 
 **Complete Google Maps & Local B2B lead generation, website email & ad pixel enrichment (`$0.50/1K`), 10,000-review bulk extraction (`$0.25/1K`), stateful review change & removal tracking (`NEW`/`REMOVED`/`EDITED`), Local Guide forensics, uncompressed (`=s0`) 4K photo/menu extraction, and Naver Place Korea POI suite on Apify.**
 
-[**🚀 Try Live on Apify**](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [**📓 Open in Google Colab**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) • [**⚡ RapidAPI Hub**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [**⚡ Zyla API Hub**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [**⚡ Official n8n Creator Hub**](https://n8n.io/creators/unitbytes/) • [**🔧 41 Free n8n Templates**](https://unitbytes.com/n8n/) • [**📖 Documentation & Schemas**](https://unitbytes.com/actors/) • [**📚 Engineering Playbooks**](https://unitbytes.com/blog/)
+[**🚀 Try Live on Apify**](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [**📓 Open in Google Colab**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) • [**⚡ RapidAPI Hub**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [**⚡ Zyla API Hub**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [**⚡ Official n8n Creator Hub**](https://n8n.io/creators/unitbytes/) • [**🔧 41 Free n8n Templates**](https://unitbytes.com/n8n/) • [**📖 Documentation & Schemas**](https://unitbytes.com/actors/) • [**📚 Engineering Playbooks**](https://unitbytes.com/blog/)
 
 </div>
 
 ---
 
 <p align="center">
-  <a href="https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
+  <a href="https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
     <img src="https://raw.githubusercontent.com/unitbytes/.github/main/assets/banners/unitbytes-google-maps-reviews-scraper-banner.jpg" alt="📍 Google Maps & Local Scraper Suite: B2B Leads & Emails (`$0.50/1K`), 10K Reviews (`$0.25/1K`), Change Tracker, Local Guides, 4K Photos & Naver Place API" width="100%" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
+  <a href="https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
     <img src="https://raw.githubusercontent.com/unitbytes/.github/main/assets/try-it-for-free.svg" width="240" height="48" alt="Try it for Free">
   </a>
   <br>
@@ -41,20 +41,18 @@ This repository contains ready-to-run **Python SDK scripts**, an **interactive 1
 
 | Extraction Engine | 🐍 Python SDK Quickstart | ⚡ n8n Workflow Template | 📊 Sample Output | 🚀 Cloud Console |
 | :--- | :--- | :--- | :---: | :---: |
-| **Google Maps Email & Leads Scraper**<br><sub>[`unitbytes/google-maps-leads-scraper`](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-leads-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/)</sub> | [`examples/run_google_maps_leads_scraper.py`](examples/run_google_maps_leads_scraper.py) | [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-leads-scraper-sample.json) · [`CSV`](samples/google-maps-leads-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Reviews Scraper**<br><sub>[`unitbytes/google-maps-reviews-scraper`](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-reviews-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_google_maps_reviews_scraper.py`](examples/run_google_maps_reviews_scraper.py) | [`n8n/google-maps-reviews-scraper-n8n-workflow.json`](n8n/google-maps-reviews-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-reviews-scraper-sample.json) · [`CSV`](samples/google-maps-reviews-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Review Monitor & Change Tracker (Alerts & ORM)**<br><sub>[`unitbytes/google-maps-reviews-tracker`](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-reviews-tracker/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-review-takedown-removal-tracker-orm-guide/)</sub> | [`examples/run_google_maps_reviews_tracker.py`](examples/run_google_maps_reviews_tracker.py) | [`n8n/google-maps-reviews-tracker-n8n-workflow.json`](n8n/google-maps-reviews-tracker-n8n-workflow.json) | [`JSON`](samples/google-maps-reviews-tracker-sample.json) · [`CSV`](samples/google-maps-reviews-tracker-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) |
+| **Google Maps Email & Leads Scraper**<br><sub>[`unitbytes/google-maps-leads-scraper`](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-leads-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/)</sub> | [`examples/run_google_maps_leads_scraper.py`](examples/run_google_maps_leads_scraper.py) | [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-leads-scraper-sample.json) · [`CSV`](samples/google-maps-leads-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Contributor Reviews Scraper (Local Guides)**<br><sub>[`unitbytes/google-maps-contributor-scraper`](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-contributor-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/)</sub> | [`examples/run_google_maps_contributor_scraper.py`](examples/run_google_maps_contributor_scraper.py) | [`n8n/google-maps-contributor-scraper-n8n-workflow.json`](n8n/google-maps-contributor-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-contributor-scraper-sample.json) · [`CSV`](samples/google-maps-contributor-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Photos Scraper (Places, Menus & Local Guides)**<br><sub>[`unitbytes/google-maps-photos-scraper`](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-photos-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/)</sub> | [`examples/run_google_maps_photos_scraper.py`](examples/run_google_maps_photos_scraper.py) | [`n8n/google-maps-photos-scraper-n8n-workflow.json`](n8n/google-maps-photos-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-photos-scraper-sample.json) · [`CSV`](samples/google-maps-photos-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Naver Place & Map Scraper**<br><sub>[`unitbytes/naver-place-scraper`](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_naver_place_scraper.py`](examples/run_naver_place_scraper.py) | [`n8n/naver-place-scraper-n8n-workflow.json`](n8n/naver-place-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-scraper-sample.json) · [`CSV`](samples/naver-place-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
-| **Naver Map Scraper: Korean Leads & Menus**<br><sub>[`unitbytes/naver-map-scraper`](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-map-scraper/)</sub> | [`examples/run_naver_map_scraper.py`](examples/run_naver_map_scraper.py) | [`n8n/naver-map-scraper-n8n-workflow.json`](n8n/naver-map-scraper-n8n-workflow.json) | [`JSON`](samples/naver-map-scraper-sample.json) · [`CSV`](samples/naver-map-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
-| **Naver Place Reviews Scraper**<br><sub>[`unitbytes/naver-place-reviews-scraper`](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-reviews-scraper/)</sub> | [`examples/run_naver_place_reviews_scraper.py`](examples/run_naver_place_reviews_scraper.py) | [`n8n/naver-place-reviews-scraper-n8n-workflow.json`](n8n/naver-place-reviews-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-reviews-scraper-sample.json) · [`CSV`](samples/naver-place-reviews-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps B2B Leads, Website Contacts, Tech Stack & Reviews Synchronous REST API (`<500ms` GET)**<br><sub>[RapidAPI Hub](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [Zyla API Hub](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [Full Schema](https://unitbytes.com/actors/google-maps-leads-scraper/)</sub> | [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py) | [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-leads-scraper-sample.json) · [`CSV`](samples/google-maps-leads-scraper-sample.csv) | [⚡ **RapidAPI**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) · [⚡ **Zyla**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) |
 
 - 📓 **1-Click Interactive Google Colab Notebook:** Open [`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb) directly in your browser via [**Google Colab ↗**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) to inspect sample DataFrames and test live API queries with zero local setup.
 - 🤖 **Cursor, Windsurf & Claude Code MCP Ready:** Includes [`.cursor/mcp.json`](.cursor/mcp.json) pre-configured with `https://mcp.apify.com` so AI coding agents can invoke these UnitBytes scrapers natively.
 - 💡 **Using n8n?** Explore our official creator profile at **[n8n.io/creators/unitbytes](https://n8n.io/creators/unitbytes/)** or copy all 41 pre-built 9-node scraping workflows (`Ctrl+V`) at **[unitbytes.com/n8n](https://unitbytes.com/n8n/)**.
-- 📚 **Engineering Playbooks:** [**B2B Leads & Email Prospecting Playbook**](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/) • [**10K Reviews Extraction Playbook**](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/) • [**Review Monitor & Change Tracker Playbook**](https://unitbytes.com/blog/google-maps-review-takedown-removal-tracker-orm-guide/) • [**Fake Review Forensic Playbook**](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/) • [**Places Photo API Pricing Teardown**](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/) — or browse all guides at **[unitbytes.com/blog](https://unitbytes.com/blog/)**.
+- 📚 **Engineering Playbooks:** [**10K Reviews Extraction Playbook**](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/) • [**Review Monitor & Change Tracker Playbook**](https://unitbytes.com/blog/google-maps-review-takedown-removal-tracker-orm-guide/) • [**B2B Leads & Email Prospecting Playbook**](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/) • [**Fake Review Forensic Playbook**](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/) • [**Places Photo API Pricing Teardown**](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/) — or browse all guides at **[unitbytes.com/blog](https://unitbytes.com/blog/)**.
 <!-- UNITBYTES_REPO_KIT_END -->
 
 ---
@@ -65,7 +63,6 @@ Launch pre-configured extraction templates directly in the Apify Cloud Console w
 
 | Task Preset | Target Extraction Use Case | Direct Launch |
 | :--- | :--- | :---: |
-| **Scrape Google Maps B2B Leads with Verified Emails, Tech Stacks & Ad Pixels** | Extract 61 B2B lead fields per business: verified emails, phones, social profiles, website tech stack, missing ad pixel flags, and AI outreach hooks. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Extract Up to 10,000 Google Maps Reviews per Business (Bypass 5-Review Cap)** | Bypass the official Google Places API 5-review limit. Extract full review text, star ratings, owner replies, aspect tags, and customer photos at `$0.25/1K`. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Track Google Maps Review Deletions & Edits** | Monitor Google Maps reviews for silent removals, text edits, and star rating changes. Get structured ACTIVE/REMOVED status per review URL | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-reviews-tracker/examples/track-google-maps-review-changes?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Monitor Reviews for Car Dealers & Local Businesses** | Audit Google Maps reviews for auto dealers and local businesses. Detect fake review removal, rating changes, and owner reply updates in bulk | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-reviews-tracker/examples/monitor-reviews-local-business-google-maps?fpr=939u3w&fp_sid=gh_gmaps) |
@@ -73,6 +70,7 @@ Launch pre-configured extraction templates directly in the Apify Cloud Console w
 | **Verify Fake Google Review Takedown & Deletion** | Confirm if reported fake or defamatory 1-star reviews were removed by Google. Get timestamped ACTIVE or REMOVED verification without manual checking. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-reviews-tracker/examples/verify-fake-review-takedowns?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Local SEO Client Google Review Removal Audit** | Audit client Google Business Profiles for unexpectedly dropped or filtered 5-star reviews. Differentiate between active and quietly deleted reviews. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-reviews-tracker/examples/local-seo-client-review-audit?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Restaurant & Hotel Google Review Change Monitor** | Monitor hospitality reviews for star rating modifications, text updates, and owner reply changes. Export audit logs for brand reputation defense. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-reviews-tracker/examples/restaurant-hotel-review-tracker?fpr=939u3w&fp_sid=gh_gmaps) |
+| **Scrape Google Maps B2B Leads with Verified Emails, Tech Stacks & Ad Pixels** | Extract 61 B2B lead fields per business: verified emails, phones, social profiles, website tech stack, missing ad pixel flags, and AI outreach hooks. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Audit Local Guide Reviews & Contribution History** | Extract full review history, ratings, photos, and places visited by an active Google Local Guide. Audit reviewer authority, credibility, and sentiment. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-contributor-scraper/examples/audit-local-guide-reviews?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Export Google Contributor Reviews to Excel / CSV** | Download all Google Maps reviews by a contributor into a spreadsheet. Includes star ratings, review text, permalinks, and owner replies. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-contributor-scraper/examples/export-contributor-reviews-excel?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Analyze Competitor Google Maps Reviewers** | Investigate reviewers who reviewed competitors. Uncover which other businesses they frequent, their rating patterns, and identify potential brand advocates. | [⚡ Run Task Preset](https://apify.com/unitbytes/google-maps-contributor-scraper/examples/analyze-competitor-reviewers?fpr=939u3w&fp_sid=gh_gmaps) |
@@ -93,7 +91,7 @@ Launch pre-configured extraction templates directly in the Apify Cloud Console w
 | Use Case / Capability | [🧲 B2B Leads & Email Scraper](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps) | [⭐ 10K Bulk Reviews Scraper](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) | [🛡️ Review Monitor & Change Tracker](https://apify.com/unitbytes/google-maps-reviews-tracker?fpr=939u3w&fp_sid=gh_gmaps) | [🕵️ Contributor & Local Guide Scraper](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) | [📸 4K Photos, Menus & Videos Scraper](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) | [🇰🇷 Naver Map & Place Korea Scraper](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) | Official Google Places API |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Primary Best Fit** | **B2B Cold Outreach, SMMA & Local SEO Prospecting** | **Bulk Historical Review Datasets & Sentiment AI** | **Scheduled Change Diffing (`NEW`/`REMOVED`/`EDITED`), SLA & ORM** | **Fake Review Forensics & Influencer Scouting** | **Uncompressed (`=s0`) Menus, Storefronts & MP4s** | **South Korea POI Leads, KRW Menus & Blog Reviews** | Basic map widget display |
-| **Starting Price** | 💰 `$0.50 – $1.50 / 1K leads` | 💰 `$0.25 – $0.35 / 1K reviews` | `$1.20 – $1.50 / 1K checks` | `$0.80 – $1.00 / 1K reviews` | 💰 `$0.50 – $1.50 / 1K photos` | `$2.80 – $3.50 / 1K places` | ❌ `$17.00 – $40.00+ / 1K calls` |
+| **Starting Price** | 💰 `$0.50 – $1.50 / 1K leads` | 💰 `$0.25 – $0.35 / 1K reviews` | `$1.20 – $1.50 / 1K checks` | `$0.80 – $1.00 / 1K reviews` | 💰 `$0.50 – $1.50 / 1K photos` | `$0.80 – $1.40 / 1K items` | ❌ `$17.00 – $40.00+ / 1K calls` |
 | **Verified Emails, Phones & Socials** | **✅ Included Free (`primary_email`, `emails`, 6 Socials)** | — | — | — | — | **✅ Phone, Virtual Phone, Homepage & SNS Links** | ❌ Emails/Socials never returned |
 | **Website CMS, Ad Pixels & Pitch Flags** | **✅ 12 CMS + Meta/Google Pixels + 9 `agency_opportunity_flags`** | — | — | — | — | **✅ SmartPlace, Booking, NPay & Vertical Extras** | ❌ Never returned |
 | **Review Extraction Depth** | **✅ 1 Review Hook + 1-Click Report Link** | Up to 10,000 reviews/place | Up to 10,000 reviews/place | Up to 200 reviews/user | — | **✅ Visitor Receipt + Naver Blog Reviews** | Max 5 reviews (unsortable) |
@@ -103,184 +101,6 @@ Launch pre-configured extraction templates directly in the Apify Cloud Console w
 ---
 
 ## 🛠️ Extraction Engines in This Suite
-
-### 🚀 Google Maps Email & Leads Scraper (`unitbytes/google-maps-leads-scraper`)
-
-<p align="center">
-  <a href="https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
-    <img src="https://raw.githubusercontent.com/unitbytes/.github/main/assets/banners/unitbytes-google-maps-leads-scraper-banner.jpg" alt="Google Maps Email & Leads Scraper" width="100%" />
-  </a>
-</p>
-
-Fast, low-cost Google Maps B2B Leads & Email Scraper (`$1.00–$2.00/1K`). Extract verified business emails, phones, WhatsApp, LinkedIn/Instagram/Facebook profiles, unclaimed GMB status, tech stack (WordPress/Shopify/Pixels), and cold-outreach review hooks into 48.
-
-- **Pricing:** `$0.002 / item` (Pay-Per-Event — `$0.002` b2b lead & contact scraped (volume tiers from `$0.001`))
-- **Cloud Console:** [https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps)
-- **Full Documentation & Schema:** [https://unitbytes.com/actors/google-maps-leads-scraper/](https://unitbytes.com/actors/google-maps-leads-scraper/)
-- **n8n Workflow File:** [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json)
-- **Engineering Playbook:** [Google Maps B2B Leads & Email Scraper Guide (2026): Extract Verified Emails, Tech Stacks, Ad Pixels & Outreach Hooks (`$0.50/1K`)](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/)
-
-#### Key Capabilities
-- **Google Maps + Website Email & Social Enrichment:** Automatically visits each business's official website plus /contact and /about subpages to extract verified emails (prioritizing owner@, founder@, ceo@, contact@ in primary_email) and E.164 phone numbers.
-- **High-Intent Agency Opportunity Flags & Lead Score (0–100):** Audits every prospect for actionable marketing gaps including UNCLAIMED_GBP (with 1-click claim_business_url), MISSING_META_PIXEL, MISSING_GOOGLE_TAG, NO_ONLINE_BOOKING, and LOW_RATING_UNDER_4_2.
-- **Website CMS, Ad Pixels & Online Booking Detection:** Detects 12 CMS platforms (WordPress, Shopify, Wix, Webflow, GoHighLevel), 12 martech/ad pixels (Meta Pixel, Google Ads, TikTok Pixel, HubSpot), and 12+ booking widgets (Calendly, Mindbody, Toast, OpenTable).
-- **Built-In Cold-Outreach Review Hooks (reviewHookType):** Extracts a real customer review snippet (review_hook_text, review_hook_stars, review_hook_author) plus a 1-click Google dispute link in most_relevant, lowest_rating, or newest modes.
-
-#### ⚙️ Input Parameters (Schema)
-
-| Parameter | Type | Default / Prefill | Description |
-| :--- | :---: | :--- | :--- |
-| `searchQueries` | `array` | `["dentists in Austin TX"]` | Enter your B2B category + city search queries (e.g. dentists in Austin TX, roofing contractors in Miami FL, medspas in Beverly Hills), Google Maps Search URLs (/maps/search/...), Business Place URLs (/maps/place/...), Place IDs (ChIJ...), or GPS coordinates (30.2672, -97.7431). |
-| `maxPlacesPerQuery` | `integer` | `20` | Maximum number of businesses to discover and enrich for each search query or /maps/search/... URL. (Default: 20, Max: 200) |
-| `scrapeContacts` | `boolean` | `True` | When enabled (default), automatically visits each business's official website and /contact / /about pages to extract verified email addresses (primary_email, emails), social media links (linkedin_url, instagram_url, facebook_url, tiktok_url, youtube_url), WhatsApp links, online. |
-| `includeReviewHook` | `boolean` | `True` | When enabled (default), extracts a featured customer review snippet (review_hook_text, review_hook_stars, review_hook_author, review_hook_date, review_hook_report_url) for each business so you can personalize cold emails or pitch reputation management services. |
-| `reviewHookType` | `string` | `most_relevant` | Choose which review to extract for the cold-outreach hook: • Most Relevant Highlight (most_relevant): Best overall review snippet for personalized cold email icebreakers. |
-| `language` | `string` | `en` | ISO language code (hl) for Google Maps results and categories (e.g. en, es, fr, de, pt-BR, ar, ja). |
-| `region` | `string` | `us` | 2-letter ISO country code (gl) used to bias search queries (e.g. us, gb, ca, au, de, fr, ae, in). |
-| `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Select the proxies to use. Apify Residential Proxies are automatically enabled by default for reliable Google Maps discovery. |
-| `maxConcurrency` | `integer` | `3` | How many search targets to process in parallel. (Default: 3, Max: 10) |
-
-#### ⚡ Real-Time Synchronous REST API (RapidAPI Hub & Zyla API Hub — `<500ms` GET)
-
-Need **instant synchronous `GET` JSON responses (`<500ms` live / `<150ms` cached)** for a live B2B CRM enrichment webhook, agency prospecting dashboard, or reputation triage widget without polling async batch jobs? Use our **6-Endpoint Google Maps B2B Leads, Website Contacts, Reviews, 4K Photos & Contributor REST API**:
-
-- 👉 **[Test Live on RapidAPI Hub (`$0` Free Tier)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)** (`x-rapidapi-host: google-maps-b2b-leads-email-tech-stack-reviews-data-api.p.rapidapi.com`)
-- 👉 **[Test Live on Zyla API Hub (7-Day Free Trial)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)** (Listing ID `14553`)
-- 🐍 **Runnable Python Script:** [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py)
-
-| Category | Endpoint | Method | Description |
-| :--- | :--- | :---: | :--- |
-| **1. B2B Lead Discovery** | `/v1/gmaps/search` | `GET` | Search Google Maps businesses by `query` (e.g. `dentists in Austin TX`) with optional real-time website contact crawling (`enrich_contacts=true`), review hooks (`include_review_hook=true`), CMS/ad pixel detection, and `0–100` agency `leadScore`. |
-| **2. Single Place Lead Profile** | `/v1/gmaps/place` | `GET` | Retrieve the complete 48-field B2B lead profile for a single business by `place_id` (`ChIJ...`), Google Maps `url`, or exact `query`, including verified emails, 6 social profiles, CMS tech stack, and `agencyOpportunityFlags`. |
-| **3. Customer Reviews & ORM** | `/v1/gmaps/reviews` | `GET` | Extract sorted customer reviews (`most_relevant`, `newest`, `highest_rating`, `lowest_rating`) with `cursor` pagination, star ratings, full review text, owner replies, owner response SLA turnaround hours, and reputation `triageFlags`. |
-| **4. Domain & Tech Stack Enrichment** | `/v1/gmaps/contacts` | `GET` | Standalone website crawler (`url` or `domain`) extracting verified emails, phones, WhatsApp links, online booking URLs (Calendly, Mindbody, Toast), 6 social platforms, CMS platform, and Meta/Google/TikTok ad pixels. |
-| **5. 4K Photos, Menus & Videos** | `/v1/gmaps/photos` | `GET` | Extract uncompressed original/4K (`=s0`) photos, restaurant menus, storefront media, and MP4 videos by `place_id`, `url`, or `user_id` with gallery category filtering (`all`, `menu`, `videos`, `by_owner`, `vibe`, `food_and_drink`, `latest`, `street_view_and_360`). |
-| **6. Contributor & Review Forensics** | `/v1/gmaps/contributor` | `GET` | Extract Local Guide contributor profile by 21-digit `user_id` or `/maps/contrib/...` `url`, returning Local Guide level, points, contribution breakdown, fake-review `forensicFlags`, and chronological reviews across all businesses. |
-
-#### Python SDK Quickstart (`examples/run_google_maps_leads_scraper.py`)
-```python
-from apify_client import ApifyClient
-
-APIFY_TOKEN = os.getenv("APIFY_API_TOKEN", "YOUR_APIFY_API_TOKEN")
-if not APIFY_TOKEN or APIFY_TOKEN.startswith("YOUR_"):
-    raise SystemExit("Please set your Apify API token: export APIFY_API_TOKEN='apify_api_...'")
-
-client = ApifyClient(APIFY_TOKEN)
-
-run_input = {
-    "searchQueries": ["dentists in Austin TX"],
-    "maxPlacesPerQuery": 20,
-    "reviewHookType": "most_relevant",
-    "language": "en",
-    "region": "us"
-}
-
-run = client.actor("unitbytes/google-maps-leads-scraper").call(run_input=run_input)
-
-for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-    print(item.get("business_name"), item.get("primary_email"), item.get("phone"), item.get("website"), item.get("rating"))
-```
-
-#### Sample Output Schema (`samples/google-maps-leads-scraper-sample.json`)
-```json
-{
-  "input_query": "dentists in Austin TX",
-  "status": "ACTIVE",
-  "scraped_at": "2026-10-24T17:30:00.000000+00:00",
-  "error": null,
-  "business_name": "Austin Smile & Implant Center",
-  "place_id": "ChIJL6x82jK1RIYR8k8W1z0X5aA",
-  "place_cid": "9576097791875393372",
-  "feature_id": "0x8644b599a0f15555:0x84e51f23e8c0a75c",
-  "knowledge_graph_id": "/g/11b6_r8xyz",
-  "primary_category": "Dentist",
-  "categories": [
-    "Dentist",
-    "Cosmetic dentist",
-    "Dental clinic"
-  ],
-  "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJL6x82jK1RIYR8k8W1z0X5aA",
-  "price_level": null,
-  "primary_email": "contact@austinsmilecenter.example.com",
-  "emails": [
-    "contact@austinsmilecenter.example.com"
-  ],
-  "email_count": 1,
-  "has_email": true,
-  "phone": "(512) 555-0199",
-  "phone_international": "+15125550199",
-  "website_phones": [],
-  "whatsapp_url": null,
-  "website": "https://www.austinsmilecenter.example.com/",
-  "domain": "austinsmilecenter.example.com",
-  "contact_page_url": "https://www.austinsmilecenter.example.com/contact/",
-  "booking_url": "https://calendly.com/austin-smile-center",
-  "linkedin_url": null,
-  "instagram_url": "https://www.instagram.com/austinsmilecenter",
-  "facebook_url": "https://www.facebook.com/austinsmilecenter",
-  "twitter_url": null,
-  "youtube_url": null,
-  "tiktok_url": null,
-  "social_urls": [
-    "https://www.instagram.com/austinsmilecenter",
-    "https://www.facebook.com/austinsmilecenter"
-  ],
-  "address": "1200 Congress Ave, Austin, TX 78701",
-  "street": "1200 Congress Ave",
-  "neighborhood": "Downtown Austin",
-  "city": "Austin",
-  "state": "Texas",
-  "postal_code": "78701",
-  "country_code": "US",
-  "country": "United States",
-  "plus_code": "7624+8P Austin, Texas",
-  "latitude": 30.273412,
-  "longitude": -97.740518,
-  "timezone": "America/Chicago",
-  "rating": 4.9,
-  "reviews_count": 342,
-  "is_claimed": true,
-  "claim_business_url": null,
-  "working_hours": [
-    "Monday: 8 AM–5 PM",
-    "Tuesday: 8 AM–5 PM",
-    "Wednesday: 8 AM–5 PM"
-  ],
-  "cover_image_url": "https://lh3.googleusercontent.com/p/AF1QipMkL9mP2qR7tV4wX8zB1cF5hJ0nM6pQ2s=s0",
-  "website_cms": "WordPress",
-  "website_tech_stack": [
-    "WordPress",
-    "Calendly"
-  ],
-  "has_meta_pixel": false,
-  "has_google_ads_tag": false,
-  "lead_score": 100,
-  "agency_opportunity_flags": [
-    "MISSING_META_PIXEL",
-    "MISSING_GOOGLE_TAG"
-  ],
-  "review_hook_stars": 5,
-  "review_hook_author": "Alex M.",
-  "review_hook_date": "2 weeks ago",
-  "review_hook_text": "Great experience with the dental team. Fast check-in, modern office, and very helpful staff.",
-  "review_hook_report_url": "https://www.google.com/local/review/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2xSallXNWtVbTlqYTJWMWMyVnlVbkJ5YjJacGJHVm5ZeUFC"
-}
-```
-
-#### Frequently Asked Questions
-**Q: Does Google Maps show email addresses natively, and how does this Actor extract them?**
-Google Maps does not display email addresses on business cards. When scrapeContacts is enabled, this Actor visits each business's official website plus /contact and /about pages to extract verified business emails.
-
-**Q: How does decision-maker email prioritization (primary_email) work?**
-The enrichment engine decodes obfuscated mailto links, filters out noreply/sentry/asset strings, and ranks verified emails by prioritizing domain-matched executive prefixes (owner@, founder@, ceo@, dr@, info@).
-
-**Q: What are agency_opportunity_flags and lead_score (0–100)?**
-Every business is audited for digital marketing gaps and tagged with filterable flags—UNCLAIMED_GBP, NO_WEBSITE, NO_EMAIL_ON_SITE, MISSING_META_PIXEL, MISSING_GOOGLE_TAG, NO_ONLINE_BOOKING, and LOW_RATING_UNDER_4_2.
-
-**Q: How much does enriched Google Maps B2B lead extraction cost?**
-Runs cost `$0.50` per 1,000 leads (`$0.0005/lead`) with all 61 fields—website emails, social links, CMS/ad pixels, booking widgets, and review icebreakers—included at zero extra add-on fees.
-
----
 
 ### 🚀 Google Maps Reviews Scraper (`unitbytes/google-maps-reviews-scraper`)
 
@@ -576,6 +396,184 @@ Every active review includes a pre-built review_report_url (https://www.google.c
 
 **Q: How does cross-run change detection (trackChanges) work?**
 When trackChanges is enabled, the Actor compares current reviews against your saved baseline and tags every review as NEW, REMOVED, RATING_CHANGED, TEXT_EDITED, OWNER_REPLIED, or UNCHANGED.
+
+---
+
+### 🚀 Google Maps Email & Leads Scraper (`unitbytes/google-maps-leads-scraper`)
+
+<p align="center">
+  <a href="https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps" target="_blank">
+    <img src="https://raw.githubusercontent.com/unitbytes/.github/main/assets/banners/unitbytes-google-maps-leads-scraper-banner.jpg" alt="Google Maps Email & Leads Scraper" width="100%" />
+  </a>
+</p>
+
+Fast, low-cost Google Maps B2B Leads & Email Scraper (`$1.00–$2.00/1K`). Extract verified business emails, phones, WhatsApp, LinkedIn/Instagram/Facebook profiles, unclaimed GMB status, tech stack (WordPress/Shopify/Pixels), and cold-outreach review hooks into 48.
+
+- **Pricing:** `$0.002 / item` (Pay-Per-Event — `$0.002` b2b lead & contact scraped (volume tiers from `$0.001`))
+- **Cloud Console:** [https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/google-maps-leads-scraper?fpr=939u3w&fp_sid=gh_gmaps)
+- **Full Documentation & Schema:** [https://unitbytes.com/actors/google-maps-leads-scraper/](https://unitbytes.com/actors/google-maps-leads-scraper/)
+- **n8n Workflow File:** [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json)
+- **Engineering Playbook:** [Google Maps B2B Leads & Email Scraper Guide (2026): Extract Verified Emails, Tech Stacks, Ad Pixels & Outreach Hooks (`$0.50/1K`)](https://unitbytes.com/blog/google-maps-leads-email-scraper-b2b-prospecting-guide/)
+
+#### Key Capabilities
+- **Google Maps + Website Email & Social Enrichment:** Automatically visits each business's official website plus /contact and /about subpages to extract verified emails (prioritizing owner@, founder@, ceo@, contact@ in primary_email) and E.164 phone numbers.
+- **High-Intent Agency Opportunity Flags & Lead Score (0–100):** Audits every prospect for actionable marketing gaps including UNCLAIMED_GBP (with 1-click claim_business_url), MISSING_META_PIXEL, MISSING_GOOGLE_TAG, NO_ONLINE_BOOKING, and LOW_RATING_UNDER_4_2.
+- **Website CMS, Ad Pixels & Online Booking Detection:** Detects 12 CMS platforms (WordPress, Shopify, Wix, Webflow, GoHighLevel), 12 martech/ad pixels (Meta Pixel, Google Ads, TikTok Pixel, HubSpot), and 12+ booking widgets (Calendly, Mindbody, Toast, OpenTable).
+- **Built-In Cold-Outreach Review Hooks (reviewHookType):** Extracts a real customer review snippet (review_hook_text, review_hook_stars, review_hook_author) plus a 1-click Google dispute link in most_relevant, lowest_rating, or newest modes.
+
+#### ⚙️ Input Parameters (Schema)
+
+| Parameter | Type | Default / Prefill | Description |
+| :--- | :---: | :--- | :--- |
+| `searchQueries` | `array` | `["dentists in Austin TX"]` | Enter your B2B category + city search queries (e.g. dentists in Austin TX, roofing contractors in Miami FL, medspas in Beverly Hills), Google Maps Search URLs (/maps/search/...), Business Place URLs (/maps/place/...), Place IDs (ChIJ...), or GPS coordinates (30.2672, -97.7431). |
+| `maxPlacesPerQuery` | `integer` | `20` | Maximum number of businesses to discover and enrich for each search query or /maps/search/... URL. (Default: 20, Max: 200) |
+| `scrapeContacts` | `boolean` | `True` | When enabled (default), automatically visits each business's official website and /contact / /about pages to extract verified email addresses (primary_email, emails), social media links (linkedin_url, instagram_url, facebook_url, tiktok_url, youtube_url), WhatsApp links, online. |
+| `includeReviewHook` | `boolean` | `True` | When enabled (default), extracts a featured customer review snippet (review_hook_text, review_hook_stars, review_hook_author, review_hook_date, review_hook_report_url) for each business so you can personalize cold emails or pitch reputation management services. |
+| `reviewHookType` | `string` | `most_relevant` | Choose which review to extract for the cold-outreach hook: • Most Relevant Highlight (most_relevant): Best overall review snippet for personalized cold email icebreakers. |
+| `language` | `string` | `en` | ISO language code (hl) for Google Maps results and categories (e.g. en, es, fr, de, pt-BR, ar, ja). |
+| `region` | `string` | `us` | 2-letter ISO country code (gl) used to bias search queries (e.g. us, gb, ca, au, de, fr, ae, in). |
+| `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Select the proxies to use. Apify Residential Proxies are automatically enabled by default for reliable Google Maps discovery. |
+| `maxConcurrency` | `integer` | `3` | How many search targets to process in parallel. (Default: 3, Max: 10) |
+
+#### ⚡ Real-Time Synchronous REST API (RapidAPI Hub & Zyla API Hub — `<500ms` GET)
+
+Need **instant synchronous `GET` JSON responses (`<500ms` live / `<150ms` cached)** for a live B2B CRM enrichment webhook, agency prospecting dashboard, or reputation triage widget without polling async batch jobs? Use our **6-Endpoint Google Maps B2B Leads, Website Contacts, Reviews, 4K Photos & Contributor REST API**:
+
+- 👉 **[Test Live on RapidAPI Hub (`$0` Free Tier)](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)** (`x-rapidapi-host: google-maps-b2b-leads-email-tech-stack-reviews-data-api.p.rapidapi.com`)
+- 👉 **[Test Live on Zyla API Hub (7-Day Free Trial)](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553)** (Listing ID `14553`)
+- 🐍 **Runnable Python Script:** [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py)
+
+| Category | Endpoint | Method | Description |
+| :--- | :--- | :---: | :--- |
+| **1. B2B Lead Discovery** | `/v1/gmaps/search` | `GET` | Search Google Maps businesses by `query` (e.g. `dentists in Austin TX`) with optional real-time website contact crawling (`enrich_contacts=true`), review hooks (`include_review_hook=true`), CMS/ad pixel detection, and `0–100` agency `leadScore`. |
+| **2. Single Place Lead Profile** | `/v1/gmaps/place` | `GET` | Retrieve the complete 48-field B2B lead profile for a single business by `place_id` (`ChIJ...`), Google Maps `url`, or exact `query`, including verified emails, 6 social profiles, CMS tech stack, and `agencyOpportunityFlags`. |
+| **3. Customer Reviews & ORM** | `/v1/gmaps/reviews` | `GET` | Extract sorted customer reviews (`most_relevant`, `newest`, `highest_rating`, `lowest_rating`) with `cursor` pagination, star ratings, full review text, owner replies, owner response SLA turnaround hours, and reputation `triageFlags`. |
+| **4. Domain & Tech Stack Enrichment** | `/v1/gmaps/contacts` | `GET` | Standalone website crawler (`url` or `domain`) extracting verified emails, phones, WhatsApp links, online booking URLs (Calendly, Mindbody, Toast), 6 social platforms, CMS platform, and Meta/Google/TikTok ad pixels. |
+| **5. 4K Photos, Menus & Videos** | `/v1/gmaps/photos` | `GET` | Extract uncompressed original/4K (`=s0`) photos, restaurant menus, storefront media, and MP4 videos by `place_id`, `url`, or `user_id` with gallery category filtering (`all`, `menu`, `videos`, `by_owner`, `vibe`, `food_and_drink`, `latest`, `street_view_and_360`). |
+| **6. Contributor & Review Forensics** | `/v1/gmaps/contributor` | `GET` | Extract Local Guide contributor profile by 21-digit `user_id` or `/maps/contrib/...` `url`, returning Local Guide level, points, contribution breakdown, fake-review `forensicFlags`, and chronological reviews across all businesses. |
+
+#### Python SDK Quickstart (`examples/run_google_maps_leads_scraper.py`)
+```python
+from apify_client import ApifyClient
+
+APIFY_TOKEN = os.getenv("APIFY_API_TOKEN", "YOUR_APIFY_API_TOKEN")
+if not APIFY_TOKEN or APIFY_TOKEN.startswith("YOUR_"):
+    raise SystemExit("Please set your Apify API token: export APIFY_API_TOKEN='apify_api_...'")
+
+client = ApifyClient(APIFY_TOKEN)
+
+run_input = {
+    "searchQueries": ["dentists in Austin TX"],
+    "maxPlacesPerQuery": 20,
+    "reviewHookType": "most_relevant",
+    "language": "en",
+    "region": "us"
+}
+
+run = client.actor("unitbytes/google-maps-leads-scraper").call(run_input=run_input)
+
+for item in client.dataset(run["defaultDatasetId"]).iterate_items():
+    print(item.get("business_name"), item.get("primary_email"), item.get("phone"), item.get("website"), item.get("rating"))
+```
+
+#### Sample Output Schema (`samples/google-maps-leads-scraper-sample.json`)
+```json
+{
+  "input_query": "dentists in Austin TX",
+  "status": "ACTIVE",
+  "scraped_at": "2026-10-24T17:30:00.000000+00:00",
+  "error": null,
+  "business_name": "Austin Smile & Implant Center",
+  "place_id": "ChIJL6x82jK1RIYR8k8W1z0X5aA",
+  "place_cid": "9576097791875393372",
+  "feature_id": "0x8644b599a0f15555:0x84e51f23e8c0a75c",
+  "knowledge_graph_id": "/g/11b6_r8xyz",
+  "primary_category": "Dentist",
+  "categories": [
+    "Dentist",
+    "Cosmetic dentist",
+    "Dental clinic"
+  ],
+  "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJL6x82jK1RIYR8k8W1z0X5aA",
+  "price_level": null,
+  "primary_email": "contact@austinsmilecenter.example.com",
+  "emails": [
+    "contact@austinsmilecenter.example.com"
+  ],
+  "email_count": 1,
+  "has_email": true,
+  "phone": "(512) 555-0199",
+  "phone_international": "+15125550199",
+  "website_phones": [],
+  "whatsapp_url": null,
+  "website": "https://www.austinsmilecenter.example.com/",
+  "domain": "austinsmilecenter.example.com",
+  "contact_page_url": "https://www.austinsmilecenter.example.com/contact/",
+  "booking_url": "https://calendly.com/austin-smile-center",
+  "linkedin_url": null,
+  "instagram_url": "https://www.instagram.com/austinsmilecenter",
+  "facebook_url": "https://www.facebook.com/austinsmilecenter",
+  "twitter_url": null,
+  "youtube_url": null,
+  "tiktok_url": null,
+  "social_urls": [
+    "https://www.instagram.com/austinsmilecenter",
+    "https://www.facebook.com/austinsmilecenter"
+  ],
+  "address": "1200 Congress Ave, Austin, TX 78701",
+  "street": "1200 Congress Ave",
+  "neighborhood": "Downtown Austin",
+  "city": "Austin",
+  "state": "Texas",
+  "postal_code": "78701",
+  "country_code": "US",
+  "country": "United States",
+  "plus_code": "7624+8P Austin, Texas",
+  "latitude": 30.273412,
+  "longitude": -97.740518,
+  "timezone": "America/Chicago",
+  "rating": 4.9,
+  "reviews_count": 342,
+  "is_claimed": true,
+  "claim_business_url": null,
+  "working_hours": [
+    "Monday: 8 AM–5 PM",
+    "Tuesday: 8 AM–5 PM",
+    "Wednesday: 8 AM–5 PM"
+  ],
+  "cover_image_url": "https://lh3.googleusercontent.com/p/AF1QipMkL9mP2qR7tV4wX8zB1cF5hJ0nM6pQ2s=s0",
+  "website_cms": "WordPress",
+  "website_tech_stack": [
+    "WordPress",
+    "Calendly"
+  ],
+  "has_meta_pixel": false,
+  "has_google_ads_tag": false,
+  "lead_score": 100,
+  "agency_opportunity_flags": [
+    "MISSING_META_PIXEL",
+    "MISSING_GOOGLE_TAG"
+  ],
+  "review_hook_stars": 5,
+  "review_hook_author": "Alex M.",
+  "review_hook_date": "2 weeks ago",
+  "review_hook_text": "Great experience with the dental team. Fast check-in, modern office, and very helpful staff.",
+  "review_hook_report_url": "https://www.google.com/local/review/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2xSallXNWtVbTlqYTJWMWMyVnlVbkJ5YjJacGJHVm5ZeUFC"
+}
+```
+
+#### Frequently Asked Questions
+**Q: Does Google Maps show email addresses natively, and how does this Actor extract them?**
+Google Maps does not display email addresses on business cards. When scrapeContacts is enabled, this Actor visits each business's official website plus /contact and /about pages to extract verified business emails.
+
+**Q: How does decision-maker email prioritization (primary_email) work?**
+The enrichment engine decodes obfuscated mailto links, filters out noreply/sentry/asset strings, and ranks verified emails by prioritizing domain-matched executive prefixes (owner@, founder@, ceo@, dr@, info@).
+
+**Q: What are agency_opportunity_flags and lead_score (0–100)?**
+Every business is audited for digital marketing gaps and tagged with filterable flags—UNCLAIMED_GBP, NO_WEBSITE, NO_EMAIL_ON_SITE, MISSING_META_PIXEL, MISSING_GOOGLE_TAG, NO_ONLINE_BOOKING, and LOW_RATING_UNDER_4_2.
+
+**Q: How much does enriched Google Maps B2B lead extraction cost?**
+Runs cost `$0.50` per 1,000 leads (`$0.0005/lead`) with all 61 fields—website emails, social links, CMS/ad pixels, booking widgets, and review icebreakers—included at zero extra add-on fees.
 
 ---
 
@@ -1074,285 +1072,6 @@ Yes. When includeMenus is enabled (default: true), every business record include
 **Q: Can I filter for photo-only visitor reviews or sort by newest?**
 Yes. In reviews mode, set reviewSort to 'recent' (Newest) or 'recommend' (Most Relevant), and enable onlyPhotoReviews: true to collect exclusively receipt-verified visitor reviews with customer photos.
 
----
-
-### 🚀 Naver Map Scraper: Korean Leads & Menus (`unitbytes/naver-map-scraper`)
-
-네이버 지도 검색·B2B DB 수집 (`$1.00/1K`): 지역·업종별 상호명, 전화번호(0507), 도로명·지번주소, 위경도(GPS), 홈페이지·인스타그램, 영업시간, 메뉴 가격표 추출. Fast Naver Map Scraper for Korean B2B business leads, phones, coordinates, menus, hours & ratings by keyword or GPS.
-
-- **Pricing:** `$0.0014 / item` (Pay-Per-Event — `$0.0014` business lead scraped (volume tiers from `$0.001`))
-- **Cloud Console:** [https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps)
-- **Full Documentation & Schema:** [https://unitbytes.com/actors/naver-map-scraper/](https://unitbytes.com/actors/naver-map-scraper/)
-- **n8n Workflow File:** [`n8n/naver-map-scraper-n8n-workflow.json`](n8n/naver-map-scraper-n8n-workflow.json)
-
-#### Key Capabilities
-- **Complete 45+ Field Korean B2B Lead Records:** Captures company/store names, categories across all verticals (restaurant, hospital, hairshop, accommodation, place), phone & SmartCall (0507) numbers, road & lot addresses, GPS coordinates, websites, Instagram links, Naver TalkTalk (talktalkUrl), and Naver Booking (bookingUrl).
-- **All-in-One Transparent Pricing:** Pay one flat rate (result-scraped) per business lead with full place details, menus, 7-day hours, websites, and embedded reviews included at `$0.00` extra add-on charge.
-- **GPS Coordinate Centering & Server-Side Distance Sorting:** Pass any searchCoordinates (latitude,longitude, e.g., 37.497942,127.027610) and sortBy: "distance" or "popular" to map hyper-local commercial districts (상권 분석) across Seoul, Busan, Incheon, Daegu, and nationwide.
-- **Full Menus, KRW Prices & Spend Analytics:** Extracts every menu item with integer KRW price (priceKrw), description, recommended flags, high-resolution menu photos, popular dishes (popularMenusText), average spend, and average stay time.
-
-#### ⚙️ Input Parameters (Schema)
-
-| Parameter | Type | Default / Prefill | Description |
-| :--- | :---: | :--- | :--- |
-| `queries` | `array` | `["강남 맛집"]` | Keywords to search on Naver Map (map.naver.com, e.g., 강남 맛집, 성수동 카페, 강남 피부과, 명동 호텔, 홍대 미용실). You can also paste direct Naver Map URLs or Place IDs here. |
-| `placeUrls` | `array` | — | Optional list of direct Naver Map URLs (https://map.naver.com/p/entry/place/2025884279), Map Search URLs (https://map.naver.com/p/search/강남%20맛집), Mobile Place URLs, naver.me shortlinks, or numeric Place IDs (2025884279). Overrides prefilled search queries. |
-| `scrapeDetails` | `boolean` | `True` | When enabled (default), extracts 7-day opening hours, full menu list with KRW prices & photos, walking directions, nearest subway stations, parking fees, website/Instagram links, sentiment keyword breakdown, and recent reviews. Disable for rapid 50-per-page map search cards. |
-| `maxItems` | `integer` | `20` | Maximum number of business listings (or reviews in reviews mode) to collect across the run. |
-| `sortBy` | `string` | `popular` | Server-side sorting order for Naver Map search results (popular / relevance default, precision, or distance from searchCoordinates). |
-| `searchCoordinates` | `string` | — | Optional GPS center point as latitude,longitude (e.g., 37.497942,127.027610 for Gangnam Station, Seoul) used for localized map search ranking and distance sorting. |
-| `maxReviewsPerPlace` | `integer` | `10` | Maximum number of visitor reviews (방문자 리뷰) to embed per business when scrapeDetails is enabled. |
-| `includeBlogReviews` | `boolean` | `True` | Include Naver Blog and Cafe review posts linked to each business. |
-| `maxBlogReviewsPerPlace` | `integer` | `10` | Maximum number of linked Naver Blog / Cafe reviews to fetch per business. |
-| `onlyPhotoReviews` | `boolean` | `False` | Filter visitor reviews server-side to only return reviews that include customer-uploaded photos. |
-| `mode` | `string` | `places` | Outputs one record per business (places, default) or one row per review (reviews). |
-| `language` | `string` | `ko` | Language preference for Naver Map category and address fields (ko for original Korean, en for English localized strings where available). |
-| `startPage` | `integer` | `1` | 1-indexed search page to start from (50 businesses per page). |
-| `resumptionToken` | `string` | — | Optional compact continuation token emitted at the end of a previous batch run (RESUMPTION_TOKEN in Key-Value Store) to resume pagination with 0 duplicate overlap. |
-| `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Proxy settings for accessing Naver Map endpoints reliably. |
-
-#### Python SDK Quickstart (`examples/run_naver_map_scraper.py`)
-```python
-from apify_client import ApifyClient
-
-APIFY_TOKEN = os.getenv("APIFY_API_TOKEN", "YOUR_APIFY_API_TOKEN")
-if not APIFY_TOKEN or APIFY_TOKEN.startswith("YOUR_"):
-    raise SystemExit("Please set your Apify API token: export APIFY_API_TOKEN='apify_api_...'")
-
-client = ApifyClient(APIFY_TOKEN)
-
-run_input = {
-    "queries": ["강남 맛집"],
-    "scrapeDetails": True,
-    "maxItems": 20,
-    "sortBy": "popular",
-    "maxReviewsPerPlace": 10,
-    "includeBlogReviews": True
-}
-
-run = client.actor("unitbytes/naver-map-scraper").call(run_input=run_input)
-
-for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-    print(item.get("name"), item.get("searchQuery"), item.get("rating"))
-```
-
-#### Sample Output Schema (`samples/naver-map-scraper-sample.json`)
-```json
-{
-  "placeId": "2025884279",
-  "name": "서울 미식 다이닝 강남점",
-  "businessCategory": "restaurant",
-  "category": "한식",
-  "categoryCode": "220053",
-  "phone": "0507-0000-0000",
-  "virtualPhone": "0507-0000-0000",
-  "roadAddress": "서울 강남구 테헤란로 100 1층",
-  "address": "서울 강남구 역삼동 100-1",
-  "commonAddress": "서울 강남구 역삼동",
-  "fullAddress": "서울 강남구 테헤란로 100 1층",
-  "postalCode": "09680108",
-  "latitude": 37.5206335,
-  "longitude": 127.0361667,
-  "distance": "2.6km",
-  "directions": "강남구청역 3-1번 출구로 나오셔서 보이는 올리브영 방향으로 쭉 직진하시다가 커피빈 골목에서 왼쪽으로 꺾어서 200m정도 오시면 왼쪽에 있습니다.",
-  "nearestSubway": "강남구청역 7호선",
-  "parkingInfo": "2시간 4000원 (발렛파킹 가능)",
-  "businessStatus": "영업 중",
-  "businessHoursText": "02:00에 영업 종료",
-  "businessHours": [
-    {
-      "day": "월",
-      "start": "11:00",
-      "end": "02:00"
-    }
-  ],
-  "rating": 4.97,
-  "visitorReviewCount": 177,
-  "blogCafeReviewCount": 37,
-  "bookingReviewCount": 0,
-  "imageReviewCount": 143,
-  "popularMenusText": "소금김밥, 대물 숙성회 정식(광어), 1% 대광어 숙성회",
-  "menuCount": 6,
-  "menus": [
-    {
-      "name": "1% 대광어 숙성회",
-      "priceText": "56,000원",
-      "priceKrw": 56000,
-      "description": "중 56000 / 대 78000",
-      "isRecommended": true,
-      "imageUrl": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg"
-    }
-  ],
-  "topVotedKeywords": [
-    {
-      "code": "food_good",
-      "keyword": "음식이 맛있어요",
-      "count": 165
-    },
-    {
-      "code": "fresh",
-      "keyword": "재료가 신선해요",
-      "count": 121
-    }
-  ],
-  "conveniences": [
-    "포장",
-    "단체 이용 가능",
-    "예약"
-  ],
-  "paymentMethods": [
-    "간편결제"
-  ],
-  "hasBooking": true,
-  "homepageUrl": "https://map.naver.com/p/entry/place/2025884279",
-  "instagramUrl": null,
-  "allLinks": [
-    "https://map.naver.com/p/entry/place/2025884279"
-  ],
-  "microReview": "한 점 한 점 정성 가득한 숙성회",
-  "mainImage": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg",
-  "imageCount": 57,
-  "url": "https://map.naver.com/p/entry/place/2025884279",
-  "mapUrl": "https://m.place.naver.com/restaurant/2025884279/home",
-  "searchQuery": "강남 맛집",
-  "detailLevel": "full",
-  "language": "ko",
-  "scrapedAt": "2026-10-28T12:00:00.000000+00:00"
-}
-```
-
-#### Frequently Asked Questions
-**Q: Do I need my own proxies or account login for naver-map-scraper?**
-No. UnitBytes manages residential proxy rotation and automated request orchestration so you never need personal accounts or proxies.
-
-**Q: What output formats are supported?**
-All data can be downloaded in JSON, CSV, or Excel formats, or consumed directly via the Apify REST API and webhooks.
-
-**Q: How does pricing work?**
-You only pay for successful records extracted under Apify Pay-Per-Event pricing, with zero monthly minimums or idle compute costs.
-
-**Q: Can this actor be integrated into automated workflows?**
-Yes. You can trigger runs via Apify API, Python/JavaScript clients, Make, Zapier, or scheduled cron workflows.
-
----
-
-### 🚀 Naver Place Reviews Scraper (`unitbytes/naver-place-reviews-scraper`)
-
-네이버 플레이스 방문자 리뷰·블로그 리뷰 추출 (`$0.50/1K`): 영수증 인증 리뷰, 별점, 방문 키워드, 사장님 답글, 고화질 사진, 블로그 포스팅까지 수집. Scrape Naver Place visitor reviews, ratings, sentiment keywords, owner replies, HD photos & linked Naver Blog reviews by URL, ID or keyword.
-
-- **Pricing:** `$0.0008 / item` (Pay-Per-Event — `$0.0008` review scraped (volume tiers from `$0.0005`))
-- **Cloud Console:** [https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps)
-- **Full Documentation & Schema:** [https://unitbytes.com/actors/naver-place-reviews-scraper/](https://unitbytes.com/actors/naver-place-reviews-scraper/)
-- **n8n Workflow File:** [`n8n/naver-place-reviews-scraper-n8n-workflow.json`](n8n/naver-place-reviews-scraper-n8n-workflow.json)
-
-#### Key Capabilities
-- **Lowest Price on Apify Store:** Collect up to 5,000 visitor reviews and 500 blog reviews per business starting at `$0.0005` per review (Gold+ tier; `$0.80/1K` on Free tier) with zero extra charges for photos or parent place metadata.
-- **Both Visitor Reviews & Blog Reviews:** Captures verified in-store customer reviews alongside long-form Naver Blog and Cafe review posts in one unified flat schema.
-- **100% Server-Side Photo Review Filtering:** Filter directly on Naver's review server (isPhotoUsed) to pull exclusively reviews containing customer-uploaded photos without wasting quota on text-only reviews.
-- **`$0.00` for Missing Targets or Empty Searches:** Non-existent Place IDs, zero-result queries, and input validation errors are never billed.
-
-#### ⚙️ Input Parameters (Schema)
-
-| Parameter | Type | Default / Prefill | Description |
-| :--- | :---: | :--- | :--- |
-| `placeUrls` | `array` | `["https://map.naver.com/p/entry/place/2025884279` | Direct Naver Map URLs (https://map.naver.com/p/entry/place/2025884279), Mobile Place URLs (https://m.place.naver.com/restaurant/2025884279/home), naver.me shortlinks, or numeric Place IDs (2025884279) to extract visitor & blog reviews from. |
-| `queries` | `array` | — | Optional search keywords on Naver Map / Place (e.g., 강남 맛집, 성수동 카페, 강남 피부과). When provided, overrides the prefilled Place URL and extracts reviews across matching businesses. |
-| `maxItems` | `integer` | `20` | Maximum total number of reviews (visitor + blog reviews) to collect across the run. |
-| `maxReviewsPerPlace` | `integer` | `20` | Maximum number of receipt-verified visitor reviews (방문자 리뷰) to fetch per place (0–5000). Automatically scales up to maxItems when scraping direct Place URLs. |
-| `onlyPhotoReviews` | `boolean` | `False` | Filter visitor reviews 100% server-side on Naver (isPhotoUsed) to only return reviews that include customer-uploaded photos. |
-| `includeBlogReviews` | `boolean` | `True` | Include Naver Blog and Cafe review posts linked to each place (author name, post title, URL, snippet, date, and thumbnail). |
-| `maxBlogReviewsPerPlace` | `integer` | `10` | Maximum number of linked Naver Blog / Cafe reviews to fetch per place. |
-| `mode` | `string` | `reviews` | Outputs one flat row per review (reviews, default) or one row per place with embedded reviews (places). |
-| `language` | `string` | `ko` | Language preference for Naver Place category and address fields (ko for original Korean, en for English localized strings where available). |
-| `resumptionToken` | `string` | — | Optional compact continuation token emitted at the end of a previous batch run (RESUMPTION_TOKEN in Key-Value Store) to resume pagination with 0 duplicate overlap. |
-| `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Proxy settings for accessing Naver Place review endpoints reliably. |
-
-#### Python SDK Quickstart (`examples/run_naver_place_reviews_scraper.py`)
-```python
-from apify_client import ApifyClient
-
-APIFY_TOKEN = os.getenv("APIFY_API_TOKEN", "YOUR_APIFY_API_TOKEN")
-if not APIFY_TOKEN or APIFY_TOKEN.startswith("YOUR_"):
-    raise SystemExit("Please set your Apify API token: export APIFY_API_TOKEN='apify_api_...'")
-
-client = ApifyClient(APIFY_TOKEN)
-
-run_input = {
-    "placeUrls": ["https://map.naver.com/p/entry/place/2025884279"],
-    "maxItems": 20,
-    "maxReviewsPerPlace": 20,
-    "onlyPhotoReviews": False,
-    "includeBlogReviews": True,
-    "maxBlogReviewsPerPlace": 10
-}
-
-run = client.actor("unitbytes/naver-place-reviews-scraper").call(run_input=run_input)
-
-for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-    print(item.get("placeName"), item.get("bookingItemName"), item.get("authorNickname"))
-```
-
-#### Sample Output Schema (`samples/naver-place-reviews-scraper-sample.json`)
-```json
-{
-  "reviewId": "671a9b2c8f01e20001a4b912",
-  "reviewType": "visitor",
-  "placeId": "2025884279",
-  "placeName": "서울 미식 다이닝 강남점",
-  "placeCategory": "한식",
-  "businessCategory": "restaurant",
-  "placeAddress": "서울 강남구 테헤란로 100 1층",
-  "placeRating": 4.97,
-  "placeUrl": "https://map.naver.com/p/entry/place/2025884279",
-  "rating": 5.0,
-  "title": null,
-  "text": "숙성회가 정말 두툼하고 신선해요! 소금김밥이랑 같이 먹으면 궁합이 최고입니다. 직원분들도 친절하셔서 다음 모임 때 또 방문할 예정이에요.",
-  "createdAt": "10.24.토",
-  "visitedAt": "10.24.토",
-  "visitCount": 2,
-  "viewCount": 48,
-  "verificationMethod": "영수증",
-  "bookingItemName": "네이버 예약",
-  "votedKeywords": [
-    "음식이 맛있어요",
-    "재료가 신선해요",
-    "친절해요"
-  ],
-  "votedKeywordsText": "음식이 맛있어요, 재료가 신선해요, 친절해요, 매장이 넓어요",
-  "mainPhotoUrl": "https://pup-review-phinf.pstatic.net/example_review_photo_01.jpg",
-  "photoUrls": [
-    "https://pup-review-phinf.pstatic.net/example_review_photo_01.jpg",
-    "https://pup-review-phinf.pstatic.net/example_review_photo_02.jpg"
-  ],
-  "photoCount": 2,
-  "hasPhotos": true,
-  "authorId": "user_4c9b",
-  "authorNickname": "reviewer_4a9c",
-  "authorProfileUrl": "https://m.place.naver.com/my/user_4c9b/review",
-  "authorImageUrl": null,
-  "authorTotalReviews": 84,
-  "ownerReplyText": "소중한 영수증 리뷰와 멋진 사진 감사드립니다! 언제나 신선한 숙성회로 보답하겠습니다.",
-  "ownerReplyCreatedAt": "10.25.일",
-  "reviewUrl": "https://m.place.naver.com/place/2025884279/review/visitor",
-  "searchQuery": null,
-  "language": "ko",
-  "scrapedAt": "2026-10-28T12:00:00.000000+00:00"
-}
-```
-
-#### Frequently Asked Questions
-**Q: Do I need my own proxies or account login for naver-place-reviews-scraper?**
-No. UnitBytes manages residential proxy rotation and automated request orchestration so you never need personal accounts or proxies.
-
-**Q: What output formats are supported?**
-All data can be downloaded in JSON, CSV, or Excel formats, or consumed directly via the Apify REST API and webhooks.
-
-**Q: How does pricing work?**
-You only pay for successful records extracted under Apify Pay-Per-Event pricing, with zero monthly minimums or idle compute costs.
-
-**Q: Can this actor be integrated into automated workflows?**
-Yes. You can trigger runs via Apify API, Python/JavaScript clients, Make, Zapier, or scheduled cron workflows.
-
 
 ---
 
@@ -1367,7 +1086,7 @@ git clone https://github.com/unitbytes/Google-Maps-Reviews-Scraper-API.git
 cd Google-Maps-Reviews-Scraper-API
 pip install -r requirements.txt
 export APIFY_API_TOKEN="your_apify_api_token"
-python examples/run_google_maps_leads_scraper.py
+python examples/run_google_maps_reviews_scraper.py
 ```
 
 ### 3. Import into n8n (Self-Hosted or Cloud)

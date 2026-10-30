@@ -1,9 +1,9 @@
 {
-  "name": "Audit Google Maps Reviews Scraper with OpenAI and route ORM replies to Gmail, Sheets, and Slack",
+  "name": "Audit Google Maps reviews with OpenAI and route ORM replies to Gmail, Sheets, and Slack",
   "nodes": [
     {
       "parameters": {
-        "content": "## Google Maps Reviews Scraper — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[google-maps-reviews-scraper Apify Actor](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.00035 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (google-maps-reviews-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `review_id`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `place_name, reviewer_name, review_stars, review_text` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Review Triage & Response Drafter**.\n5. **8. Merge AI Review Audit & Reply** merges AI fields and triggers **9a. Send ORM Review Alert to Slack** and **9b. Draft ORM Incident Report in Gmail**.\n\n### Setup\n1. Add your token from [google-maps-reviews-scraper on Apify Store](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2.\n2. Edit `actorInput`, `sheetTab`, and `alertStarThreshold` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `alertStarThreshold` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/google-maps-reviews-scraper/](https://unitbytes.com/actors/google-maps-reviews-scraper/)",
+        "content": "## Google Maps Reviews Scraper — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[google-maps-reviews-scraper Apify Actor](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.00035 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (google-maps-reviews-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `review_id`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `place_name, reviewer_name, review_stars, review_text` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Review Triage & Response Drafter**.\n5. **8. Merge AI Review Audit & Reply** merges AI fields and triggers **9a. Send ORM Review Alert to Slack** and **9b. Draft ORM Incident Report in Gmail**.\n\n### Setup\n1. Add your token from [google-maps-reviews-scraper on Apify Store](https://apify.com/unitbytes/google-maps-reviews-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2 (`Name`: `Authorization`, `Value`: `Bearer <YOUR_APIFY_TOKEN>`).\n2. Edit `actorInput`, `sheetTab`, and `alertStarThreshold` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `alertStarThreshold` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/google-maps-reviews-scraper/](https://unitbytes.com/actors/google-maps-reviews-scraper/)",
         "height": 780,
         "width": 560,
         "color": 1
@@ -108,7 +108,7 @@
             {
               "id": "09d61739-8336-5f91-b2c4-d2e12a703b7c",
               "name": "actorInput",
-              "value": "{\"reviewsToCheck\": [\"https://www.google.com/maps/place/Katz's+Delicatessen/@40.722233,-73.987429,17z/\"], \"reviewsSort\": \"newest\", \"language\": \"en\", \"region\": \"us\", \"maxReviewsPerPlace\": 50, \"maxPlacesPerQuery\": 1}",
+              "value": "{\"reviewsToCheck\": [\"https://www.google.com/maps/place/Katz's+Delicatessen/@40.722233,-73.987429,17z/\"], \"reviewsSort\": \"newest\", \"language\": \"en\", \"region\": \"us\", \"maxReviewsPerPlace\": 5, \"maxPlacesPerQuery\": 1}",
               "type": "object"
             },
             {
@@ -159,7 +159,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($json.actorInput) }}",
+        "jsonBody": "={{ typeof $json.actorInput === 'string' ? $json.actorInput : JSON.stringify($json.actorInput) }}",
         "options": {
           "timeout": 300000
         }
@@ -196,7 +196,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Normalize fields, parse numeric metrics, and score items for Slack alerts\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.alertStarThreshold ?? 2);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"place_name\", \"reviewer_name\", \"review_stars\", \"review_text\", \"published_at\", \"review_url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.review_id || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.title || cleaned.query || cleaned.business_name || cleaned.place_name || cleaned.placeName || cleaned.shopName || cleaned.reviewer_name || cleaned.contributor_name || cleaned.content || cleaned.body || cleaned.keyword || cleaned.original_keyword || cleaned.name || cleaned.sellerNick || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.url || cleaned.review_url || cleaned.review_permalink || cleaned.photoUrl || cleaned.noteUrl || cleaned.shopUrl || cleaned.place_url || cleaned.google_maps_url || cleaned.website || cleaned.productUrl || cleaned.taobaoUrl || cleaned.resolved_url || cleaned.input_url || cleaned.contributor_url || '');\n  const rawMetric = cleaned.review_stars ?? cleaned.stars ?? cleaned.rating ?? 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n  const mode = 'review_sentiment';\n\n  if (mode === 'price_deal') {\n    if (numericValue > 0 && numericValue <= threshold) {\n      priorityScore = Math.min(100, Math.round(70 + ((threshold - numericValue) / Math.max(threshold, 1)) * 30));\n      isHighPriority = true;\n    }\n  } else if (mode === 'review_sentiment') {\n    const stars = Number(cleaned.review_stars ?? cleaned.stars ?? cleaned.rating ?? numericValue);\n    if (cleaned.is_removed === true || cleaned.is_edited === true || cleaned.status === 'REMOVED' || (stars > 0 && stars <= threshold)) {\n      priorityScore = 95;\n      isHighPriority = true;\n    }\n  } else if (mode === 'lead_score') {\n    const hasDirectContact = Boolean(cleaned.primary_email || cleaned.phone);\n    if (numericValue >= threshold || hasDirectContact) {\n      priorityScore = Math.min(100, Math.max(numericValue, hasDirectContact ? 85 : 70));\n      isHighPriority = true;\n    }\n  } else if (mode === 'status_audit') {\n    if (cleaned.is_sold === true || cleaned.is_removed === true || cleaned.status === 'SOLD' || (numericValue > 0 && numericValue <= threshold)) {\n      priorityScore = 90;\n      isHighPriority = true;\n    }\n  } else {\n    if (numericValue >= threshold) {\n      priorityScore = Math.min(100, Math.round(70 + Math.min(numericValue / Math.max(threshold, 1), 3) * 10));\n      isHighPriority = true;\n    }\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: `${titleText} (Metric: ${numericValue} | Score: ${priorityScore}/100)`,\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
+        "jsCode": "// Normalize fields, parse numeric metrics, and score items for AI enrichment\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.alertStarThreshold !== undefined ? config.alertStarThreshold : 2);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"place_name\", \"reviewer_name\", \"review_stars\", \"review_text\", \"published_at\", \"review_url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.review_id || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.business_name || cleaned.place_name || cleaned.reviewer_name || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.review_url || '');\n  const rawMetric = cleaned.review_stars || cleaned.reviewRating || cleaned.stars || cleaned.rating || 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n\n  const stars = Number(cleaned.review_stars || cleaned.reviewRating || cleaned.stars || cleaned.rating || numericValue);\n  if (cleaned.is_removed === true || cleaned.is_edited === true || cleaned.status === 'REMOVED' || (stars > 0 && stars <= threshold)) {\n    priorityScore = 95;\n    isHighPriority = true;\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: titleText + ' (Metric: ' + numericValue + ' | Score: ' + priorityScore + '/100)',\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
       },
       "id": "92ce9502-dded-5cda-a7f1-75bae705fd55",
       "name": "4. Clean & Score Items",
@@ -214,67 +214,67 @@
             {
               "id": "bd3db57d-e162-50cc-8fe8-66ac98480593",
               "name": "place_name",
-              "value": "={{ $json.place_name }}",
+              "value": "={{ $json.place_name !== undefined && $json.place_name !== null ? $json.place_name : '' }}",
               "type": "string"
             },
             {
               "id": "b418c4b3-eac9-57f8-bbd0-e3421512e101",
               "name": "reviewer_name",
-              "value": "={{ $json.reviewer_name }}",
+              "value": "={{ $json.reviewer_name !== undefined && $json.reviewer_name !== null ? $json.reviewer_name : '' }}",
               "type": "string"
             },
             {
               "id": "8c61272e-6aa4-5b25-82e4-6e92702bba77",
               "name": "review_stars",
-              "value": "={{ $json.review_stars }}",
+              "value": "={{ $json.review_stars !== undefined && $json.review_stars !== null ? $json.review_stars : '' }}",
               "type": "string"
             },
             {
               "id": "9e395d6e-2f9b-5707-8a61-7d76e0304eb0",
               "name": "review_text",
-              "value": "={{ $json.review_text }}",
+              "value": "={{ $json.review_text !== undefined && $json.review_text !== null ? $json.review_text : '' }}",
               "type": "string"
             },
             {
               "id": "7cb80bff-e8bd-50b3-952f-57370a41d450",
               "name": "published_at",
-              "value": "={{ $json.published_at }}",
+              "value": "={{ $json.published_at !== undefined && $json.published_at !== null ? $json.published_at : '' }}",
               "type": "string"
             },
             {
               "id": "3400e116-a572-50dc-a73b-2e71547bd52d",
               "name": "review_url",
-              "value": "={{ $json.review_url }}",
+              "value": "={{ $json.review_url !== undefined && $json.review_url !== null ? $json.review_url : '' }}",
               "type": "string"
             },
             {
               "id": "0851b8cf-9743-5734-b114-63d9bc29adc6",
               "name": "numericValue",
-              "value": "={{ $json.numericValue }}",
+              "value": "={{ Number($json.numericValue || 0) }}",
               "type": "number"
             },
             {
               "id": "369f5e5d-f440-529b-8219-b90d71bdd286",
               "name": "priorityScore",
-              "value": "={{ $json.priorityScore }}",
+              "value": "={{ Number($json.priorityScore || 0) }}",
               "type": "number"
             },
             {
               "id": "efb3c227-9c46-59bf-916b-11dd949ca838",
               "name": "isHighPriority",
-              "value": "={{ $json.isHighPriority }}",
+              "value": "={{ Boolean($json.isHighPriority) }}",
               "type": "boolean"
             },
             {
               "id": "f2cfd0ba-58f7-52af-abc5-24ecf6576071",
               "name": "alertSummary",
-              "value": "={{ $json.alertSummary }}",
+              "value": "={{ $json.alertSummary !== undefined && $json.alertSummary !== null ? $json.alertSummary : '' }}",
               "type": "string"
             },
             {
               "id": "35bb5756-6f1d-52a9-a341-6d13242cf760",
               "name": "scrapedAt",
-              "value": "={{ $json.scrapedAt }}",
+              "value": "={{ $json.scrapedAt !== undefined && $json.scrapedAt !== null ? $json.scrapedAt : '' }}",
               "type": "string"
             }
           ]
@@ -308,17 +308,17 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "place_name": "={{ $json.place_name }}",
-            "reviewer_name": "={{ $json.reviewer_name }}",
-            "review_stars": "={{ $json.review_stars }}",
-            "review_text": "={{ $json.review_text }}",
-            "published_at": "={{ $json.published_at }}",
-            "review_url": "={{ $json.review_url }}",
-            "numericValue": "={{ $json.numericValue }}",
-            "priorityScore": "={{ $json.priorityScore }}",
-            "isHighPriority": "={{ $json.isHighPriority }}",
-            "alertSummary": "={{ $json.alertSummary }}",
-            "scrapedAt": "={{ $json.scrapedAt }}"
+            "place_name": "={{ $json.place_name !== undefined && $json.place_name !== null ? $json.place_name : '' }}",
+            "reviewer_name": "={{ $json.reviewer_name !== undefined && $json.reviewer_name !== null ? $json.reviewer_name : '' }}",
+            "review_stars": "={{ $json.review_stars !== undefined && $json.review_stars !== null ? $json.review_stars : '' }}",
+            "review_text": "={{ $json.review_text !== undefined && $json.review_text !== null ? $json.review_text : '' }}",
+            "published_at": "={{ $json.published_at !== undefined && $json.published_at !== null ? $json.published_at : '' }}",
+            "review_url": "={{ $json.review_url !== undefined && $json.review_url !== null ? $json.review_url : '' }}",
+            "numericValue": "={{ $json.numericValue !== undefined && $json.numericValue !== null ? $json.numericValue : '' }}",
+            "priorityScore": "={{ $json.priorityScore !== undefined && $json.priorityScore !== null ? $json.priorityScore : '' }}",
+            "isHighPriority": "={{ $json.isHighPriority !== undefined && $json.isHighPriority !== null ? $json.isHighPriority : '' }}",
+            "alertSummary": "={{ $json.alertSummary !== undefined && $json.alertSummary !== null ? $json.alertSummary : '' }}",
+            "scrapedAt": "={{ $json.scrapedAt !== undefined && $json.scrapedAt !== null ? $json.scrapedAt : '' }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -577,25 +577,25 @@
             {
               "id": "c83b808c-b9cc-5ee2-80f0-6277d3014d23",
               "name": "aiHeadline",
-              "value": "={{ $json.message?.content?.aiHeadline || $json.aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
               "type": "string"
             },
             {
               "id": "83572245-34ef-53ee-b12f-cee76de7af66",
               "name": "aiVerdict",
-              "value": "={{ $json.message?.content?.aiVerdict || $json.aiVerdict || 'HIGH_PRIORITY' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiVerdict || 'HIGH_PRIORITY' }}",
               "type": "string"
             },
             {
               "id": "14b73d49-635f-56f1-9939-6d20e6f96757",
               "name": "aiAnalysis",
-              "value": "={{ $json.message?.content?.aiAnalysis || $json.aiAnalysis || '' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiAnalysis || '' }}",
               "type": "string"
             },
             {
               "id": "3553b922-d920-5e2a-a1b2-42918b513113",
               "name": "aiDraftBody",
-              "value": "={{ $json.message?.content?.aiDraftBody || $json.aiDraftBody || '' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiDraftBody || '' }}",
               "type": "string"
             },
             {
@@ -655,9 +655,7 @@
         "operation": "create",
         "subject": "=[AI Action] {{ $json.aiVerdict }}: {{ $json.aiHeadline }}",
         "message": "={{ $json.aiDraftBody }}\n\n---\nAI Analysis: {{ $json.aiAnalysis }}\nSource Link: {{ $json.itemUrl }}\nPriority Score: {{ $json.priorityScore }}/100",
-        "options": {
-          "sendTo": "={{ $json.recipientEmail }}"
-        }
+        "options": {}
       },
       "credentials": {
         "gmailOAuth2": {

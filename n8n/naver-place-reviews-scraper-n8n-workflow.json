@@ -1,9 +1,9 @@
 {
-  "name": "Audit Naver Place Reviews Scraper with OpenAI and route ORM replies to Gmail, Sheets, and Slack",
+  "name": "Audit Naver Place reviews with OpenAI and route ORM replies to Gmail, Sheets, and Slack",
   "nodes": [
     {
       "parameters": {
-        "content": "## Naver Place Reviews Scraper — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[naver-place-reviews-scraper Apify Actor](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.0008 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (naver-place-reviews-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `placeId`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `placeId, name, reviewerNickname, reviewText` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Review Triage & Response Drafter**.\n5. **8. Merge AI Review Audit & Reply** merges AI fields and triggers **9a. Send ORM Review Alert to Slack** and **9b. Draft ORM Incident Report in Gmail**.\n\n### Setup\n1. Add your token from [naver-place-reviews-scraper on Apify Store](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2.\n2. Edit `actorInput`, `sheetTab`, and `alertStarThreshold` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `alertStarThreshold` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/naver-place-reviews-scraper/](https://unitbytes.com/actors/naver-place-reviews-scraper/)",
+        "content": "## Naver Place Reviews Scraper — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[naver-place-reviews-scraper Apify Actor](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.0008 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (naver-place-reviews-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `reviewId`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `reviewId, placeId, placeName, authorNickname` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Review Triage & Response Drafter**.\n5. **8. Merge AI Review Audit & Reply** merges AI fields and triggers **9a. Send ORM Review Alert to Slack** and **9b. Draft ORM Incident Report in Gmail**.\n\n### Setup\n1. Add your token from [naver-place-reviews-scraper on Apify Store](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2 (`Name`: `Authorization`, `Value`: `Bearer <YOUR_APIFY_TOKEN>`).\n2. Edit `actorInput`, `sheetTab`, and `alertStarThreshold` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `alertStarThreshold` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/naver-place-reviews-scraper/](https://unitbytes.com/actors/naver-place-reviews-scraper/)",
         "height": 780,
         "width": 560,
         "color": 1
@@ -108,7 +108,7 @@
             {
               "id": "2874cd74-27c0-5630-a5df-8faef733c876",
               "name": "actorInput",
-              "value": "{\"placeUrls\": [\"https://map.naver.com/p/entry/place/2025884279\"], \"maxItems\": 20, \"maxReviewsPerPlace\": 20, \"onlyPhotoReviews\": false, \"includeBlogReviews\": true, \"maxBlogReviewsPerPlace\": 10}",
+              "value": "{\"placeUrls\": [\"https://map.naver.com/p/entry/place/2025884279\"], \"maxItems\": 5, \"maxReviewsPerPlace\": 5, \"onlyPhotoReviews\": false, \"includeBlogReviews\": true, \"maxBlogReviewsPerPlace\": 10}",
               "type": "object"
             },
             {
@@ -159,7 +159,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($json.actorInput) }}",
+        "jsonBody": "={{ typeof $json.actorInput === 'string' ? $json.actorInput : JSON.stringify($json.actorInput) }}",
         "options": {
           "timeout": 300000
         }
@@ -182,7 +182,7 @@
     {
       "parameters": {
         "operation": "removeItemsSeenInPreviousExecutions",
-        "dedupeValue": "={{ $json.placeId || $json.id || $json.url }}",
+        "dedupeValue": "={{ $json.reviewId || $json.reviewUrl || $json.id }}",
         "options": {}
       },
       "id": "e46c11ec-2533-5a58-af55-423a41eef072",
@@ -196,7 +196,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Normalize fields, parse numeric metrics, and score items for Slack alerts\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.alertStarThreshold ?? 2);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"placeId\", \"name\", \"reviewerNickname\", \"reviewText\", \"reviewRating\", \"visitDate\", \"url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.placeId || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.title || cleaned.query || cleaned.business_name || cleaned.place_name || cleaned.placeName || cleaned.shopName || cleaned.reviewer_name || cleaned.contributor_name || cleaned.content || cleaned.body || cleaned.keyword || cleaned.original_keyword || cleaned.name || cleaned.sellerNick || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.url || cleaned.review_url || cleaned.review_permalink || cleaned.photoUrl || cleaned.noteUrl || cleaned.shopUrl || cleaned.place_url || cleaned.google_maps_url || cleaned.website || cleaned.productUrl || cleaned.taobaoUrl || cleaned.resolved_url || cleaned.input_url || cleaned.contributor_url || '');\n  const rawMetric = cleaned.review_stars ?? cleaned.stars ?? cleaned.rating ?? 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n  const mode = 'review_sentiment';\n\n  if (mode === 'price_deal') {\n    if (numericValue > 0 && numericValue <= threshold) {\n      priorityScore = Math.min(100, Math.round(70 + ((threshold - numericValue) / Math.max(threshold, 1)) * 30));\n      isHighPriority = true;\n    }\n  } else if (mode === 'review_sentiment') {\n    const stars = Number(cleaned.review_stars ?? cleaned.stars ?? cleaned.rating ?? numericValue);\n    if (cleaned.is_removed === true || cleaned.is_edited === true || cleaned.status === 'REMOVED' || (stars > 0 && stars <= threshold)) {\n      priorityScore = 95;\n      isHighPriority = true;\n    }\n  } else if (mode === 'lead_score') {\n    const hasDirectContact = Boolean(cleaned.primary_email || cleaned.phone);\n    if (numericValue >= threshold || hasDirectContact) {\n      priorityScore = Math.min(100, Math.max(numericValue, hasDirectContact ? 85 : 70));\n      isHighPriority = true;\n    }\n  } else if (mode === 'status_audit') {\n    if (cleaned.is_sold === true || cleaned.is_removed === true || cleaned.status === 'SOLD' || (numericValue > 0 && numericValue <= threshold)) {\n      priorityScore = 90;\n      isHighPriority = true;\n    }\n  } else {\n    if (numericValue >= threshold) {\n      priorityScore = Math.min(100, Math.round(70 + Math.min(numericValue / Math.max(threshold, 1), 3) * 10));\n      isHighPriority = true;\n    }\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: `${titleText} (Metric: ${numericValue} | Score: ${priorityScore}/100)`,\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
+        "jsCode": "// Normalize fields, parse numeric metrics, and score items for AI enrichment\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.alertStarThreshold !== undefined ? config.alertStarThreshold : 2);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"reviewId\", \"placeId\", \"placeName\", \"authorNickname\", \"rating\", \"text\", \"visitedAt\", \"reviewUrl\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.reviewId || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.title || cleaned.placeName || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.reviewUrl || cleaned.placeUrl || '');\n  const rawMetric = cleaned.review_stars || cleaned.reviewRating || cleaned.stars || cleaned.rating || 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n\n  const stars = Number(cleaned.review_stars || cleaned.reviewRating || cleaned.stars || cleaned.rating || numericValue);\n  if (cleaned.is_removed === true || cleaned.is_edited === true || cleaned.status === 'REMOVED' || (stars > 0 && stars <= threshold)) {\n    priorityScore = 95;\n    isHighPriority = true;\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: titleText + ' (Metric: ' + numericValue + ' | Score: ' + priorityScore + '/100)',\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
       },
       "id": "fb45f93b-af59-58d5-93af-8c7604e2ebc9",
       "name": "4. Clean & Score Items",
@@ -212,75 +212,81 @@
         "assignments": {
           "assignments": [
             {
-              "id": "f897c411-0637-5f2c-92f8-90f94e72ab14",
+              "id": "578cedf3-06c8-5e2b-b2b5-a1fbf5ff464b",
+              "name": "reviewId",
+              "value": "={{ $json.reviewId !== undefined && $json.reviewId !== null ? $json.reviewId : '' }}",
+              "type": "string"
+            },
+            {
+              "id": "6d5ed237-fb20-543f-8bdc-815b4f528f96",
               "name": "placeId",
-              "value": "={{ $json.placeId }}",
+              "value": "={{ $json.placeId !== undefined && $json.placeId !== null ? $json.placeId : '' }}",
               "type": "string"
             },
             {
-              "id": "1f7ba58b-09ec-5caf-99a2-80bb7f45e726",
-              "name": "name",
-              "value": "={{ $json.name }}",
+              "id": "fce9640c-7a2a-5e18-bbef-1dc6c18cb482",
+              "name": "placeName",
+              "value": "={{ $json.placeName !== undefined && $json.placeName !== null ? $json.placeName : '' }}",
               "type": "string"
             },
             {
-              "id": "e9d4c47b-a3e8-5a1b-88ff-879320054d3f",
-              "name": "reviewerNickname",
-              "value": "={{ $json.reviewerNickname }}",
+              "id": "f261938a-b23c-5c65-9ccb-73328b0e8d22",
+              "name": "authorNickname",
+              "value": "={{ $json.authorNickname !== undefined && $json.authorNickname !== null ? $json.authorNickname : '' }}",
               "type": "string"
             },
             {
-              "id": "e3b2f0db-577b-50c4-a591-81b7b89dc277",
-              "name": "reviewText",
-              "value": "={{ $json.reviewText }}",
+              "id": "198f214a-1f4e-5ed0-8510-0615ebdec3c3",
+              "name": "rating",
+              "value": "={{ $json.rating !== undefined && $json.rating !== null ? $json.rating : '' }}",
               "type": "string"
             },
             {
-              "id": "4e84c1b6-dec7-517d-a23c-7b7a0d8ec72c",
-              "name": "reviewRating",
-              "value": "={{ $json.reviewRating }}",
+              "id": "eabd7fb7-3b39-5f7d-8bee-f0279c084e9a",
+              "name": "text",
+              "value": "={{ $json.text !== undefined && $json.text !== null ? $json.text : '' }}",
               "type": "string"
             },
             {
-              "id": "9b74b53f-db48-5f62-a15e-5453a7a7dcf3",
-              "name": "visitDate",
-              "value": "={{ $json.visitDate }}",
+              "id": "c4d9a0c1-43c0-583f-abb3-e1eb9aec3dd7",
+              "name": "visitedAt",
+              "value": "={{ $json.visitedAt !== undefined && $json.visitedAt !== null ? $json.visitedAt : '' }}",
               "type": "string"
             },
             {
-              "id": "fbc15545-7912-5504-b28c-c51a5afc1d92",
-              "name": "url",
-              "value": "={{ $json.url }}",
+              "id": "ad962fef-9eeb-58d8-acea-1e3f37b7c8fb",
+              "name": "reviewUrl",
+              "value": "={{ $json.reviewUrl !== undefined && $json.reviewUrl !== null ? $json.reviewUrl : '' }}",
               "type": "string"
             },
             {
-              "id": "81c36d27-c757-5937-aa70-f31ea55eb10b",
+              "id": "652b138c-0f8c-5da7-a326-540691ebc2ff",
               "name": "numericValue",
-              "value": "={{ $json.numericValue }}",
+              "value": "={{ Number($json.numericValue || 0) }}",
               "type": "number"
             },
             {
-              "id": "0b467b2b-5919-51b6-ac5d-bd9096cbcda4",
+              "id": "a66bfe9e-0561-5339-be26-5ec3fb2e6564",
               "name": "priorityScore",
-              "value": "={{ $json.priorityScore }}",
+              "value": "={{ Number($json.priorityScore || 0) }}",
               "type": "number"
             },
             {
-              "id": "96ce0c73-b851-5aa5-82e2-859a8aeddb6e",
+              "id": "ba493ca7-2163-5556-90a5-bda0eff5d019",
               "name": "isHighPriority",
-              "value": "={{ $json.isHighPriority }}",
+              "value": "={{ Boolean($json.isHighPriority) }}",
               "type": "boolean"
             },
             {
-              "id": "0c9b32bf-7679-5b63-806f-e5dd928b9fe3",
+              "id": "7894d1f8-9360-5e13-9219-b2a78355b999",
               "name": "alertSummary",
-              "value": "={{ $json.alertSummary }}",
+              "value": "={{ $json.alertSummary !== undefined && $json.alertSummary !== null ? $json.alertSummary : '' }}",
               "type": "string"
             },
             {
-              "id": "5b2f2288-a16c-5cbb-8a6a-e4db42c3b3a9",
+              "id": "9573a73e-09bf-5fd1-a3a8-a1e9c85b267e",
               "name": "scrapedAt",
-              "value": "={{ $json.scrapedAt }}",
+              "value": "={{ $json.scrapedAt !== undefined && $json.scrapedAt !== null ? $json.scrapedAt : '' }}",
               "type": "string"
             }
           ]
@@ -314,21 +320,31 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "placeId": "={{ $json.placeId }}",
-            "name": "={{ $json.name }}",
-            "reviewerNickname": "={{ $json.reviewerNickname }}",
-            "reviewText": "={{ $json.reviewText }}",
-            "reviewRating": "={{ $json.reviewRating }}",
-            "visitDate": "={{ $json.visitDate }}",
-            "url": "={{ $json.url }}",
-            "numericValue": "={{ $json.numericValue }}",
-            "priorityScore": "={{ $json.priorityScore }}",
-            "isHighPriority": "={{ $json.isHighPriority }}",
-            "alertSummary": "={{ $json.alertSummary }}",
-            "scrapedAt": "={{ $json.scrapedAt }}"
+            "reviewId": "={{ $json.reviewId !== undefined && $json.reviewId !== null ? $json.reviewId : '' }}",
+            "placeId": "={{ $json.placeId !== undefined && $json.placeId !== null ? $json.placeId : '' }}",
+            "placeName": "={{ $json.placeName !== undefined && $json.placeName !== null ? $json.placeName : '' }}",
+            "authorNickname": "={{ $json.authorNickname !== undefined && $json.authorNickname !== null ? $json.authorNickname : '' }}",
+            "rating": "={{ $json.rating !== undefined && $json.rating !== null ? $json.rating : '' }}",
+            "text": "={{ $json.text !== undefined && $json.text !== null ? $json.text : '' }}",
+            "visitedAt": "={{ $json.visitedAt !== undefined && $json.visitedAt !== null ? $json.visitedAt : '' }}",
+            "reviewUrl": "={{ $json.reviewUrl !== undefined && $json.reviewUrl !== null ? $json.reviewUrl : '' }}",
+            "numericValue": "={{ $json.numericValue !== undefined && $json.numericValue !== null ? $json.numericValue : '' }}",
+            "priorityScore": "={{ $json.priorityScore !== undefined && $json.priorityScore !== null ? $json.priorityScore : '' }}",
+            "isHighPriority": "={{ $json.isHighPriority !== undefined && $json.isHighPriority !== null ? $json.isHighPriority : '' }}",
+            "alertSummary": "={{ $json.alertSummary !== undefined && $json.alertSummary !== null ? $json.alertSummary : '' }}",
+            "scrapedAt": "={{ $json.scrapedAt !== undefined && $json.scrapedAt !== null ? $json.scrapedAt : '' }}"
           },
           "matchingColumns": [],
           "schema": [
+            {
+              "id": "reviewId",
+              "displayName": "reviewId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
             {
               "id": "placeId",
               "displayName": "placeId",
@@ -339,8 +355,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "name",
-              "displayName": "name",
+              "id": "placeName",
+              "displayName": "placeName",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -348,8 +364,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "reviewerNickname",
-              "displayName": "reviewerNickname",
+              "id": "authorNickname",
+              "displayName": "authorNickname",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -357,8 +373,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "reviewText",
-              "displayName": "reviewText",
+              "id": "rating",
+              "displayName": "rating",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -366,8 +382,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "reviewRating",
-              "displayName": "reviewRating",
+              "id": "text",
+              "displayName": "text",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -375,8 +391,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "visitDate",
-              "displayName": "visitDate",
+              "id": "visitedAt",
+              "displayName": "visitedAt",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -384,8 +400,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "url",
-              "displayName": "url",
+              "id": "reviewUrl",
+              "displayName": "reviewUrl",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -593,25 +609,25 @@
             {
               "id": "11d6ee27-2411-5202-9bd9-90e3d37e234d",
               "name": "aiHeadline",
-              "value": "={{ $json.message?.content?.aiHeadline || $json.aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
               "type": "string"
             },
             {
               "id": "31d530d1-21d0-5dc3-9bc6-7adc5f99590f",
               "name": "aiVerdict",
-              "value": "={{ $json.message?.content?.aiVerdict || $json.aiVerdict || 'HIGH_PRIORITY' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiVerdict || 'HIGH_PRIORITY' }}",
               "type": "string"
             },
             {
               "id": "777a366f-c83c-5416-a731-ac3ff337692a",
               "name": "aiAnalysis",
-              "value": "={{ $json.message?.content?.aiAnalysis || $json.aiAnalysis || '' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiAnalysis || '' }}",
               "type": "string"
             },
             {
               "id": "caff9db0-0ce4-50f7-b6c1-5c94bdc12cac",
               "name": "aiDraftBody",
-              "value": "={{ $json.message?.content?.aiDraftBody || $json.aiDraftBody || '' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiDraftBody || '' }}",
               "type": "string"
             },
             {
@@ -671,9 +687,7 @@
         "operation": "create",
         "subject": "=[AI Action] {{ $json.aiVerdict }}: {{ $json.aiHeadline }}",
         "message": "={{ $json.aiDraftBody }}\n\n---\nAI Analysis: {{ $json.aiAnalysis }}\nSource Link: {{ $json.itemUrl }}\nPriority Score: {{ $json.priorityScore }}/100",
-        "options": {
-          "sendTo": "={{ $json.recipientEmail }}"
-        }
+        "options": {}
       },
       "credentials": {
         "gmailOAuth2": {

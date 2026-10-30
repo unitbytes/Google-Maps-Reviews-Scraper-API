@@ -1,9 +1,9 @@
 {
-  "name": "Enrich Naver Map Scraper: Korean Leads & Menus leads with OpenAI and draft outreach in Gmail, Sheets, and Slack",
+  "name": "Enrich Naver Map Korean business leads with OpenAI and draft outreach in Gmail, Sheets, and Slack",
   "nodes": [
     {
       "parameters": {
-        "content": "## Naver Map Scraper: Korean Leads & Menus — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[naver-map-scraper Apify Actor](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.0014 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (naver-map-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `placeId`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `placeId, name, category, phone` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI B2B SDR Cold Email Personalizer**.\n5. **8. Merge AI SDR Outreach Fields** merges AI fields and triggers **9a. Alert Sales Channel in Slack** and **9b. Create Personalized Gmail Draft**.\n\n### Setup\n1. Add your token from [naver-map-scraper on Apify Store](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2.\n2. Edit `actorInput`, `sheetTab`, and `minLeadScore` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `minLeadScore` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/naver-map-scraper/](https://unitbytes.com/actors/naver-map-scraper/)",
+        "content": "## Naver Map Scraper: Korean Leads & Menus — AI Co-Pilot & Multi-App Pipeline\n\nExtracts fresh data on a schedule with the **[naver-map-scraper Apify Actor](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=n8n_io)** ($0.0014 / item), skips seen records, logs all rows to **Google Sheets** and **CSV**, and enriches top matches with **OpenAI (`gpt-4o-mini`)** for **Slack** and **Gmail**.\n\n### How it works\n1. **Every 6 Hours** loads rules from **1. Configure Search & Rules**.\n2. **2. Run UnitBytes (naver-map-scraper)** fetches data and **3. Skip Seen Records** deduplicates by `placeId`.\n3. **4. Clean & Score Items** and **5. Map Export Fields** normalize `placeId, name, category, phone` and compute `priorityScore`.\n4. **6a. Log to Google Sheets** and **6b. Export Backup CSV** save all rows, while **6c. Filter High-Priority Items** routes top matches to **7. AI Korean Lead Translator & SDR Co-Pilot**.\n5. **8. Merge AI Korean Lead & Outreach Fields** merges AI fields and triggers **9a. Alert Sales Channel in Slack** and **9b. Create Bilingual Outreach Draft in Gmail**.\n\n### Setup\n1. Add your token from [naver-map-scraper on Apify Store](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=n8n_io) to the **HTTP Header Auth** credential on node 2 (`Name`: `Authorization`, `Value`: `Bearer <YOUR_APIFY_TOKEN>`).\n2. Edit `actorInput`, `sheetTab`, and `minLeadScore` in node 1.\n3. Connect **OpenAI**, **Google Sheets**, **Slack**, and **Gmail** credentials.\n\n### Customization\n- Adjust `minLeadScore` in node 1 or the prompt in node 7.\n- Docs: [https://unitbytes.com/actors/naver-map-scraper/](https://unitbytes.com/actors/naver-map-scraper/)",
         "height": 780,
         "width": 560,
         "color": 1
@@ -108,13 +108,13 @@
             {
               "id": "5b634a46-bad4-5e9f-940d-412e9ca0c1bc",
               "name": "actorInput",
-              "value": "{\"queries\": [\"강남 맛집\"], \"scrapeDetails\": true, \"maxItems\": 20, \"sortBy\": \"popular\", \"maxReviewsPerPlace\": 10, \"includeBlogReviews\": true}",
+              "value": "{\"queries\": [\"강남 맛집\"], \"scrapeDetails\": true, \"maxItems\": 5, \"sortBy\": \"popular\", \"maxReviewsPerPlace\": 5, \"includeBlogReviews\": true}",
               "type": "object"
             },
             {
               "id": "940efefe-55c1-5239-ba9f-4c9ae67445f8",
               "name": "sheetTab",
-              "value": "B2BLeads",
+              "value": "KoreanB2BLeads",
               "type": "string"
             },
             {
@@ -159,7 +159,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify($json.actorInput) }}",
+        "jsonBody": "={{ typeof $json.actorInput === 'string' ? $json.actorInput : JSON.stringify($json.actorInput) }}",
         "options": {
           "timeout": 300000
         }
@@ -196,7 +196,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Normalize fields, parse numeric metrics, and score items for Slack alerts\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.minLeadScore ?? 70);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"placeId\", \"name\", \"category\", \"phone\", \"roadAddress\", \"rating\", \"url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.placeId || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.title || cleaned.query || cleaned.business_name || cleaned.place_name || cleaned.placeName || cleaned.shopName || cleaned.reviewer_name || cleaned.contributor_name || cleaned.content || cleaned.body || cleaned.keyword || cleaned.original_keyword || cleaned.name || cleaned.sellerNick || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.url || cleaned.review_url || cleaned.review_permalink || cleaned.photoUrl || cleaned.noteUrl || cleaned.shopUrl || cleaned.place_url || cleaned.google_maps_url || cleaned.website || cleaned.productUrl || cleaned.taobaoUrl || cleaned.resolved_url || cleaned.input_url || cleaned.contributor_url || '');\n  const rawMetric = cleaned.lead_score || cleaned.rating || 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n  const mode = 'lead_score';\n\n  if (mode === 'price_deal') {\n    if (numericValue > 0 && numericValue <= threshold) {\n      priorityScore = Math.min(100, Math.round(70 + ((threshold - numericValue) / Math.max(threshold, 1)) * 30));\n      isHighPriority = true;\n    }\n  } else if (mode === 'review_sentiment') {\n    const stars = Number(cleaned.review_stars ?? cleaned.stars ?? cleaned.rating ?? numericValue);\n    if (cleaned.is_removed === true || cleaned.is_edited === true || cleaned.status === 'REMOVED' || (stars > 0 && stars <= threshold)) {\n      priorityScore = 95;\n      isHighPriority = true;\n    }\n  } else if (mode === 'lead_score') {\n    const hasDirectContact = Boolean(cleaned.primary_email || cleaned.phone);\n    if (numericValue >= threshold || hasDirectContact) {\n      priorityScore = Math.min(100, Math.max(numericValue, hasDirectContact ? 85 : 70));\n      isHighPriority = true;\n    }\n  } else if (mode === 'status_audit') {\n    if (cleaned.is_sold === true || cleaned.is_removed === true || cleaned.status === 'SOLD' || (numericValue > 0 && numericValue <= threshold)) {\n      priorityScore = 90;\n      isHighPriority = true;\n    }\n  } else {\n    if (numericValue >= threshold) {\n      priorityScore = Math.min(100, Math.round(70 + Math.min(numericValue / Math.max(threshold, 1), 3) * 10));\n      isHighPriority = true;\n    }\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: `${titleText} (Metric: ${numericValue} | Score: ${priorityScore}/100)`,\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
+        "jsCode": "// Normalize fields, parse numeric metrics, and score items for AI enrichment\nconst config = $('1. Configure Search & Rules').first().json;\nconst threshold = Number(config.minLeadScore !== undefined ? config.minLeadScore : 70);\nconst keywordFilter = String(config.priorityKeyword || '').trim().toLowerCase();\nconst primaryKeys = [\"placeId\", \"name\", \"category\", \"phone\", \"roadAddress\", \"rating\", \"visitorReviewCount\", \"homepageUrl\", \"url\"];\n\nreturn $input.all().map((item) => {\n  const raw = item.json || {};\n  const cleaned = { ...raw };\n\n  for (const k of primaryKeys) {\n    if (typeof cleaned[k] === 'string') {\n      cleaned[k] = cleaned[k].replace(/\\s+/g, ' ').trim();\n    }\n  }\n\n  const recordId = String(cleaned.placeId || cleaned.id || cleaned.url || '');\n  const titleText = String(cleaned.name || recordId).slice(0, 180);\n  const itemUrl = String(cleaned.url || cleaned.homepageUrl || '');\n  const rawMetric = cleaned.visitorReviewCount || cleaned.rating || 0;\n  const numericValue = Number(String(rawMetric).replace(/[^0-9.-]/g, '')) || 0;\n\n  let priorityScore = 50;\n  let isHighPriority = false;\n\n  let naverScore = 40;\n  if (cleaned.phone) naverScore += 20;\n  if (cleaned.homepageUrl || cleaned.instagramUrl) naverScore += 15;\n  if (Number(cleaned.visitorReviewCount || 0) >= 30) naverScore += 15;\n  if (Number(cleaned.rating || 0) >= 4.3) naverScore += 10;\n  priorityScore = Math.min(100, naverScore);\n  if (priorityScore >= threshold) {\n    isHighPriority = true;\n  }\n\n  if (keywordFilter && titleText.toLowerCase().includes(keywordFilter)) {\n    priorityScore = Math.min(100, priorityScore + 20);\n    isHighPriority = true;\n  }\n\n  return {\n    json: {\n      ...cleaned,\n      recordId,\n      titleText,\n      itemUrl,\n      numericValue,\n      priorityScore,\n      isHighPriority,\n      alertSummary: titleText + ' (Metric: ' + numericValue + ' | Score: ' + priorityScore + '/100)',\n      scrapedAt: new Date().toISOString(),\n    },\n  };\n});"
       },
       "id": "481230e4-7621-571f-a1a1-64d437c5ac6a",
       "name": "4. Clean & Score Items",
@@ -214,73 +214,85 @@
             {
               "id": "0ab8a914-b8da-56d8-80c7-d8f54c27a5c0",
               "name": "placeId",
-              "value": "={{ $json.placeId }}",
+              "value": "={{ $json.placeId !== undefined && $json.placeId !== null ? $json.placeId : '' }}",
               "type": "string"
             },
             {
               "id": "0df24039-dca4-5e4a-b323-57c834b7e25f",
               "name": "name",
-              "value": "={{ $json.name }}",
+              "value": "={{ $json.name !== undefined && $json.name !== null ? $json.name : '' }}",
               "type": "string"
             },
             {
               "id": "585a35dc-f8b9-5ba8-a719-06243dc47307",
               "name": "category",
-              "value": "={{ $json.category }}",
+              "value": "={{ $json.category !== undefined && $json.category !== null ? $json.category : '' }}",
               "type": "string"
             },
             {
               "id": "906bde8c-d67b-57dc-ad06-dca7e3966fa0",
               "name": "phone",
-              "value": "={{ $json.phone }}",
+              "value": "={{ $json.phone !== undefined && $json.phone !== null ? $json.phone : '' }}",
               "type": "string"
             },
             {
               "id": "003a958d-f294-59ec-87e2-d6b62505f4c1",
               "name": "roadAddress",
-              "value": "={{ $json.roadAddress }}",
+              "value": "={{ $json.roadAddress !== undefined && $json.roadAddress !== null ? $json.roadAddress : '' }}",
               "type": "string"
             },
             {
               "id": "f5669812-0f6a-5950-8dab-a09234463b80",
               "name": "rating",
-              "value": "={{ $json.rating }}",
+              "value": "={{ $json.rating !== undefined && $json.rating !== null ? $json.rating : '' }}",
               "type": "string"
             },
             {
-              "id": "aa93403c-13c1-5e37-823a-8188b8079b4b",
+              "id": "a4e7c001-51f6-5339-98a1-6d9d16373859",
+              "name": "visitorReviewCount",
+              "value": "={{ Number($json.visitorReviewCount || 0) }}",
+              "type": "number"
+            },
+            {
+              "id": "315e3f24-38a4-5784-9083-b7214706a63d",
+              "name": "homepageUrl",
+              "value": "={{ $json.homepageUrl !== undefined && $json.homepageUrl !== null ? $json.homepageUrl : '' }}",
+              "type": "string"
+            },
+            {
+              "id": "6c7d9af2-3eaa-5370-abf7-9bf716f9434a",
               "name": "url",
-              "value": "={{ $json.url }}",
+              "value": "={{ $json.url !== undefined && $json.url !== null ? $json.url : '' }}",
               "type": "string"
             },
             {
-              "id": "2fbb743e-a79e-57e6-9845-a5986111f44c",
+              "id": "4f726ca2-6f88-51d1-ad3d-d605831d06b4",
               "name": "numericValue",
-              "value": "={{ $json.numericValue }}",
+              "value": "={{ Number($json.numericValue || 0) }}",
               "type": "number"
             },
             {
-              "id": "46ca0eff-2bdc-5054-a074-61cf7efd3e09",
+              "id": "ce0ef62b-d190-5cbc-938b-799fb0820967",
               "name": "priorityScore",
-              "value": "={{ $json.priorityScore }}",
+              "value": "={{ Number($json.priorityScore || 0) }}",
               "type": "number"
             },
             {
-              "id": "4fbe08ee-0b20-5806-9d9c-ae6c214b75df",
+              "id": "b31291e7-0f9a-5b69-81b5-6a8a0a1c615c",
               "name": "isHighPriority",
-              "value": "={{ $json.isHighPriority }}",
+              "value": "={{ Boolean($json.isHighPriority) }}",
               "type": "boolean"
             },
             {
-              "id": "80b22398-4bda-5ab2-bab3-90646228e605",
+              "id": "712a5674-5423-529c-8e6a-6d475be3705e",
               "name": "alertSummary",
-              "value": "={{ $json.alertSummary }}",
+              "value": "={{ $json.alertSummary !== undefined && $json.alertSummary !== null ? $json.alertSummary : '' }}",
               "type": "string"
             },
             {
-              "id": "505fb23c-1c1a-5cbb-b2cc-41aa5d80bf2f",
+              "id": "37c21248-bf99-5f3a-aa68-c3fa2b7cbff7",
               "name": "scrapedAt",
-              "value": "={{ $json.scrapedAt }}",
+              "value": "={{ $json.scrapedAt !== undefined && $json.scrapedAt !== null ? $json.scrapedAt : '' }}",
               "type": "string"
             }
           ]
@@ -314,18 +326,20 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "placeId": "={{ $json.placeId }}",
-            "name": "={{ $json.name }}",
-            "category": "={{ $json.category }}",
-            "phone": "={{ $json.phone }}",
-            "roadAddress": "={{ $json.roadAddress }}",
-            "rating": "={{ $json.rating }}",
-            "url": "={{ $json.url }}",
-            "numericValue": "={{ $json.numericValue }}",
-            "priorityScore": "={{ $json.priorityScore }}",
-            "isHighPriority": "={{ $json.isHighPriority }}",
-            "alertSummary": "={{ $json.alertSummary }}",
-            "scrapedAt": "={{ $json.scrapedAt }}"
+            "placeId": "={{ $json.placeId !== undefined && $json.placeId !== null ? $json.placeId : '' }}",
+            "name": "={{ $json.name !== undefined && $json.name !== null ? $json.name : '' }}",
+            "category": "={{ $json.category !== undefined && $json.category !== null ? $json.category : '' }}",
+            "phone": "={{ $json.phone !== undefined && $json.phone !== null ? $json.phone : '' }}",
+            "roadAddress": "={{ $json.roadAddress !== undefined && $json.roadAddress !== null ? $json.roadAddress : '' }}",
+            "rating": "={{ $json.rating !== undefined && $json.rating !== null ? $json.rating : '' }}",
+            "visitorReviewCount": "={{ $json.visitorReviewCount !== undefined && $json.visitorReviewCount !== null ? $json.visitorReviewCount : '' }}",
+            "homepageUrl": "={{ $json.homepageUrl !== undefined && $json.homepageUrl !== null ? $json.homepageUrl : '' }}",
+            "url": "={{ $json.url !== undefined && $json.url !== null ? $json.url : '' }}",
+            "numericValue": "={{ $json.numericValue !== undefined && $json.numericValue !== null ? $json.numericValue : '' }}",
+            "priorityScore": "={{ $json.priorityScore !== undefined && $json.priorityScore !== null ? $json.priorityScore : '' }}",
+            "isHighPriority": "={{ $json.isHighPriority !== undefined && $json.isHighPriority !== null ? $json.isHighPriority : '' }}",
+            "alertSummary": "={{ $json.alertSummary !== undefined && $json.alertSummary !== null ? $json.alertSummary : '' }}",
+            "scrapedAt": "={{ $json.scrapedAt !== undefined && $json.scrapedAt !== null ? $json.scrapedAt : '' }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -377,6 +391,24 @@
             {
               "id": "rating",
               "displayName": "rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "visitorReviewCount",
+              "displayName": "visitorReviewCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "homepageUrl",
+              "displayName": "homepageUrl",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -521,11 +553,11 @@
         "messages": {
           "values": [
             {
-              "content": "You are a senior B2B Sales Development Representative (SDR). Analyze the scraped local business lead JSON and return a JSON object with exactly 4 keys: \"aiHeadline\" (company name + category + ICP fit tier), \"aiVerdict\" (one of: TIER_1_HOT, TIER_2_WARM, TIER_3_NURTURE), \"aiAnalysis\" (1-sentence digital presence or marketing gap hypothesis based on rating, review count, and website), and \"aiDraftBody\" (a personalized 4-sentence cold outreach email with a custom icebreaker and low-friction call to action).",
+              "content": "You are a bilingual Korean-English B2B Sales Development Representative (SDR) and APAC market analyst. Analyze the scraped Naver Place / Naver Map Korean business lead JSON and return a JSON object with exactly 4 keys: \"aiHeadline\" (English translation of the Korean business name, category, district, and ICP fit tier), \"aiVerdict\" (one of: TIER_1_HOT, TIER_2_WARM, TIER_3_NURTURE), \"aiAnalysis\" (1-sentence English evaluation of venue popularity, visitor/blog review velocity, menu positioning, and digital presence via homepage/Instagram), and \"aiDraftBody\" (a personalized B2B outreach message in polite Korean with an English summary below it).",
               "role": "system"
             },
             {
-              "content": "=Lead Record ({{ $json.recordId }}):\nTitle/Business: {{ $json.titleText }}\nEmail: {{ $json.primary_email || 'N/A' }}\nPhone: {{ $json.phone || 'N/A' }}\nWebsite: {{ $json.website || $json.itemUrl }}\nMetric/Score: {{ $json.numericValue }} (Priority: {{ $json.priorityScore }}/100)\nRaw Payload Summary: {{ JSON.stringify($json).slice(0, 1200) }}",
+              "content": "=Naver Place Lead ({{ $json.recordId }}):\nKorean Business Name: {{ $json.titleText }}\nCategory: {{ $json.category || 'N/A' }}\nPhone: {{ $json.phone || 'N/A' }}\nRoad Address: {{ $json.roadAddress || 'N/A' }}\nRating / Visitor Reviews: {{ $json.rating || 'N/A' }} ({{ $json.visitorReviewCount || 0 }} reviews)\nHomepage / Instagram: {{ $json.homepageUrl || $json.instagramUrl || $json.itemUrl }}\nPopular Menus: {{ $json.popularMenusText || 'N/A' }}\nLead Priority Score: {{ $json.priorityScore }}/100\nRaw Payload Summary: {{ JSON.stringify($json).slice(0, 1200) }}",
               "role": "user"
             }
           ]
@@ -542,7 +574,7 @@
         }
       },
       "id": "32dc1664-0dd8-529c-b6e0-81d160645069",
-      "name": "7. AI B2B SDR Cold Email Personalizer",
+      "name": "7. AI Korean Lead Translator & SDR Co-Pilot",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
@@ -593,25 +625,25 @@
             {
               "id": "8c6c55be-442c-516e-bbf2-8873eb4b85df",
               "name": "aiHeadline",
-              "value": "={{ $json.message?.content?.aiHeadline || $json.aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiHeadline || $('6c. Filter High-Priority Items').item.json.titleText }}",
               "type": "string"
             },
             {
               "id": "590bdfbf-bdd2-551a-9579-6d01635d50ad",
               "name": "aiVerdict",
-              "value": "={{ $json.message?.content?.aiVerdict || $json.aiVerdict || 'HIGH_PRIORITY' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiVerdict || 'HIGH_PRIORITY' }}",
               "type": "string"
             },
             {
               "id": "bb120f10-8919-5eb6-9e1c-c4ae3f098f85",
               "name": "aiAnalysis",
-              "value": "={{ $json.message?.content?.aiAnalysis || $json.aiAnalysis || '' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiAnalysis || '' }}",
               "type": "string"
             },
             {
               "id": "5071971c-76c6-5639-b07d-e0d2f0531ac1",
               "name": "aiDraftBody",
-              "value": "={{ $json.message?.content?.aiDraftBody || $json.aiDraftBody || '' }}",
+              "value": "={{ (typeof ($json.message && $json.message.content) === 'string' ? JSON.parse($json.message.content) : (($json.message && $json.message.content) || $json)).aiDraftBody || '' }}",
               "type": "string"
             },
             {
@@ -625,7 +657,7 @@
         "options": {}
       },
       "id": "51026578-90df-5008-8795-9c5e8d045973",
-      "name": "8. Merge AI SDR Outreach Fields",
+      "name": "8. Merge AI Korean Lead & Outreach Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
@@ -671,9 +703,7 @@
         "operation": "create",
         "subject": "=[AI Action] {{ $json.aiVerdict }}: {{ $json.aiHeadline }}",
         "message": "={{ $json.aiDraftBody }}\n\n---\nAI Analysis: {{ $json.aiAnalysis }}\nSource Link: {{ $json.itemUrl }}\nPriority Score: {{ $json.priorityScore }}/100",
-        "options": {
-          "sendTo": "={{ $json.recipientEmail }}"
-        }
+        "options": {}
       },
       "credentials": {
         "gmailOAuth2": {
@@ -682,7 +712,7 @@
         }
       },
       "id": "ac58ca9f-59c8-5138-8bce-4b01e06bb347",
-      "name": "9b. Create Personalized Gmail Draft",
+      "name": "9b. Create Bilingual Outreach Draft in Gmail",
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
@@ -772,25 +802,25 @@
       "main": [
         [
           {
-            "node": "7. AI B2B SDR Cold Email Personalizer",
+            "node": "7. AI Korean Lead Translator & SDR Co-Pilot",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "7. AI B2B SDR Cold Email Personalizer": {
+    "7. AI Korean Lead Translator & SDR Co-Pilot": {
       "main": [
         [
           {
-            "node": "8. Merge AI SDR Outreach Fields",
+            "node": "8. Merge AI Korean Lead & Outreach Fields",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "8. Merge AI SDR Outreach Fields": {
+    "8. Merge AI Korean Lead & Outreach Fields": {
       "main": [
         [
           {
@@ -799,7 +829,7 @@
             "index": 0
           },
           {
-            "node": "9b. Create Personalized Gmail Draft",
+            "node": "9b. Create Bilingual Outreach Draft in Gmail",
             "type": "main",
             "index": 0
           }
