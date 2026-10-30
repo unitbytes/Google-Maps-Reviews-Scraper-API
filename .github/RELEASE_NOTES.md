@@ -1,6 +1,6 @@
-### 🚀 v1.1.0 Release Notes — 📍 Google Maps & Local Scraper Suite: B2B Leads & Emails (`$0.50/1K`), 10K Reviews (`$0.25/1K`), Change Tracker, Local Guides, 4K Photos & Naver Place API
+### 🚀 v1.1.0 Release Notes — 📍 Google Maps & Local Scraper Suite: B2B Leads & Emails (`$1.00/1K`), 10K Reviews (`$0.25/1K`), Change Tracker, Local Guides, 4K Photos & Naver Place API
 
-Complete Google Maps & Local B2B lead generation, website email & ad pixel enrichment (`$0.50/1K`), 10,000-review bulk extraction (`$0.25/1K`), stateful review change & removal tracking (`NEW`/`REMOVED`/`EDITED`), Local Guide forensics, uncompressed (`=s0`) 4K photo/menu extraction, and Naver Place Korea POI suite on Apify.
+Complete Google Maps & Local B2B lead generation, website email & ad pixel enrichment (`$1.00/1K`), 10,000-review bulk extraction (`$0.25/1K`), stateful review change & removal tracking (`NEW`/`REMOVED`/`EDITED`), Local Guide forensics, uncompressed (`=s0`) 4K photo/menu extraction, and Naver Place Korea POI suite on Apify.
 
 - 📓 **1-Click Interactive Google Colab Notebook:** [**Open `notebooks/quickstart.ipynb` in Colab**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb)
 - ⚡ **Synchronous REST API on RapidAPI Hub (`<500ms` GET, Free Tier):** [https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api)

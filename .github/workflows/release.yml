@@ -29,7 +29,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_FULL: ${{ github.repository }}
-          TITLE_CLEAN: "📍 Google Maps & Local Scraper Suite: B2B Leads & Emails (`$0.50/1K`), 10K Reviews (`$0.25/1K`), Change Tracker, Local Guides, 4K Photos & Naver Place API"
+          TITLE_CLEAN: "📍 Google Maps & Local Scraper Suite: B2B Leads & Emails (`$1.00/1K`), 10K Reviews (`$0.25/1K`), Change Tracker, Local Guides, 4K Photos & Naver Place API"
           ZIP_NAME: "unitbytes-google-maps-reviews-scraper-api-starter-kit.zip"
         run: |
           python3 - << 'PYEOF'
