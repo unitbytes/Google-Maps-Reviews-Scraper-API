@@ -182,7 +182,7 @@
     {
       "parameters": {
         "operation": "removeItemsSeenInPreviousExecutions",
-        "dedupeValue": "={{ $json.placeId || $json.url }}",
+        "dedupeValue": "={{ $json.placeId || $json.id || $json.url }}",
         "options": {}
       },
       "id": "a63efe4c-44dd-5dde-8641-d11cb47d2101",

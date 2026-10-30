@@ -47,6 +47,8 @@ This repository contains ready-to-run **Python SDK scripts**, an **interactive 1
 | **Google Maps Contributor Reviews Scraper (Local Guides)**<br><sub>[`unitbytes/google-maps-contributor-scraper`](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-contributor-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-contributor-fake-review-audit-takedown-guide/)</sub> | [`examples/run_google_maps_contributor_scraper.py`](examples/run_google_maps_contributor_scraper.py) | [`n8n/google-maps-contributor-scraper-n8n-workflow.json`](n8n/google-maps-contributor-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-contributor-scraper-sample.json) · [`CSV`](samples/google-maps-contributor-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-contributor-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps Photos Scraper (Places, Menus & Local Guides)**<br><sub>[`unitbytes/google-maps-photos-scraper`](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/google-maps-photos-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-photos-menus-videos-scraper-api-pricing-guide/)</sub> | [`examples/run_google_maps_photos_scraper.py`](examples/run_google_maps_photos_scraper.py) | [`n8n/google-maps-photos-scraper-n8n-workflow.json`](n8n/google-maps-photos-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-photos-scraper-sample.json) · [`CSV`](samples/google-maps-photos-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/google-maps-photos-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Naver Place & Map Scraper**<br><sub>[`unitbytes/naver-place-scraper`](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-scraper/) • [Engineering Playbook](https://unitbytes.com/blog/google-maps-reviews-scraper-reputation-monitoring-guide/)</sub> | [`examples/run_naver_place_scraper.py`](examples/run_naver_place_scraper.py) | [`n8n/naver-place-scraper-n8n-workflow.json`](n8n/naver-place-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-scraper-sample.json) · [`CSV`](samples/naver-place-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
+| **Naver Map Scraper: Korean Leads & Menus**<br><sub>[`unitbytes/naver-map-scraper`](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-map-scraper/)</sub> | [`examples/run_naver_map_scraper.py`](examples/run_naver_map_scraper.py) | [`n8n/naver-map-scraper-n8n-workflow.json`](n8n/naver-map-scraper-n8n-workflow.json) | [`JSON`](samples/naver-map-scraper-sample.json) · [`CSV`](samples/naver-map-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
+| **Naver Place Reviews Scraper**<br><sub>[`unitbytes/naver-place-reviews-scraper`](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) • [Full Schema](https://unitbytes.com/actors/naver-place-reviews-scraper/)</sub> | [`examples/run_naver_place_reviews_scraper.py`](examples/run_naver_place_reviews_scraper.py) | [`n8n/naver-place-reviews-scraper-n8n-workflow.json`](n8n/naver-place-reviews-scraper-n8n-workflow.json) | [`JSON`](samples/naver-place-reviews-scraper-sample.json) · [`CSV`](samples/naver-place-reviews-scraper-sample.csv) | [⚡ **Run on Apify**](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps) |
 | **Google Maps B2B Leads, Website Contacts, Tech Stack & Reviews Synchronous REST API (`<500ms` GET)**<br><sub>[RapidAPI Hub](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) • [Zyla API Hub](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) • [Full Schema](https://unitbytes.com/actors/google-maps-leads-scraper/)</sub> | [`examples/run_gmaps_rapidapi.py`](examples/run_gmaps_rapidapi.py) | [`n8n/google-maps-leads-scraper-n8n-workflow.json`](n8n/google-maps-leads-scraper-n8n-workflow.json) | [`JSON`](samples/google-maps-leads-scraper-sample.json) · [`CSV`](samples/google-maps-leads-scraper-sample.csv) | [⚡ **RapidAPI**](https://rapidapi.com/unitbytes/api/google-maps-b2b-leads-email-tech-stack-reviews-data-api) · [⚡ **Zyla**](https://zylalabs.com/api-marketplace/location+%26+mapping/maps+business+places+leads+and+reviews+api/14553) |
 
 - 📓 **1-Click Interactive Google Colab Notebook:** Open [`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb) directly in your browser via [**Google Colab ↗**](https://colab.research.google.com/github/unitbytes/Google-Maps-Reviews-Scraper-API/blob/main/notebooks/quickstart.ipynb) to inspect sample DataFrames and test live API queries with zero local setup.
@@ -1071,6 +1073,285 @@ Yes. When includeMenus is enabled (default: true), every business record include
 
 **Q: Can I filter for photo-only visitor reviews or sort by newest?**
 Yes. In reviews mode, set reviewSort to 'recent' (Newest) or 'recommend' (Most Relevant), and enable onlyPhotoReviews: true to collect exclusively receipt-verified visitor reviews with customer photos.
+
+---
+
+### 🚀 Naver Map Scraper: Korean Leads & Menus (`unitbytes/naver-map-scraper`)
+
+네이버 지도 검색·B2B DB 수집 (`$1.00/1K`): 지역·업종별 상호명, 전화번호(0507), 도로명·지번주소, 위경도(GPS), 홈페이지·인스타그램, 영업시간, 메뉴 가격표 추출. Fast Naver Map Scraper for Korean B2B business leads, phones, coordinates, menus, hours & ratings by keyword or GPS.
+
+- **Pricing:** `$0.0014 / item` (Pay-Per-Event — `$0.0014` business lead scraped (volume tiers from `$0.001`))
+- **Cloud Console:** [https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/naver-map-scraper?fpr=939u3w&fp_sid=gh_gmaps)
+- **Full Documentation & Schema:** [https://unitbytes.com/actors/naver-map-scraper/](https://unitbytes.com/actors/naver-map-scraper/)
+- **n8n Workflow File:** [`n8n/naver-map-scraper-n8n-workflow.json`](n8n/naver-map-scraper-n8n-workflow.json)
+
+#### Key Capabilities
+- **Complete 45+ Field Korean B2B Lead Records:** Captures company/store names, categories across all verticals (restaurant, hospital, hairshop, accommodation, place), phone & SmartCall (0507) numbers, road & lot addresses, GPS coordinates, websites, Instagram links, Naver TalkTalk (talktalkUrl), and Naver Booking (bookingUrl).
+- **All-in-One Transparent Pricing:** Pay one flat rate (result-scraped) per business lead with full place details, menus, 7-day hours, websites, and embedded reviews included at `$0.00` extra add-on charge.
+- **GPS Coordinate Centering & Server-Side Distance Sorting:** Pass any searchCoordinates (latitude,longitude, e.g., 37.497942,127.027610) and sortBy: "distance" or "popular" to map hyper-local commercial districts (상권 분석) across Seoul, Busan, Incheon, Daegu, and nationwide.
+- **Full Menus, KRW Prices & Spend Analytics:** Extracts every menu item with integer KRW price (priceKrw), description, recommended flags, high-resolution menu photos, popular dishes (popularMenusText), average spend, and average stay time.
+
+#### ⚙️ Input Parameters (Schema)
+
+| Parameter | Type | Default / Prefill | Description |
+| :--- | :---: | :--- | :--- |
+| `queries` | `array` | `["강남 맛집"]` | Keywords to search on Naver Map (map.naver.com, e.g., 강남 맛집, 성수동 카페, 강남 피부과, 명동 호텔, 홍대 미용실). You can also paste direct Naver Map URLs or Place IDs here. |
+| `placeUrls` | `array` | — | Optional list of direct Naver Map URLs (https://map.naver.com/p/entry/place/2025884279), Map Search URLs (https://map.naver.com/p/search/강남%20맛집), Mobile Place URLs, naver.me shortlinks, or numeric Place IDs (2025884279). Overrides prefilled search queries. |
+| `scrapeDetails` | `boolean` | `True` | When enabled (default), extracts 7-day opening hours, full menu list with KRW prices & photos, walking directions, nearest subway stations, parking fees, website/Instagram links, sentiment keyword breakdown, and recent reviews. Disable for rapid 50-per-page map search cards. |
+| `maxItems` | `integer` | `20` | Maximum number of business listings (or reviews in reviews mode) to collect across the run. |
+| `sortBy` | `string` | `popular` | Server-side sorting order for Naver Map search results (popular / relevance default, precision, or distance from searchCoordinates). |
+| `searchCoordinates` | `string` | — | Optional GPS center point as latitude,longitude (e.g., 37.497942,127.027610 for Gangnam Station, Seoul) used for localized map search ranking and distance sorting. |
+| `maxReviewsPerPlace` | `integer` | `10` | Maximum number of visitor reviews (방문자 리뷰) to embed per business when scrapeDetails is enabled. |
+| `includeBlogReviews` | `boolean` | `True` | Include Naver Blog and Cafe review posts linked to each business. |
+| `maxBlogReviewsPerPlace` | `integer` | `10` | Maximum number of linked Naver Blog / Cafe reviews to fetch per business. |
+| `onlyPhotoReviews` | `boolean` | `False` | Filter visitor reviews server-side to only return reviews that include customer-uploaded photos. |
+| `mode` | `string` | `places` | Outputs one record per business (places, default) or one row per review (reviews). |
+| `language` | `string` | `ko` | Language preference for Naver Map category and address fields (ko for original Korean, en for English localized strings where available). |
+| `startPage` | `integer` | `1` | 1-indexed search page to start from (50 businesses per page). |
+| `resumptionToken` | `string` | — | Optional compact continuation token emitted at the end of a previous batch run (RESUMPTION_TOKEN in Key-Value Store) to resume pagination with 0 duplicate overlap. |
+| `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Proxy settings for accessing Naver Map endpoints reliably. |
+
+#### Python SDK Quickstart (`examples/run_naver_map_scraper.py`)
+```python
+from apify_client import ApifyClient
+
+APIFY_TOKEN = os.getenv("APIFY_API_TOKEN", "YOUR_APIFY_API_TOKEN")
+if not APIFY_TOKEN or APIFY_TOKEN.startswith("YOUR_"):
+    raise SystemExit("Please set your Apify API token: export APIFY_API_TOKEN='apify_api_...'")
+
+client = ApifyClient(APIFY_TOKEN)
+
+run_input = {
+    "queries": ["강남 맛집"],
+    "scrapeDetails": True,
+    "maxItems": 20,
+    "sortBy": "popular",
+    "maxReviewsPerPlace": 10,
+    "includeBlogReviews": True
+}
+
+run = client.actor("unitbytes/naver-map-scraper").call(run_input=run_input)
+
+for item in client.dataset(run["defaultDatasetId"]).iterate_items():
+    print(item.get("name"), item.get("searchQuery"), item.get("rating"))
+```
+
+#### Sample Output Schema (`samples/naver-map-scraper-sample.json`)
+```json
+{
+  "placeId": "2025884279",
+  "name": "서울 미식 다이닝 강남점",
+  "businessCategory": "restaurant",
+  "category": "한식",
+  "categoryCode": "220053",
+  "phone": "0507-0000-0000",
+  "virtualPhone": "0507-0000-0000",
+  "roadAddress": "서울 강남구 테헤란로 100 1층",
+  "address": "서울 강남구 역삼동 100-1",
+  "commonAddress": "서울 강남구 역삼동",
+  "fullAddress": "서울 강남구 테헤란로 100 1층",
+  "postalCode": "09680108",
+  "latitude": 37.5206335,
+  "longitude": 127.0361667,
+  "distance": "2.6km",
+  "directions": "강남구청역 3-1번 출구로 나오셔서 보이는 올리브영 방향으로 쭉 직진하시다가 커피빈 골목에서 왼쪽으로 꺾어서 200m정도 오시면 왼쪽에 있습니다.",
+  "nearestSubway": "강남구청역 7호선",
+  "parkingInfo": "2시간 4000원 (발렛파킹 가능)",
+  "businessStatus": "영업 중",
+  "businessHoursText": "02:00에 영업 종료",
+  "businessHours": [
+    {
+      "day": "월",
+      "start": "11:00",
+      "end": "02:00"
+    }
+  ],
+  "rating": 4.97,
+  "visitorReviewCount": 177,
+  "blogCafeReviewCount": 37,
+  "bookingReviewCount": 0,
+  "imageReviewCount": 143,
+  "popularMenusText": "소금김밥, 대물 숙성회 정식(광어), 1% 대광어 숙성회",
+  "menuCount": 6,
+  "menus": [
+    {
+      "name": "1% 대광어 숙성회",
+      "priceText": "56,000원",
+      "priceKrw": 56000,
+      "description": "중 56000 / 대 78000",
+      "isRecommended": true,
+      "imageUrl": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg"
+    }
+  ],
+  "topVotedKeywords": [
+    {
+      "code": "food_good",
+      "keyword": "음식이 맛있어요",
+      "count": 165
+    },
+    {
+      "code": "fresh",
+      "keyword": "재료가 신선해요",
+      "count": 121
+    }
+  ],
+  "conveniences": [
+    "포장",
+    "단체 이용 가능",
+    "예약"
+  ],
+  "paymentMethods": [
+    "간편결제"
+  ],
+  "hasBooking": true,
+  "homepageUrl": "https://map.naver.com/p/entry/place/2025884279",
+  "instagramUrl": null,
+  "allLinks": [
+    "https://map.naver.com/p/entry/place/2025884279"
+  ],
+  "microReview": "한 점 한 점 정성 가득한 숙성회",
+  "mainImage": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg",
+  "imageCount": 57,
+  "url": "https://map.naver.com/p/entry/place/2025884279",
+  "mapUrl": "https://m.place.naver.com/restaurant/2025884279/home",
+  "searchQuery": "강남 맛집",
+  "detailLevel": "full",
+  "language": "ko",
+  "scrapedAt": "2026-10-28T12:00:00.000000+00:00"
+}
+```
+
+#### Frequently Asked Questions
+**Q: Do I need my own proxies or account login for naver-map-scraper?**
+No. UnitBytes manages residential proxy rotation and automated request orchestration so you never need personal accounts or proxies.
+
+**Q: What output formats are supported?**
+All data can be downloaded in JSON, CSV, or Excel formats, or consumed directly via the Apify REST API and webhooks.
+
+**Q: How does pricing work?**
+You only pay for successful records extracted under Apify Pay-Per-Event pricing, with zero monthly minimums or idle compute costs.
+
+**Q: Can this actor be integrated into automated workflows?**
+Yes. You can trigger runs via Apify API, Python/JavaScript clients, Make, Zapier, or scheduled cron workflows.
+
+---
+
+### 🚀 Naver Place Reviews Scraper (`unitbytes/naver-place-reviews-scraper`)
+
+네이버 플레이스 방문자 리뷰·블로그 리뷰 추출 (`$0.50/1K`): 영수증 인증 리뷰, 별점, 방문 키워드, 사장님 답글, 고화질 사진, 블로그 포스팅까지 수집. Scrape Naver Place visitor reviews, ratings, sentiment keywords, owner replies, HD photos & linked Naver Blog reviews by URL, ID or keyword.
+
+- **Pricing:** `$0.0008 / item` (Pay-Per-Event — `$0.0008` review scraped (volume tiers from `$0.0005`))
+- **Cloud Console:** [https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps](https://apify.com/unitbytes/naver-place-reviews-scraper?fpr=939u3w&fp_sid=gh_gmaps)
+- **Full Documentation & Schema:** [https://unitbytes.com/actors/naver-place-reviews-scraper/](https://unitbytes.com/actors/naver-place-reviews-scraper/)
+- **n8n Workflow File:** [`n8n/naver-place-reviews-scraper-n8n-workflow.json`](n8n/naver-place-reviews-scraper-n8n-workflow.json)
+
+#### Key Capabilities
+- **Lowest Price on Apify Store:** Collect up to 5,000 visitor reviews and 500 blog reviews per business starting at `$0.0005` per review (Gold+ tier; `$0.80/1K` on Free tier) with zero extra charges for photos or parent place metadata.
+- **Both Visitor Reviews & Blog Reviews:** Captures verified in-store customer reviews alongside long-form Naver Blog and Cafe review posts in one unified flat schema.
+- **100% Server-Side Photo Review Filtering:** Filter directly on Naver's review server (isPhotoUsed) to pull exclusively reviews containing customer-uploaded photos without wasting quota on text-only reviews.
+- **`$0.00` for Missing Targets or Empty Searches:** Non-existent Place IDs, zero-result queries, and input validation errors are never billed.
+
+#### ⚙️ Input Parameters (Schema)
+
+| Parameter | Type | Default / Prefill | Description |
+| :--- | :---: | :--- | :--- |
+| `placeUrls` | `array` | `["https://map.naver.com/p/entry/place/2025884279` | Direct Naver Map URLs (https://map.naver.com/p/entry/place/2025884279), Mobile Place URLs (https://m.place.naver.com/restaurant/2025884279/home), naver.me shortlinks, or numeric Place IDs (2025884279) to extract visitor & blog reviews from. |
+| `queries` | `array` | — | Optional search keywords on Naver Map / Place (e.g., 강남 맛집, 성수동 카페, 강남 피부과). When provided, overrides the prefilled Place URL and extracts reviews across matching businesses. |
+| `maxItems` | `integer` | `20` | Maximum total number of reviews (visitor + blog reviews) to collect across the run. |
+| `maxReviewsPerPlace` | `integer` | `20` | Maximum number of receipt-verified visitor reviews (방문자 리뷰) to fetch per place (0–5000). Automatically scales up to maxItems when scraping direct Place URLs. |
+| `onlyPhotoReviews` | `boolean` | `False` | Filter visitor reviews 100% server-side on Naver (isPhotoUsed) to only return reviews that include customer-uploaded photos. |
+| `includeBlogReviews` | `boolean` | `True` | Include Naver Blog and Cafe review posts linked to each place (author name, post title, URL, snippet, date, and thumbnail). |
+| `maxBlogReviewsPerPlace` | `integer` | `10` | Maximum number of linked Naver Blog / Cafe reviews to fetch per place. |
+| `mode` | `string` | `reviews` | Outputs one flat row per review (reviews, default) or one row per place with embedded reviews (places). |
+| `language` | `string` | `ko` | Language preference for Naver Place category and address fields (ko for original Korean, en for English localized strings where available). |
+| `resumptionToken` | `string` | — | Optional compact continuation token emitted at the end of a previous batch run (RESUMPTION_TOKEN in Key-Value Store) to resume pagination with 0 duplicate overlap. |
+| `proxyConfiguration` | `object` | `{"useApifyProxy": true}` | Proxy settings for accessing Naver Place review endpoints reliably. |
+
+#### Python SDK Quickstart (`examples/run_naver_place_reviews_scraper.py`)
+```python
+from apify_client import ApifyClient
+
+APIFY_TOKEN = os.getenv("APIFY_API_TOKEN", "YOUR_APIFY_API_TOKEN")
+if not APIFY_TOKEN or APIFY_TOKEN.startswith("YOUR_"):
+    raise SystemExit("Please set your Apify API token: export APIFY_API_TOKEN='apify_api_...'")
+
+client = ApifyClient(APIFY_TOKEN)
+
+run_input = {
+    "placeUrls": ["https://map.naver.com/p/entry/place/2025884279"],
+    "maxItems": 20,
+    "maxReviewsPerPlace": 20,
+    "onlyPhotoReviews": False,
+    "includeBlogReviews": True,
+    "maxBlogReviewsPerPlace": 10
+}
+
+run = client.actor("unitbytes/naver-place-reviews-scraper").call(run_input=run_input)
+
+for item in client.dataset(run["defaultDatasetId"]).iterate_items():
+    print(item.get("placeName"), item.get("bookingItemName"), item.get("authorNickname"))
+```
+
+#### Sample Output Schema (`samples/naver-place-reviews-scraper-sample.json`)
+```json
+{
+  "reviewId": "671a9b2c8f01e20001a4b912",
+  "reviewType": "visitor",
+  "placeId": "2025884279",
+  "placeName": "서울 미식 다이닝 강남점",
+  "placeCategory": "한식",
+  "businessCategory": "restaurant",
+  "placeAddress": "서울 강남구 테헤란로 100 1층",
+  "placeRating": 4.97,
+  "placeUrl": "https://map.naver.com/p/entry/place/2025884279",
+  "rating": 5.0,
+  "title": null,
+  "text": "숙성회가 정말 두툼하고 신선해요! 소금김밥이랑 같이 먹으면 궁합이 최고입니다. 직원분들도 친절하셔서 다음 모임 때 또 방문할 예정이에요.",
+  "createdAt": "10.24.토",
+  "visitedAt": "10.24.토",
+  "visitCount": 2,
+  "viewCount": 48,
+  "verificationMethod": "영수증",
+  "bookingItemName": "네이버 예약",
+  "votedKeywords": [
+    "음식이 맛있어요",
+    "재료가 신선해요",
+    "친절해요"
+  ],
+  "votedKeywordsText": "음식이 맛있어요, 재료가 신선해요, 친절해요, 매장이 넓어요",
+  "mainPhotoUrl": "https://pup-review-phinf.pstatic.net/example_review_photo_01.jpg",
+  "photoUrls": [
+    "https://pup-review-phinf.pstatic.net/example_review_photo_01.jpg",
+    "https://pup-review-phinf.pstatic.net/example_review_photo_02.jpg"
+  ],
+  "photoCount": 2,
+  "hasPhotos": true,
+  "authorId": "user_4c9b",
+  "authorNickname": "reviewer_4a9c",
+  "authorProfileUrl": "https://m.place.naver.com/my/user_4c9b/review",
+  "authorImageUrl": null,
+  "authorTotalReviews": 84,
+  "ownerReplyText": "소중한 영수증 리뷰와 멋진 사진 감사드립니다! 언제나 신선한 숙성회로 보답하겠습니다.",
+  "ownerReplyCreatedAt": "10.25.일",
+  "reviewUrl": "https://m.place.naver.com/place/2025884279/review/visitor",
+  "searchQuery": null,
+  "language": "ko",
+  "scrapedAt": "2026-10-28T12:00:00.000000+00:00"
+}
+```
+
+#### Frequently Asked Questions
+**Q: Do I need my own proxies or account login for naver-place-reviews-scraper?**
+No. UnitBytes manages residential proxy rotation and automated request orchestration so you never need personal accounts or proxies.
+
+**Q: What output formats are supported?**
+All data can be downloaded in JSON, CSV, or Excel formats, or consumed directly via the Apify REST API and webhooks.
+
+**Q: How does pricing work?**
+You only pay for successful records extracted under Apify Pay-Per-Event pricing, with zero monthly minimums or idle compute costs.
+
+**Q: Can this actor be integrated into automated workflows?**
+Yes. You can trigger runs via Apify API, Python/JavaScript clients, Make, Zapier, or scheduled cron workflows.
 
 
 ---
