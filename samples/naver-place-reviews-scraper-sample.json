@@ -1,0 +1,46 @@
+[
+  {
+    "reviewId": "671a9b2c8f01e20001a4b912",
+    "reviewType": "visitor",
+    "placeId": "2025884279",
+    "placeName": "서울 미식 다이닝 강남점",
+    "placeCategory": "한식",
+    "businessCategory": "restaurant",
+    "placeAddress": "서울 강남구 테헤란로 100 1층",
+    "placeRating": 4.97,
+    "placeUrl": "https://map.naver.com/p/entry/place/2025884279",
+    "rating": 5.0,
+    "title": null,
+    "text": "숙성회가 정말 두툼하고 신선해요! 소금김밥이랑 같이 먹으면 궁합이 최고입니다. 직원분들도 친절하셔서 다음 모임 때 또 방문할 예정이에요.",
+    "createdAt": "10.24.토",
+    "visitedAt": "10.24.토",
+    "visitCount": 2,
+    "viewCount": 48,
+    "verificationMethod": "영수증",
+    "bookingItemName": "네이버 예약",
+    "votedKeywords": [
+      "음식이 맛있어요",
+      "재료가 신선해요",
+      "친절해요"
+    ],
+    "votedKeywordsText": "음식이 맛있어요, 재료가 신선해요, 친절해요, 매장이 넓어요",
+    "mainPhotoUrl": "https://pup-review-phinf.pstatic.net/example_review_photo_01.jpg",
+    "photoUrls": [
+      "https://pup-review-phinf.pstatic.net/example_review_photo_01.jpg",
+      "https://pup-review-phinf.pstatic.net/example_review_photo_02.jpg"
+    ],
+    "photoCount": 2,
+    "hasPhotos": true,
+    "authorId": "user_4c9b",
+    "authorNickname": "reviewer_4a9c",
+    "authorProfileUrl": "https://m.place.naver.com/my/user_4c9b/review",
+    "authorImageUrl": null,
+    "authorTotalReviews": 84,
+    "ownerReplyText": "소중한 영수증 리뷰와 멋진 사진 감사드립니다! 언제나 신선한 숙성회로 보답하겠습니다.",
+    "ownerReplyCreatedAt": "10.25.일",
+    "reviewUrl": "https://m.place.naver.com/place/2025884279/review/visitor",
+    "searchQuery": null,
+    "language": "ko",
+    "scrapedAt": "2026-10-28T12:00:00.000000+00:00"
+  }
+]

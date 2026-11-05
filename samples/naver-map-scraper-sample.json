@@ -1,0 +1,83 @@
+[
+  {
+    "placeId": "2025884279",
+    "name": "서울 미식 다이닝 강남점",
+    "businessCategory": "restaurant",
+    "category": "한식",
+    "categoryCode": "220053",
+    "phone": "0507-0000-0000",
+    "virtualPhone": "0507-0000-0000",
+    "roadAddress": "서울 강남구 테헤란로 100 1층",
+    "address": "서울 강남구 역삼동 100-1",
+    "commonAddress": "서울 강남구 역삼동",
+    "fullAddress": "서울 강남구 테헤란로 100 1층",
+    "postalCode": "09680108",
+    "latitude": 37.5206335,
+    "longitude": 127.0361667,
+    "distance": "2.6km",
+    "directions": "강남구청역 3-1번 출구로 나오셔서 보이는 올리브영 방향으로 쭉 직진하시다가 커피빈 골목에서 왼쪽으로 꺾어서 200m정도 오시면 왼쪽에 있습니다.",
+    "nearestSubway": "강남구청역 7호선",
+    "parkingInfo": "2시간 4000원 (발렛파킹 가능)",
+    "businessStatus": "영업 중",
+    "businessHoursText": "02:00에 영업 종료",
+    "businessHours": [
+      {
+        "day": "월",
+        "start": "11:00",
+        "end": "02:00"
+      }
+    ],
+    "rating": 4.97,
+    "visitorReviewCount": 177,
+    "blogCafeReviewCount": 37,
+    "bookingReviewCount": 0,
+    "imageReviewCount": 143,
+    "popularMenusText": "소금김밥, 대물 숙성회 정식(광어), 1% 대광어 숙성회",
+    "menuCount": 6,
+    "menus": [
+      {
+        "name": "1% 대광어 숙성회",
+        "priceText": "56,000원",
+        "priceKrw": 56000,
+        "description": "중 56000 / 대 78000",
+        "isRecommended": true,
+        "imageUrl": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg"
+      }
+    ],
+    "topVotedKeywords": [
+      {
+        "code": "food_good",
+        "keyword": "음식이 맛있어요",
+        "count": 165
+      },
+      {
+        "code": "fresh",
+        "keyword": "재료가 신선해요",
+        "count": 121
+      }
+    ],
+    "conveniences": [
+      "포장",
+      "단체 이용 가능",
+      "예약"
+    ],
+    "paymentMethods": [
+      "간편결제"
+    ],
+    "hasBooking": true,
+    "homepageUrl": "https://map.naver.com/p/entry/place/2025884279",
+    "instagramUrl": null,
+    "allLinks": [
+      "https://map.naver.com/p/entry/place/2025884279"
+    ],
+    "microReview": "한 점 한 점 정성 가득한 숙성회",
+    "mainImage": "https://ldb-phinf.pstatic.net/example_place_photo_01.jpg",
+    "imageCount": 57,
+    "url": "https://map.naver.com/p/entry/place/2025884279",
+    "mapUrl": "https://m.place.naver.com/restaurant/2025884279/home",
+    "searchQuery": "강남 맛집",
+    "detailLevel": "full",
+    "language": "ko",
+    "scrapedAt": "2026-10-28T12:00:00.000000+00:00"
+  }
+]
